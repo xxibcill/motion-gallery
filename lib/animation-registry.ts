@@ -183,3 +183,14 @@ registerAnimation({
   keywords: ["floating", "logos", "squares", "ambient", "background"],
   color: "violet",
 });
+
+registerAnimation({
+  id: "scroll-reveal",
+  title: "Scroll Reveal",
+  description: "Scroll-locked section with progressive text reveal and spring animations",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["scroll", "reveal", "locked", "sticky", "spring", "text"],
+  color: "indigo",
+});
