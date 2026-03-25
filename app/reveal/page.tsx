@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   motion,
   useScroll,
@@ -8,6 +9,8 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { useRef, ReactNode } from "react";
+import { CodePanel, CodeToggle } from "@/components/code-panel";
+import { maskRevealCode, circleRevealCode, gridRevealCode } from "./code";
 
 // Mask reveal wrapper
 interface MaskRevealProps {
@@ -327,6 +330,10 @@ function Section({
 }
 
 export default function RevealPage() {
+  const [codeOpen, setCodeOpen] = useState(false);
+  const [activeCode, setActiveCode] = useState(maskRevealCode);
+  const [activeTitle, setActiveTitle] = useState("MaskReveal.tsx");
+
   const gridItems = [
     {
       id: "1",
@@ -527,6 +534,15 @@ export default function RevealPage() {
           </MaskReveal>
         </div>
       </Section>
+
+      {/* Code Panel */}
+      <CodeToggle onClick={() => setCodeOpen(true)} />
+      <CodePanel
+        code={activeCode}
+        title={activeTitle}
+        isOpen={codeOpen}
+        onClose={() => setCodeOpen(false)}
+      />
     </main>
   );
 }
