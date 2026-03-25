@@ -308,7 +308,7 @@ export function PeekSnapSections({
   const totalHeight = `${sections.length * PEEK_CONFIG.scrollHeightPerSection * 100}vh`;
 
   return (
-    <div ref={containerRef} className={className} style={{ height: totalHeight }}>
+    <div ref={containerRef} className={`relative ${className}`} style={{ height: totalHeight }}>
       {/* Fixed viewport container for all sections */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {sections.map((section, index) => (
