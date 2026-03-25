@@ -172,3 +172,14 @@ registerAnimation({
   keywords: ["3d", "perspective", "rotate", "transform", "card"],
   color: "cyan",
 });
+
+registerAnimation({
+  id: "floating-logos",
+  title: "Floating Logos",
+  description: "Multiple rounded squares floating around with adjustable speed and distance",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["floating", "logos", "squares", "ambient", "background"],
+  color: "violet",
+});
