@@ -6,12 +6,11 @@ import {
   useReducedMotion,
   type MotionValue,
   type SpringOptions,
+  type UseScrollOptions,
 } from "framer-motion";
 
-type ScrollOffset = [string, string];
-
 interface UseScrollTransformOptions {
-  offset?: ScrollOffset;
+  offset?: UseScrollOptions["offset"];
   spring?: SpringOptions;
 }
 
