@@ -84,18 +84,17 @@ export function BottomPeekCard({
     [BOTTOM_PEEK_CONFIG.peek.scale, BOTTOM_PEEK_CONFIG.full.scale]
   );
 
-  // Opacity fade in
+  // Opacity fade in with spring smoothing
   const opacity = useTransform(
     scrollYProgress,
     [-0.1, 0.05],
     [0, 1]
   );
-
-  // Apply spring smoothing
-  const smoothWidth = useSpring(width, BOTTOM_PEEK_CONFIG.spring);
-  const smoothBorderRadius = useSpring(borderRadius, BOTTOM_PEEK_CONFIG.spring);
-  const smoothScale = useSpring(scale, BOTTOM_PEEK_CONFIG.spring);
-  const smoothOpacity = useSpring(opacity, BOTTOM_PEEK_CONFIG.spring);
+  const smoothOpacity = useSpring(opacity, {
+    stiffness: BOTTOM_PEEK_CONFIG.spring.stiffness,
+    damping: BOTTOM_PEEK_CONFIG.spring.damping,
+    mass: BOTTOM_PEEK_CONFIG.spring.mass,
+  });
 
   // Reduced motion fallback
   if (prefersReducedMotion) {
@@ -121,9 +120,9 @@ export function BottomPeekCard({
       <motion.div
         className={`sticky bottom-0 h-screen ${bgClass} overflow-hidden shadow-2xl mx-auto`}
         style={{
-          width: smoothWidth,
-          borderRadius: smoothBorderRadius,
-          scale: smoothScale,
+          width: width,
+          borderRadius: borderRadius,
+          scale: scale,
           opacity: smoothOpacity,
           originY: 1, // Scale from bottom
         }}
