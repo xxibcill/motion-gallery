@@ -62,6 +62,26 @@ export const transitionPresets = {
   spring: { type: "spring", stiffness: 200, damping: 20 },
 } as const;
 
+export const transitionLabDurations = {
+  instant: 0,
+  brisk: 0.35,
+  base: 0.65,
+  slow: 0.95,
+  linger: 1.25,
+} as const;
+
+export const transitionLabEasings = {
+  emphasis: [0.16, 1, 0.3, 1],
+  curtain: [0.77, 0, 0.18, 1],
+  fluid: [0.22, 1, 0.36, 1],
+} as const;
+
+export const transitionLabSprings = {
+  stage: { stiffness: 150, damping: 24, mass: 0.9 },
+  sharedElement: { stiffness: 220, damping: 22, mass: 0.8 },
+  hover: { stiffness: 260, damping: 20, mass: 0.7 },
+} as const satisfies Record<string, SpringOptions>;
+
 // Stagger presets for lists
 export const staggerPresets = {
   tight: { staggerChildren: 0.05 },

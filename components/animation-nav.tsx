@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAllAnimations } from "@/lib/animation-registry";
+import { isAnimationActive } from "@/lib/route-matching";
 
 const colorClasses: Record<string, string> = {
   zinc: "text-zinc-400 hover:text-zinc-300",
@@ -82,8 +83,7 @@ export function AnimationNav() {
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {animations.map((animation, index) => {
-                const isActive = pathname === `/${animation.id}` ||
-                  (animation.id === "home" && pathname === "/");
+                const isActive = isAnimationActive(pathname, animation);
                 const colorClass = colorClasses[animation.color] || colorClasses.zinc;
                 const activeClass = activeColorClasses[animation.color] || activeColorClasses.zinc;
 
@@ -95,7 +95,7 @@ export function AnimationNav() {
                     transition={{ delay: index * 0.03, duration: 0.2 }}
                   >
                     <Link
-                      href={animation.id === "home" ? "/" : `/${animation.id}`}
+                      href={animation.path}
                       className={`${isActive ? activeClass : colorClass} block px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-white/5 ${isActive ? "bg-white/5" : ""}`}
                       onClick={() => setIsOpen(false)}
                     >

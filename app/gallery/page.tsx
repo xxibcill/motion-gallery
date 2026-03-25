@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import {
   getAllAnimations,
   searchAnimations,
-  filterAnimations,
   type AnimationMeta,
   type AnimationCategory,
   type AnimationDifficulty,
@@ -35,6 +34,7 @@ const libraryColors: Record<AnimationLibrary, string> = {
 
 const colorClasses: Record<string, string> = {
   zinc: "from-zinc-800 to-zinc-900",
+  slate: "from-slate-800 to-slate-950",
   indigo: "from-indigo-800 to-indigo-950",
   violet: "from-violet-800 to-violet-950",
   fuchsia: "from-fuchsia-800 to-fuchsia-950",
@@ -48,7 +48,7 @@ function AnimationCard({ animation }: { animation: AnimationMeta }) {
   const gradientClass = colorClasses[animation.color] || colorClasses.zinc;
 
   return (
-    <Link href={animation.id === "home" ? "/" : `/${animation.id}`}>
+    <Link href={animation.path}>
       <motion.div
         className="group relative h-48 rounded-2xl overflow-hidden border border-zinc-800 hover:border-zinc-700 transition-colors"
         whileHover={{ scale: 1.02, y: -4 }}
