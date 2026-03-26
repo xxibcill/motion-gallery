@@ -2,7 +2,6 @@ import { PeekSnapSections, SectionData } from "@/components/peek-snap-sections";
 import {
   BottomPeekCard,
   BottomPeekContent,
-  BOTTOM_PEEK_CONFIG,
 } from "@/components/bottom-peek-card";
 
 // Sample section data - customize these for your use case
@@ -46,26 +45,26 @@ export default function Home() {
     <main className="w-full">
       <PeekSnapSections sections={sections} />
 
-      {/* Bottom peek card - starts as half-height and expands to full */}
+      {/* Bottom peek transition - lifts the next section into place */}
       <BottomPeekCard
         bgClass="bg-gradient-to-br from-rose-950 via-pink-900 to-fuchsia-950"
         className="relative z-10"
       >
         <BottomPeekContent
-          title="Expandable Card"
-          subtitle="A different approach"
-          description="This card starts at half height peeking from the bottom. Keep scrolling to see it expand to a full-page card with smooth spring physics."
+          title="A Seamless Section Handoff"
+          subtitle="Bottom Peek Transition"
+          description="Instead of introducing a framed card, the next scene rises from the bottom as a full-bleed surface. That keeps the transition compatible with other scroll-driven sections."
         />
       </BottomPeekCard>
 
-      {/* Another section after the expanded card */}
+      {/* Another section after the transition */}
       <div className="h-screen bg-gradient-to-br from-sky-950 via-blue-900 to-indigo-950 flex items-center justify-center">
         <div className="max-w-3xl px-8 text-center">
           <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
             Continue Exploring
           </h2>
           <p className="text-lg text-zinc-400 max-w-xl mx-auto">
-            The bottom peek card transitioned to full height. You can stack multiple effects for rich scroll experiences.
+            The bottom peek transition resolves into a normal section, so you can stack it with other full-screen effects without the layout breaking into separate demo blocks.
           </p>
         </div>
       </div>
