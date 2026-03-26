@@ -121,13 +121,13 @@ export default function TransitionHubPage() {
   return (
     <SceneFrame
       eyebrow="Transition Wow"
-      title="Ten transition directions, one section shell, and room for a real showcase controller."
-      description="This hub establishes the permanent home for the transition collection. Each card has its own atmosphere, every planned route is already reachable, and the shell reserves space for the filters and replay controls that arrive later."
+      title="Ten transition directions, one section shell, and a live showcase controller."
+      description="This hub is the permanent home for the transition collection. The flagship showcase compares all ten modes from one control surface, while each demo route keeps its own atmosphere and choreography."
       aside={
         <div className="space-y-4">
           <div>
             <p className="text-[0.65rem] uppercase tracking-[0.24em] text-white/40">
-              Future Control Rail
+              Control Pillars
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {transitionLabControlPillars.map((pillar) => (
@@ -141,9 +141,9 @@ export default function TransitionHubPage() {
             </div>
           </div>
           <p>
-            The first demo routes are live now, and the remaining planned routes
-            still sit behind section-aware placeholders so later work can land
-            without changing navigation, gallery cards, or registry wiring.
+            Every route is wired into the shared registry and section navigation.
+            The showcase now acts as the comparison bench, while the individual
+            pages stay focused on their own motion language.
           </p>
         </div>
       }
@@ -184,10 +184,11 @@ export default function TransitionHubPage() {
               <SharedElementShell
                 layoutId="transition-lab-showcase-shell"
                 label="Shared Shell"
-                title="Controller space reserved"
+                title="Controller live"
               >
                 <p className="text-sm leading-6 text-white/68">
-                  This panel is already using the shared-element wrapper that later pages can animate between views, tiles, and scene states.
+                  The showcase route now uses the shared scene shell for live
+                  mode switching, replay, and reduced-motion-aware comparisons.
                 </p>
                 <div className="grid gap-3 pt-2 sm:grid-cols-3">
                   <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
@@ -200,13 +201,13 @@ export default function TransitionHubPage() {
                     <p className="text-xs uppercase tracking-[0.22em] text-white/40">
                       Replay
                     </p>
-                    <p className="mt-2 text-white">Ready</p>
+                    <p className="mt-2 text-white">Live</p>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
                     <p className="text-xs uppercase tracking-[0.22em] text-white/40">
                       Stage
                     </p>
-                    <p className="mt-2 text-white">Shared</p>
+                    <p className="mt-2 text-white">Shared shell</p>
                   </div>
                 </div>
               </SharedElementShell>

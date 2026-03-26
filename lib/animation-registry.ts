@@ -272,14 +272,14 @@ registerAnimation({
   id: "transition-showcase",
   path: "/transition/showcase",
   title: "Transition Showcase",
-  description: "Flagship comparison route that will cycle one scene through every transition mode",
+  description: "Flagship comparison route that cycles one shared scene through every transition mode",
   category: "page-transitions",
   difficulty: "advanced",
   library: ["framer-motion"],
   keywords: ["showcase", "comparison", "modes", "replay", "controller"],
   color: "cyan",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({

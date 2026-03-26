@@ -42,6 +42,8 @@ export function AnimationNav() {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-5 left-5 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
         aria-label="Toggle navigation"
+        aria-expanded={isOpen}
+        aria-controls="animation-nav-panel"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -76,6 +78,7 @@ export function AnimationNav() {
               onClick={() => setIsOpen(false)}
             />
             <motion.nav
+              id="animation-nav-panel"
               className="fixed top-20 left-5 z-50 flex flex-col gap-0.5 bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-2 border border-white/10 shadow-2xl shadow-black/50"
               initial={{ opacity: 0, x: -20, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -96,7 +99,8 @@ export function AnimationNav() {
                   >
                     <Link
                       href={animation.path}
-                      className={`${isActive ? activeClass : colorClass} block px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-white/5 ${isActive ? "bg-white/5" : ""}`}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`${isActive ? activeClass : colorClass} block px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 ${isActive ? "bg-white/5" : ""}`}
                       onClick={() => setIsOpen(false)}
                     >
                       {animation.title}

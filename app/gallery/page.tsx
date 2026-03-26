@@ -46,6 +46,8 @@ const colorClasses: Record<string, string> = {
 
 function AnimationCard({ animation }: { animation: AnimationMeta }) {
   const gradientClass = colorClasses[animation.color] || colorClasses.zinc;
+  const groupLabel = animation.group === "transition-lab" ? "Transition Lab" : "Core";
+  const statusLabel = animation.status === "planned" ? "Planned" : "Ready";
 
   return (
     <Link href={animation.path}>
@@ -60,6 +62,14 @@ function AnimationCard({ animation }: { animation: AnimationMeta }) {
         {/* Content */}
         <div className="relative h-full p-6 flex flex-col justify-between">
           <div>
+            <div className="mb-3 flex flex-wrap gap-2">
+              <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.22em] text-zinc-200">
+                {groupLabel}
+              </span>
+              <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.22em] text-zinc-400">
+                {statusLabel}
+              </span>
+            </div>
             <h3 className="text-2xl font-bold text-white mb-2">
               {animation.title}
             </h3>
@@ -170,6 +180,9 @@ export default function GalleryPage() {
         <div className="max-w-6xl mx-auto px-6 py-4">
           {/* Search */}
           <div className="relative mb-4">
+            <label htmlFor="animation-search" className="sr-only">
+              Search animations
+            </label>
             <svg
               className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500"
               fill="none"
@@ -184,6 +197,7 @@ export default function GalleryPage() {
               />
             </svg>
             <input
+              id="animation-search"
               type="text"
               placeholder="Search animations..."
               value={query}
