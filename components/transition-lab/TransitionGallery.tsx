@@ -38,7 +38,7 @@ function TransitionSection({ mode, index }: TransitionSectionProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [replayKey, setReplayKey] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.7 });
+  const isInView = useInView(sectionRef, { once: false, amount: 0.5 });
   const stageKey = `${mode.id}-${replayKey}-${isInView ? "in" : "out"}`;
 
   function handleReplay() {
@@ -48,24 +48,12 @@ function TransitionSection({ mode, index }: TransitionSectionProps) {
   }
 
   return (
-    <section ref={sectionRef} className="relative">
-      <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 className="text-lg font-medium text-white/88">{mode.label}</h3>
-        </div>
-        <button
-          onClick={handleReplay}
-          className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-1.5 text-xs uppercase tracking-[0.18em] text-white/60 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white/80"
-        >
-          Replay
-        </button>
-      </div>
-
+    <section
+      ref={sectionRef}
+      className="relative flex h-screen flex-col justify-center px-4"
+    >
       <TransitionStage
-        className="min-h-[18rem] overflow-hidden"
+        className="flex-1 overflow-hidden"
         backgroundClassName={mode.backgroundClassName}
         overlays={
           <GradientVeil
@@ -80,26 +68,33 @@ function TransitionSection({ mode, index }: TransitionSectionProps) {
           {isInView && (
             <motion.div
               key={stageKey}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{
                 duration: getDuration(prefersReducedMotion, transitionLabDurations.base, defaultMotionProfile),
               }}
-              className="relative h-full min-h-[16rem] p-6"
+              className="relative flex h-full flex-col items-center justify-center p-6"
             >
               {getOverlayForMode(mode.id, prefersReducedMotion, defaultMotionProfile)}
 
-              {/* Simple header card */}
-              <div className="relative z-10">
-                <div className={`inline-block rounded-2xl border px-6 py-4 backdrop-blur-md ${mode.shellClassName}`}>
-                  <span className="block text-[0.65rem] uppercase tracking-[0.24em] text-white/48">
-                    {mode.stageLabel}
+              {/* Centered content */}
+              <div className="relative z-10 flex flex-col items-center text-center">
+                <div className={`rounded-3xl border px-8 py-6 backdrop-blur-md ${mode.shellClassName}`}>
+                  <span className="block text-xs uppercase tracking-[0.28em] text-white/48">
+                    {String(index + 1).padStart(2, "0")} · {mode.stageLabel}
                   </span>
-                  <h4 className="mt-1 text-xl font-medium text-white/92">
+                  <h4 className="mt-2 text-3xl font-semibold text-white/92 sm:text-4xl">
                     {mode.label}
                   </h4>
                 </div>
+
+                <button
+                  onClick={handleReplay}
+                  className="mt-6 rounded-full border border-white/12 bg-white/[0.06] px-5 py-2 text-xs uppercase tracking-[0.2em] text-white/56 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white/80"
+                >
+                  Replay
+                </button>
               </div>
             </motion.div>
           )}
@@ -134,8 +129,8 @@ export function TransitionGallery() {
         </p>
       </header>
 
-      {/* Transition sections */}
-      <div className="space-y-12">
+      {/* Transition sections - full page each */}
+      <div className="space-y-6">
         {showcaseModes.map((mode, index) => (
           <TransitionSection key={mode.id} mode={mode} index={index} />
         ))}
