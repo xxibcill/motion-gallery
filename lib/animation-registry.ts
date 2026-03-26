@@ -1,3 +1,33 @@
+/**
+ * @fileoverview Central registry for all animations in the motion gallery
+ *
+ * This module provides a single source of truth for animation metadata,
+ * enabling navigation, search, and filtering across the entire gallery.
+ * All animations (core gallery and transition lab) must be registered here.
+ *
+ * @module animation-registry
+ * @see lib/animation-presets.ts for shared animation primitives
+ *
+ * @example
+ * // Register a new animation
+ * registerAnimation({
+ *   id: "my-animation",
+ *   path: "/my-animation",
+ *   title: "My Animation",
+ *   description: "A custom animation demo",
+ *   category: "hover-interactions",
+ *   difficulty: "beginner",
+ *   library: ["framer-motion"],
+ *   keywords: ["hover", "interactive"],
+ *   color: "cyan",
+ *   group: "core",
+ * });
+ *
+ * // Retrieve all animations for navigation
+ * const allAnimations = getAllAnimations();
+ */
+
+/** Categories for organizing animations by their primary motion type */
 export type AnimationCategory =
   | "scroll-based"
   | "text-effects"
@@ -6,11 +36,40 @@ export type AnimationCategory =
   | "page-transitions"
   | "layout-animations";
 
+/** Skill level required to understand the animation implementation */
 export type AnimationDifficulty = "beginner" | "intermediate" | "advanced";
+
+/** Animation library used for the implementation */
 export type AnimationLibrary = "framer-motion" | "gsap";
+
+/**
+ * Navigation group for organizing routes
+ * - "core" - Main gallery demos (gsap, parallax, text-reveal, etc.)
+ * - "transition-lab" - Route transition experiments under /transition/
+ */
 export type AnimationGroup = "core" | "transition-lab";
+
+/** Implementation status of the animation */
 export type AnimationStatus = "ready" | "planned";
 
+/**
+ * Complete metadata for a single animation entry
+ *
+ * @description Each animation in the gallery has this metadata structure,
+ * which powers navigation, search, filtering, and display throughout the app.
+ *
+ * @property id - Unique identifier (kebab-case, matches route when possible)
+ * @property path - URL path for the animation page
+ * @property title - Display title shown in navigation and headers
+ * @property description - Brief explanation of what the animation demonstrates
+ * @property category - Primary classification for filtering
+ * @property difficulty - Complexity level for filtering and badges
+ * @property library - Animation libraries used (can be multiple for hybrids)
+ * @property keywords - Searchable terms for discovery
+ * @property color - Theme color for UI elements (Tailwind color name)
+ * @property group - Navigation group for organizing routes
+ * @property status - Optional implementation status (defaults to "ready")
+ */
 export interface AnimationMeta {
   id: string;
   path: string;
@@ -25,12 +84,41 @@ export interface AnimationMeta {
   status?: AnimationStatus;
 }
 
+/** Internal registry array - animations are added via registerAnimation() */
 const animations: AnimationMeta[] = [];
 
+/**
+ * Sorts animations alphabetically by title for consistent display order
+ * @param values - Array of animation metadata to sort
+ * @returns New sorted array (does not mutate input)
+ */
 function sortAnimations(values: AnimationMeta[]): AnimationMeta[] {
   return [...values].sort((a, b) => a.title.localeCompare(b.title));
 }
 
+/**
+ * Registers an animation in the global registry
+ *
+ * @description Adds a new animation or updates an existing one if the ID matches.
+ * This is called at module load time for built-in animations, but can also be
+ * called dynamically for plugins or extensions.
+ *
+ * @param meta - Complete animation metadata object
+ *
+ * @example
+ * registerAnimation({
+ *   id: "my-effect",
+ *   path: "/my-effect",
+ *   title: "My Effect",
+ *   description: "A cool animation effect",
+ *   category: "hover-interactions",
+ *   difficulty: "intermediate",
+ *   library: ["framer-motion"],
+ *   keywords: ["hover", "interactive", "spring"],
+ *   color: "violet",
+ *   group: "core",
+ * });
+ */
 export function registerAnimation(meta: AnimationMeta): void {
   const existing = animations.findIndex((animation) => animation.id === meta.id);
   if (existing >= 0) {
@@ -41,30 +129,79 @@ export function registerAnimation(meta: AnimationMeta): void {
   animations.push(meta);
 }
 
+/**
+ * Retrieves all registered animations, sorted alphabetically by title
+ *
+ * @returns Sorted array of all animation metadata
+ */
 export function getAllAnimations(): AnimationMeta[] {
   return sortAnimations(animations);
 }
 
+/**
+ * Finds an animation by its unique identifier
+ *
+ * @param id - The animation's unique ID
+ * @returns Animation metadata or undefined if not found
+ */
 export function getAnimationById(id: string): AnimationMeta | undefined {
   return animations.find((animation) => animation.id === id);
 }
 
+/**
+ * Finds an animation by its URL path
+ *
+ * @description Useful for determining which animation is active based on the current route
+ * @param path - URL path (e.g., "/gsap", "/transition/kinetic-panels")
+ * @returns Animation metadata or undefined if not found
+ */
 export function getAnimationByPath(path: string): AnimationMeta | undefined {
   return animations.find((animation) => animation.path === path);
 }
 
+/**
+ * Filters animations by their navigation group
+ *
+ * @param group - Either "core" for main gallery or "transition-lab" for transitions
+ * @returns Array of animations in the specified group
+ */
 export function getAnimationsByGroup(group: AnimationGroup): AnimationMeta[] {
   return animations.filter((animation) => animation.group === group);
 }
 
+/**
+ * Convenience function to get all transition lab animations
+ *
+ * @returns All animations in the "transition-lab" group
+ */
 export function getTransitionLabAnimations(): AnimationMeta[] {
   return getAnimationsByGroup("transition-lab");
 }
 
+/**
+ * Gets transition lab routes excluding the main index page
+ *
+ * @description Used for navigation within the transition lab section.
+ * Excludes "/transition" (the index) to show only individual transition demos.
+ * @returns Transition lab animations excluding the index page
+ */
 export function getTransitionLabRoutes(): AnimationMeta[] {
   return getTransitionLabAnimations().filter((animation) => animation.path !== "/transition");
 }
 
+/**
+ * Searches animations by query string across multiple fields
+ *
+ * @description Performs case-insensitive search across title, description,
+ * keywords, category, and library fields. Returns all animations if query is empty.
+ *
+ * @param query - Search string
+ * @returns Array of matching animations
+ *
+ * @example
+ * const results = searchAnimations("spring"); // Finds animations mentioning spring
+ * const hoverResults = searchAnimations("hover"); // Finds hover-related animations
+ */
 export function searchAnimations(query: string): AnimationMeta[] {
   const lowerQuery = query.toLowerCase().trim();
   if (!lowerQuery) return getAllAnimations();
@@ -80,6 +217,24 @@ export function searchAnimations(query: string): AnimationMeta[] {
   });
 }
 
+/**
+ * Filters animations by multiple criteria (AND logic)
+ *
+ * @description All provided filters must match for an animation to be included.
+ * Empty or undefined filters are ignored (treated as "match all").
+ *
+ * @param categories - Array of categories to include (optional)
+ * @param difficulty - Array of difficulty levels to include (optional)
+ * @param library - Array of libraries to include (animation must use at least one)
+ * @returns Array of animations matching all specified criteria
+ *
+ * @example
+ * // Get all beginner Framer Motion animations
+ * const beginner = filterAnimations(undefined, ["beginner"], ["framer-motion"]);
+ *
+ * // Get advanced scroll-based animations
+ * const advanced = filterAnimations(["scroll-based"], ["advanced"]);
+ */
 export function filterAnimations(
   categories?: AnimationCategory[],
   difficulty?: AnimationDifficulty[],
@@ -505,6 +660,7 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+
 registerAnimation({
   id: "micro-magnetic-cta",
   path: "/micro-interactions/magnetic-cta",

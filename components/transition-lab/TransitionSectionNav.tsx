@@ -1,3 +1,13 @@
+/**
+ * @fileoverview Navigation component for Transition Lab section
+ *
+ * Provides a horizontal navigation bar with pill-style links for navigating
+ * between transition lab routes. Highlights the active route based on
+ * the current pathname.
+ *
+ * @module transition-lab/TransitionSectionNav
+ */
+
 "use client";
 
 import Link from "next/link";
@@ -5,10 +15,28 @@ import { usePathname } from "next/navigation";
 import type { AnimationMeta } from "@/lib/animation-registry";
 import { isAnimationActive } from "@/lib/route-matching";
 
+/**
+ * Props for the TransitionSectionNav component
+ */
 interface TransitionSectionNavProps {
   items: AnimationMeta[];
 }
 
+/**
+ * TransitionSectionNav - Horizontal navigation for transition lab routes
+ *
+ * @description Renders a horizontal scrolling navigation with pill-style links.
+ * Uses isAnimationActive to determine which link should be highlighted.
+ * The active link uses aria-current="page" for accessibility.
+ *
+ * @component
+ * @example
+ * const items = getTransitionLabRoutes();
+ *
+ * <TransitionSectionNav items={items} />
+ *
+ * @param props.items - Array of animation metadata to render as nav links
+ */
 export function TransitionSectionNav({ items }: TransitionSectionNavProps) {
   const pathname = usePathname();
 

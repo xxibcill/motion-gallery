@@ -1,3 +1,14 @@
+/**
+ * @fileoverview Vertical scroll gallery showcasing all transition modes
+ *
+ * TransitionGallery displays all 10 transition modes in a vertical scrolling
+ * layout where each transition fills a full viewport height. Each section
+ * triggers its animation when scrolled into view.
+ *
+ * @module transition-lab/TransitionGallery
+ * @see lib/transition-renderers.ts for transition mode definitions
+ */
+
 "use client";
 
 import { startTransition, useState, useRef } from "react";
@@ -18,22 +29,45 @@ import {
 } from "@/lib/transition-renderers";
 import { transitionLabDurations } from "@/lib/animation-presets";
 
+/**
+ * Header content for the transition gallery page
+ */
 const galleryScene = {
   eyebrow: "Transition Gallery",
   title: "All transitions, one scroll.",
   body: "Scroll to trigger each transition. Compare every signature side by vertical side.",
 };
 
+/**
+ * Default motion profile for gallery sections
+ * Uses "Studio" speed and "Balanced" intensity for optimal viewing
+ */
 const defaultMotionProfile: MotionProfile = {
   speed: { value: "studio", label: "Studio", durationMultiplier: 1 },
   intensity: { value: "balanced", label: "Balanced", distanceMultiplier: 1 },
 };
 
+/**
+ * Props for the TransitionSection component
+ */
 interface TransitionSectionProps {
   mode: ShowcaseMode;
   index: number;
 }
 
+/**
+ * TransitionSection - Single transition demo in the gallery
+ *
+ * @description Renders a full-viewport section containing one transition mode.
+ * Uses useInView to trigger the transition animation when scrolled into view.
+ * Each section includes:
+ * - TransitionStage with mode-specific background and gradient
+ * - Mode-specific overlay animation
+ * - Centered content card with mode name and index
+ * - Replay button for re-triggering the animation
+ *
+ * @internal
+ */
 function TransitionSection({ mode, index }: TransitionSectionProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [replayKey, setReplayKey] = useState(0);
@@ -104,6 +138,28 @@ function TransitionSection({ mode, index }: TransitionSectionProps) {
   );
 }
 
+/**
+ * TransitionGallery - Vertical scroll gallery of all transitions
+ *
+ * @description Displays all transition modes in a vertical scrolling layout.
+ * Each transition occupies a full viewport height and animates when scrolled
+ * into view. Provides an overview page comparing all transitions side-by-side.
+ *
+ * Features:
+ * - Full-viewport sections for each transition mode
+ * - Scroll-triggered animations via IntersectionObserver
+ * - Individual replay controls per section
+ * - Reduced motion support with fallback animations
+ *
+ * @component
+ * @example
+ * // In a page component
+ * import { TransitionGallery } from "@/components/transition-lab/TransitionGallery";
+ *
+ * export default function GalleryPage() {
+ *   return <TransitionGallery />;
+ * }
+ */
 export function TransitionGallery() {
   const prefersReducedMotion = usePrefersReducedMotion();
 

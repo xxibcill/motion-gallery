@@ -1,3 +1,16 @@
+/**
+ * @fileoverview Flagship transition showcase with 10 animated transition modes
+ *
+ * This is the main demo component for the Transition Lab section. It provides
+ * a side-by-side comparison of 10 different transition signatures using a
+ * shared scene architecture. Users can switch between modes, adjust speed
+ * and intensity, and replay animations.
+ *
+ * @module transition-lab/TransitionShowcase
+ * @see components/transition-lab/ShowcaseController.tsx for the control panel
+ * @see lib/transition-renderers.ts for mode rendering logic
+ */
+
 "use client";
 
 import type { ReactNode } from "react";
@@ -20,6 +33,10 @@ import {
   transitionLabEasings,
 } from "@/lib/animation-presets";
 
+/**
+ * Static content configuration for the showcase scene
+ * This content remains constant across all transition modes
+ */
 const showcaseScene = {
   eyebrow: "Shared Scene Contract",
   title: "One scene. Ten transition signatures.",
@@ -43,6 +60,19 @@ const showcaseScene = {
   detailChips: ["Control rail", "Stable content", "Route-linked demos"] as const,
 };
 
+/**
+ * Configuration for all 10 transition modes
+ *
+ * @description Each mode defines:
+ * - id: Unique identifier matching the animation registry
+ * - label: Display name for the mode selector
+ * - stageLabel: Short descriptor for the stage display
+ * - summary: Brief description for the info panel
+ * - route: Link to the dedicated demo page
+ * - Styling: background, shell, media, rail classes
+ * - gradient: Colors for the GradientVeil overlay
+ * - mediaGlow: Background gradient for the media placeholder
+ */
 const showcaseModes = [
   {
     id: "kinetic-panels",
@@ -227,6 +257,10 @@ const showcaseModes = [
   },
 ] as const;
 
+/**
+ * Speed presets for transition timing
+ * Each option includes a multiplier that scales animation durations
+ */
 const speedOptions = [
   {
     value: "measured",
@@ -245,6 +279,10 @@ const speedOptions = [
   },
 ] as const;
 
+/**
+ * Intensity presets for transition movement distances
+ * Each option includes a multiplier that scales animation distances
+ */
 const intensityOptions = [
   {
     value: "soft",
@@ -263,18 +301,30 @@ const intensityOptions = [
   },
 ] as const;
 
+/** Type for showcase mode configuration objects */
 type ShowcaseMode = (typeof showcaseModes)[number];
+/** Type for showcase mode ID strings */
 type ShowcaseModeId = ShowcaseMode["id"];
+/** Type for speed option objects */
 type SpeedOption = (typeof speedOptions)[number];
+/** Type for speed value strings */
 type SpeedId = SpeedOption["value"];
+/** Type for intensity option objects */
 type IntensityOption = (typeof intensityOptions)[number];
+/** Type for intensity value strings */
 type IntensityId = IntensityOption["value"];
 
+/**
+ * Combined motion settings for the current showcase state
+ */
 interface MotionProfile {
   speed: SpeedOption;
   intensity: IntensityOption;
 }
 
+/**
+ * Animation configuration for a single surface/element
+ */
 interface SurfaceMotion {
   initial: TargetAndTransition;
   animate: TargetAndTransition;
@@ -292,10 +342,20 @@ interface ShowcaseLayoutProps {
   overlay?: ReactNode;
 }
 
+/**
+ * Retrieves a speed option by its value
+ * @param value - The speed value to look up
+ * @returns The matching speed option, or "Studio" as default
+ */
 function getSpeedOption(value: SpeedId): SpeedOption {
   return speedOptions.find((option) => option.value === value) ?? speedOptions[1];
 }
 
+/**
+ * Retrieves an intensity option by its value
+ * @param value - The intensity value to look up
+ * @returns The matching intensity option, or "Balanced" as default
+ */
 function getIntensityOption(value: IntensityId): IntensityOption {
   return (
     intensityOptions.find((option) => option.value === value) ??
@@ -303,6 +363,13 @@ function getIntensityOption(value: IntensityId): IntensityOption {
   );
 }
 
+/**
+ * Calculates the actual duration based on reduced motion and speed multiplier
+ * @param prefersReducedMotion - Whether reduced motion is preferred
+ * @param value - Base duration value in seconds
+ * @param motionProfile - Current motion profile with speed settings
+ * @returns Adjusted duration in seconds
+ */
 function getDuration(
   prefersReducedMotion: boolean,
   value: number,
@@ -315,6 +382,13 @@ function getDuration(
   return value * motionProfile.speed.durationMultiplier;
 }
 
+/**
+ * Calculates the actual delay based on reduced motion and speed multiplier
+ * @param prefersReducedMotion - Whether reduced motion is preferred
+ * @param value - Base delay value in seconds
+ * @param motionProfile - Current motion profile with speed settings
+ * @returns Adjusted delay in seconds (0 if reduced motion)
+ */
 function getDelay(
   prefersReducedMotion: boolean,
   value: number,
@@ -327,6 +401,13 @@ function getDelay(
   return value * motionProfile.speed.durationMultiplier;
 }
 
+/**
+ * Calculates the actual distance based on reduced motion and intensity multiplier
+ * @param prefersReducedMotion - Whether reduced motion is preferred
+ * @param value - Base distance value in pixels
+ * @param motionProfile - Current motion profile with intensity settings
+ * @returns Adjusted distance in pixels (0 if reduced motion)
+ */
 function getDistance(
   prefersReducedMotion: boolean,
   value: number,
@@ -339,6 +420,18 @@ function getDistance(
   return value * motionProfile.intensity.distanceMultiplier;
 }
 
+/**
+ * Creates a complete motion configuration for a surface element
+ *
+ * @description Generates initial, animate, exit, and transition properties
+ * for a single animated surface. Handles reduced motion automatically by
+ * returning static values when needed.
+ *
+ * @param prefersReducedMotion - Whether reduced motion is preferred
+ * @param motionProfile - Current speed and intensity settings
+ * @param config - Animation configuration (position, rotation, scale, timing)
+ * @returns Complete SurfaceMotion object for use with motion components
+ */
 function createSurfaceMotion(
   prefersReducedMotion: boolean,
   motionProfile: MotionProfile,
@@ -383,6 +476,18 @@ function createSurfaceMotion(
   };
 }
 
+/**
+ * ShowcaseLayout - Layout component for the shared scene structure
+ *
+ * @description Renders the three-column layout shared across all transition modes:
+ * - Hero shell (main content with shared element transition)
+ * - Media panel (visual preview area)
+ * - Rail aside (mode brief and route info)
+ *
+ * Uses LayoutGroup for coordinated shared element animations.
+ *
+ * @internal
+ */
 function ShowcaseLayout({
   mode,
   motionProfile,
@@ -1184,6 +1289,18 @@ function renderGalleryCurtain(
   );
 }
 
+/**
+ * Dispatches to the appropriate render function for a transition mode
+ *
+ * @description Maps mode IDs to their specialized render functions.
+ * Each render function creates mode-specific overlay effects and motion profiles.
+ *
+ * @param mode - The showcase mode configuration
+ * @param motionProfile - Current speed and intensity settings
+ * @param prefersReducedMotion - Whether reduced motion is preferred
+ * @param replayKey - Counter for forcing re-renders on replay
+ * @returns JSX for the showcase layout with mode-specific effects
+ */
 function renderShowcaseMode(
   mode: ShowcaseMode,
   motionProfile: MotionProfile,
@@ -1221,6 +1338,26 @@ function renderShowcaseMode(
   }
 }
 
+/**
+ * TransitionShowcase - Flagship component for comparing transition signatures
+ *
+ * @description The main demo component for the Transition Lab. Provides:
+ * - 10 unique transition modes with distinct visual signatures
+ * - Speed controls (Measured, Studio, Rapid)
+ * - Intensity controls (Soft, Balanced, Charged)
+ * - Instant replay functionality
+ * - Reduced motion support
+ * - Shared scene architecture for fair comparison
+ *
+ * @component
+ * @example
+ * // In a page component
+ * import { TransitionShowcase } from "@/components/transition-lab/TransitionShowcase";
+ *
+ * export default function ShowcasePage() {
+ *   return <TransitionShowcase />;
+ * }
+ */
 export function TransitionShowcase() {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [activeModeId, setActiveModeId] = useState<ShowcaseModeId>(showcaseModes[0].id);

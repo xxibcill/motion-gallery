@@ -1,10 +1,40 @@
+/**
+ * @fileoverview Noise texture overlay component for Transition Lab scenes
+ *
+ * Adds a subtle noise texture to transition lab scenes for visual depth.
+ * Uses CSS gradients to create a procedural noise-like pattern without
+ * requiring external image assets.
+ *
+ * @module transition-lab/NoiseOverlay
+ */
+
 "use client";
 
+/**
+ * Props for the NoiseOverlay component
+ */
 interface NoiseOverlayProps {
   className?: string;
   opacity?: number;
 }
 
+/**
+ * NoiseOverlay - Procedural noise texture for scene backgrounds
+ *
+ * @description Renders a semi-transparent noise texture overlay using CSS gradients.
+ * The noise adds visual texture and depth to solid color backgrounds in the
+ * transition lab. Uses mix-blend-mode: soft-light for subtle integration.
+ *
+ * @component
+ * @example
+ * <TransitionStage>
+ *   <NoiseOverlay opacity={0.14} />
+ *   <div>Scene content</div>
+ * </TransitionStage>
+ *
+ * @param props.className - Additional CSS classes
+ * @param props.opacity - Opacity of the noise (default: 0.14)
+ */
 export function NoiseOverlay({
   className = "",
   opacity = 0.14,

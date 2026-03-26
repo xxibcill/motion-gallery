@@ -1,9 +1,21 @@
+/**
+ * @fileoverview Header section component for Transition Lab pages
+ *
+ * SceneFrame provides a consistent page header with eyebrow, title, description,
+ * and optional aside content. Includes entrance animation for the header area.
+ *
+ * @module transition-lab/SceneFrame
+ */
+
 "use client";
 
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { getSceneEntrance } from "@/lib/transition-lab";
 
+/**
+ * Props for the SceneFrame component
+ */
 interface SceneFrameProps {
   eyebrow: string;
   title: string;
@@ -13,6 +25,33 @@ interface SceneFrameProps {
   className?: string;
 }
 
+/**
+ * SceneFrame - Page header with title, description, and optional aside
+ *
+ * @description Provides a consistent header layout for transition lab pages.
+ * Uses a two-column grid on large screens with the main content on the left
+ * and an optional aside card on the right. The header animates in on mount.
+ *
+ * @component
+ * @example
+ * <SceneFrame
+ *   eyebrow="Task 14"
+ *   title="Transition Showcase"
+ *   description="Compare every transition mode side by side."
+ *   aside={<div>Additional info</div>}
+ * >
+ *   <TransitionStage>
+ *     Scene content here
+ *   </TransitionStage>
+ * </SceneFrame>
+ *
+ * @param props.eyebrow - Small label above the title
+ * @param props.title - Main page heading
+ * @param props.description - Page description text
+ * @param props.aside - Optional aside content for the right column
+ * @param props.children - Main page content below the header
+ * @param props.className - Additional CSS classes
+ */
 export function SceneFrame({
   eyebrow,
   title,

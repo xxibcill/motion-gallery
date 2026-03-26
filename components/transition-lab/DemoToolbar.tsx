@@ -1,10 +1,27 @@
+/**
+ * @fileoverview Reusable toolbar component for demo controls
+ *
+ * DemoToolbar provides a horizontal control bar with selectable options
+ * and an action button. Used throughout the transition lab for switching
+ * between demo modes and triggering replay actions.
+ *
+ * @module transition-lab/DemoToolbar
+ */
+
 "use client";
 
+/**
+ * A single selectable option in the toolbar
+ */
 interface DemoOption {
   value: string;
   label: string;
 }
 
+/**
+ * Props for the DemoToolbar component
+ * @template T - The string union type for option values
+ */
 interface DemoToolbarProps<T extends string> {
   eyebrow: string;
   options: Array<DemoOption & { value: T }>;
@@ -16,6 +33,41 @@ interface DemoToolbarProps<T extends string> {
   className?: string;
 }
 
+/**
+ * DemoToolbar - Control bar with selectable options and action button
+ *
+ * @description A generic toolbar component for demo controls. Features:
+ * - Horizontal pill-style option buttons with active state highlighting
+ * - Customizable action button with hint text
+ * - Responsive layout (stacks on mobile, row on desktop)
+ * - Full keyboard accessibility with visible focus states
+ *
+ * @component
+ * @template T - The string union type for option values
+ *
+ * @example
+ * <DemoToolbar
+ *   eyebrow="Animation Mode"
+ *   options={[
+ *     { value: "fade", label: "Fade" },
+ *     { value: "slide", label: "Slide" },
+ *   ]}
+ *   activeValue={mode}
+ *   onSelect={setMode}
+ *   actionLabel="Replay"
+ *   onAction={handleReplay}
+ *   actionHint="Click to replay the animation"
+ * />
+ *
+ * @param props.eyebrow - Label above the options
+ * @param props.options - Array of selectable options
+ * @param props.activeValue - Currently selected value
+ * @param props.onSelect - Callback when an option is selected
+ * @param props.actionLabel - Text for the action button
+ * @param props.onAction - Callback when action button is clicked
+ * @param props.actionHint - Hint text below the action button
+ * @param props.className - Additional CSS classes
+ */
 export function DemoToolbar<T extends string>({
   eyebrow,
   options,

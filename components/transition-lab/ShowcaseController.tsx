@@ -1,10 +1,29 @@
+/**
+ * @fileoverview Advanced controller component for the Transition Showcase
+ *
+ * ShowcaseController provides a comprehensive control panel for the flagship
+ * transition showcase page. It combines mode selection, speed controls,
+ * intensity settings, and replay functionality in a polished layout.
+ *
+ * @module transition-lab/ShowcaseController
+ */
+
 "use client";
 
+/**
+ * A single selectable option in the controller
+ */
 interface ShowcaseOption<T extends string> {
   value: T;
   label: string;
 }
 
+/**
+ * Props for the ShowcaseController component
+ * @template TMode - String union type for mode values
+ * @template TSpeed - String union type for speed values
+ * @template TIntensity - String union type for intensity values
+ */
 interface ShowcaseControllerProps<
   TMode extends string,
   TSpeed extends string,
@@ -26,6 +45,9 @@ interface ShowcaseControllerProps<
   activeModeSummary: string;
 }
 
+/**
+ * Props for the internal ControlGroup component
+ */
 interface ControlGroupProps<T extends string> {
   label: string;
   options: Array<ShowcaseOption<T>>;
@@ -33,6 +55,15 @@ interface ControlGroupProps<T extends string> {
   onSelect: (value: T) => void;
 }
 
+/**
+ * ControlGroup - Internal component for rendering a group of selectable options
+ *
+ * @description Renders a labeled group of pill-style buttons with
+ * active state highlighting. Used within ShowcaseController for each
+ * control category (modes, speed, intensity).
+ *
+ * @internal
+ */
 function ControlGroup<T extends string>({
   label,
   options,
@@ -71,6 +102,43 @@ function ControlGroup<T extends string>({
   );
 }
 
+/**
+ * ShowcaseController - Full-featured control panel for transition showcase
+ *
+ * @description The flagship controller for the transition showcase page. Features:
+ * - Three control groups: modes, speed, and intensity
+ * - Status panel showing current mode summary and motion preference
+ * - Replay button with contextual hint
+ * - Responsive grid layout
+ *
+ * @component
+ * @example
+ * <ShowcaseController
+ *   modeOptions={[
+ *     { value: "kinetic-panels", label: "Kinetic Panels" },
+ *     { value: "liquid-reveal", label: "Liquid Reveal" },
+ *   ]}
+ *   activeMode={activeMode}
+ *   onModeSelect={setActiveMode}
+ *   speedOptions={[
+ *     { value: "measured", label: "Measured" },
+ *     { value: "studio", label: "Studio" },
+ *   ]}
+ *   activeSpeed={speed}
+ *   onSpeedSelect={setSpeed}
+ *   intensityOptions={[
+ *     { value: "soft", label: "Soft" },
+ *     { value: "balanced", label: "Balanced" },
+ *   ]}
+ *   activeIntensity={intensity}
+ *   onIntensitySelect={setIntensity}
+ *   replayLabel="Replay stage"
+ *   onReplay={handleReplay}
+ *   replayHint="Replays the current mode..."
+ *   reducedMotionEnabled={prefersReducedMotion}
+ *   activeModeSummary={currentMode.summary}
+ * />
+ */
 export function ShowcaseController<
   TMode extends string,
   TSpeed extends string,
