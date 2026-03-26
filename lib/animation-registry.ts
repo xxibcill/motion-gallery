@@ -435,3 +435,31 @@ registerAnimation({
   group: "transition-lab",
   status: "ready",
 });
+
+registerAnimation({
+  id: "transition-gallery",
+  path: "/transition/gallery",
+  title: "Transition Gallery",
+  description: "All 10 transitions in a vertical scroll gallery with individual replay controls",
+  category: "page-transitions",
+  difficulty: "advanced",
+  library: ["framer-motion"],
+  keywords: ["gallery", "scroll", "comparison", "all transitions", "vertical"],
+  color: "cyan",
+  group: "transition-lab",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "chat",
+  path: "/chat",
+  title: "Chat",
+  description: "Typing animations, message bubbles, and chatbar interactions with spring physics",
+  category: "layout-animations",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["chat", "typing", "message", "bubble", "cursor", "stagger"],
+  color: "slate",
+  group: "core",
+  status: "ready",
+});
