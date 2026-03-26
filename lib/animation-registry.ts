@@ -463,3 +463,17 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+
+registerAnimation({
+  id: "category-marquee",
+  path: "/category-marquee",
+  title: "Category Marquee",
+  description: "Infinite horizontal scrolling category pills with alternating directions",
+  category: "layout-animations",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["marquee", "scroll", "infinite", "categories", "horizontal"],
+  color: "sky",
+  group: "core",
+  status: "ready",
+});
