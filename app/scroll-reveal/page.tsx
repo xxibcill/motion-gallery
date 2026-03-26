@@ -20,7 +20,7 @@
 
 'use client'
 
-import { motion, useScroll, useTransform, useSpring, useReducedMotion, type MotionValue } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion, type MotionValue } from 'motion/react'
 import { useRef, ReactNode } from 'react'
 
 /**

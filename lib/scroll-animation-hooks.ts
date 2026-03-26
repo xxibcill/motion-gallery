@@ -7,7 +7,7 @@ import {
   type MotionValue,
   type SpringOptions,
   type UseScrollOptions,
-} from "framer-motion";
+} from "motion/react";
 
 interface UseScrollTransformOptions {
   offset?: UseScrollOptions["offset"];

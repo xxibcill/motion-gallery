@@ -7,7 +7,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 import { useRef } from "react";
 
 type AnchorAlign = "left" | "right" | "center";

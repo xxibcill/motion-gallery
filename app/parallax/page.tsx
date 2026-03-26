@@ -6,7 +6,7 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, useState } from "react";
 
 // Parallax layer configuration

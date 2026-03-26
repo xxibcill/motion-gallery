@@ -7,7 +7,7 @@ import {
   useTransform,
   useInView,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, ReactNode } from "react";
 import { CodePanel, CodeToggle } from "@/components/code-panel";
 import { maskRevealCode, circleRevealCode, gridRevealCode } from "./code";

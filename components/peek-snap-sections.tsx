@@ -7,7 +7,7 @@ import {
   useSpring,
   useReducedMotion,
   type MotionValue,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, ReactNode } from "react";
 
 // Tunable configuration for the peek-snap effect

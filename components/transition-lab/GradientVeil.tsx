@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { transitionLabLayers, withReducedMotion } from "@/lib/transition-lab";
 import { transitionLabDurations, transitionLabEasings } from "@/lib/animation-presets";
 

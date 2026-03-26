@@ -7,7 +7,7 @@ import {
   useSpring,
   useTransform,
   type MotionValue,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, type ReactNode } from "react";
 
 const SCROLL_REVEAL_HEIGHT = "400vh";

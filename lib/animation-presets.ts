@@ -1,4 +1,4 @@
-import type { SpringOptions } from "framer-motion";
+import type { SpringOptions } from "motion/react";
 
 // Spring physics presets
 export const springPresets: Record<string, SpringOptions> = {

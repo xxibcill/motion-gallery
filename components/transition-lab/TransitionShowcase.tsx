@@ -9,7 +9,7 @@ import {
   useReducedMotion,
   type TargetAndTransition,
   type Transition,
-} from "framer-motion";
+} from "motion/react";
 import { GradientVeil } from "@/components/transition-lab/GradientVeil";
 import { SceneFrame } from "@/components/transition-lab/SceneFrame";
 import { ShowcaseController } from "@/components/transition-lab/ShowcaseController";

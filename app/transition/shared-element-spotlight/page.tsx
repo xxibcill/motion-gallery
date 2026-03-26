@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { DemoToolbar } from "@/components/transition-lab/DemoToolbar";
 import { GradientVeil } from "@/components/transition-lab/GradientVeil";
 import { SceneFrame } from "@/components/transition-lab/SceneFrame";

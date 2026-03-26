@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Highlight, themes } from "prism-react-renderer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 interface CodePanelProps {
   code: string;

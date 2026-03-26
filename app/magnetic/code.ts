@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useSpring,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 import { useRef } from "react";
 
 // Magnetic element that follows cursor with spring physics

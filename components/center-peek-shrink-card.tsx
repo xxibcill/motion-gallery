@@ -108,7 +108,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from 'framer-motion'
+} from 'motion/react'
 import type { ReactNode } from 'react'
 import { useMemo, useRef } from 'react'
 

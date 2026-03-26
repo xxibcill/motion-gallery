@@ -1,5 +1,5 @@
 export const maskRevealCode = `// Mask reveal wrapper with direction support
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 
 interface MaskRevealProps {

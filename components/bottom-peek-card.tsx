@@ -6,7 +6,7 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, ReactNode } from "react";
 
 // Configuration for the bottom peek card effect

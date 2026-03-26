@@ -5,7 +5,7 @@ import {
   useInView,
   useAnimation,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, useEffect, ReactNode } from "react";
 
 // Split text into individual characters with staggered animation

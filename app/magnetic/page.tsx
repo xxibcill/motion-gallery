@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useSpring,
   useReducedMotion,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, ReactNode } from "react";
 import { CodePanel, CodeToggle } from "@/components/code-panel";
 import { magneticCode, magneticButtonCode } from "./code";

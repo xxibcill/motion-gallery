@@ -1,4 +1,4 @@
-import type { TargetAndTransition, Transition } from "framer-motion";
+import type { TargetAndTransition, Transition } from "motion/react";
 import {
   transitionLabDurations,
   transitionLabEasings,

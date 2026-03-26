@@ -7,7 +7,7 @@ import {
   useTransform,
   useReducedMotion,
   useScroll,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, ReactNode } from "react";
 
 // 3D Card with perspective transform
