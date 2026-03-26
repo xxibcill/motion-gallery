@@ -9,6 +9,9 @@ interface ChatBarProps {
   placeholder?: string;
   onSend?: (message: string) => void;
   isTyping?: boolean;
+  typingText?: string;
+  typingSpeed?: number;
+  onTypingComplete?: () => void;
   className?: string;
 }
 
@@ -16,10 +19,14 @@ export function ChatBar({
   placeholder = "Do a deep-dive research in crypto today",
   onSend,
   isTyping = false,
+  typingText = "",
+  typingSpeed = 50,
+  onTypingComplete,
   className = "",
 }: ChatBarProps) {
   const [value, setValue] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [animatedText, setAnimatedText] = useState("");
 
   // Blinking cursor animation
   useEffect(() => {
@@ -28,6 +35,31 @@ export function ChatBar({
     }, 530);
     return () => clearInterval(interval);
   }, []);
+
+  // Animated typing effect
+  useEffect(() => {
+    if (!isTyping || !typingText) {
+      setAnimatedText("");
+      return;
+    }
+
+    let currentIndex = 0;
+    let timeoutId: NodeJS.Timeout;
+    setAnimatedText("");
+
+    const typeChar = () => {
+      if (currentIndex < typingText.length) {
+        setAnimatedText(typingText.slice(0, currentIndex + 1));
+        currentIndex++;
+        timeoutId = setTimeout(typeChar, typingSpeed);
+      } else {
+        onTypingComplete?.();
+      }
+    };
+
+    timeoutId = setTimeout(typeChar, typingSpeed);
+    return () => clearTimeout(timeoutId);
+  }, [isTyping, typingText, typingSpeed, onTypingComplete]);
 
   const handleSubmit = () => {
     if (value.trim() && onSend) {
@@ -75,19 +107,20 @@ export function ChatBar({
             )}
           </AnimatePresence>
 
-          {/* Typing animation placeholder */}
+          {/* Typing animation */}
           <AnimatePresence>
             {isTyping && value === "" && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center"
+                className="flex items-center whitespace-nowrap overflow-hidden"
               >
-                <span className="text-zinc-800 text-sm">{placeholder}</span>
+                <span className="text-zinc-800 text-sm">{animatedText}</span>
                 <motion.span
                   animate={{ opacity: cursorVisible ? 1 : 0 }}
-                  className="w-0.5 h-4 bg-zinc-800 ml-0.5"
+                  transition={{ duration: 0.1 }}
+                  className="w-0.5 h-4 bg-zinc-800 ml-0.5 flex-shrink-0"
                 />
               </motion.div>
             )}

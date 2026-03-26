@@ -30,8 +30,9 @@ function Section({
 
 // Chat demo component with scroll-triggered animation
 function ChatDemo() {
-  const [phase, setPhase] = useState<'idle' | 'user' | 'typing' | 'response'>('idle')
-  const [isInputTyping, setIsInputTyping] = useState(false)
+  const [phase, setPhase] = useState<'idle' | 'typing-input' | 'user' | 'typing' | 'response'>(
+    'idle',
+  )
   const [hasAnimated, setHasAnimated] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -40,18 +41,20 @@ function ChatDemo() {
 
   const startDemo = () => {
     setPhase('idle')
-    setIsInputTyping(false)
+    // Start typing in chatbar after brief delay
+    setTimeout(() => setPhase('typing-input'), 300)
+  }
 
-    setTimeout(() => setIsInputTyping(true), 500)
-    setTimeout(() => {
-      setPhase('user')
-      setIsInputTyping(false)
-    }, 2000)
-    setTimeout(() => setPhase('typing'), 2500)
+  // When chatbar finishes typing, show user message then AI typing indicator
+  const handleChatbarTypingComplete = () => {
+    setPhase('user')
+    // Show typing indicator after user message appears
+    setTimeout(() => setPhase('typing'), 400)
+    // Show AI response after typing indicator
     setTimeout(() => {
       setPhase('response')
       setHasAnimated(true)
-    }, 3500)
+    }, 1500)
   }
 
   useEffect(() => {
@@ -117,7 +120,7 @@ function ChatDemo() {
               <AIMessage
                 message={demoConversation.aiResponse}
                 isTyping={!prefersReducedMotion}
-                typingSpeed={20}
+                typingSpeed={10}
               />
             )}
           </AnimatePresence>
@@ -126,7 +129,13 @@ function ChatDemo() {
 
       {/* ChatBar */}
       <div className="px-4 py-4 bg-zinc-100">
-        <ChatBar isTyping={isInputTyping} onSend={(message) => console.log('Sent:', message)} />
+        <ChatBar
+          isTyping={phase === 'typing-input'}
+          typingText={demoConversation.userMessage}
+          typingSpeed={20}
+          onTypingComplete={handleChatbarTypingComplete}
+          onSend={(message) => console.log('Sent:', message)}
+        />
       </div>
     </motion.div>
   )
