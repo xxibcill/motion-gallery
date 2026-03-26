@@ -33,13 +33,16 @@ export function useScrollTransform(
   });
 
   const transform = useTransform(scrollYProgress, inputRange, outputRange);
+  const smoothValue = useSpring(
+    transform,
+    spring ?? { stiffness: 100, damping: 30 }
+  );
 
   if (prefersReducedMotion) {
     return { ref, value: outputRange[1] };
   }
 
   if (spring) {
-    const smoothValue = useSpring(transform, spring);
     return { ref, value: smoothValue };
   }
 

@@ -6,6 +6,7 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
+  type MotionValue,
 } from "framer-motion";
 import { useRef, ReactNode } from "react";
 
@@ -21,6 +22,28 @@ interface HorizontalSection {
 interface HorizontalScrollProps {
   sections: HorizontalSection[];
   className?: string;
+}
+
+function HorizontalProgressSegment({
+  index,
+  totalSections,
+  progress,
+}: {
+  index: number;
+  totalSections: number;
+  progress: MotionValue<number>;
+}) {
+  const width = useTransform(
+    progress,
+    [index / totalSections, (index + 1) / totalSections],
+    ["0%", "100%"]
+  );
+
+  return (
+    <motion.div className="w-8 h-1 rounded-full bg-white/20 overflow-hidden">
+      <motion.div className="h-full bg-white rounded-full" style={{ width }} />
+    </motion.div>
+  );
 }
 
 // Individual horizontal panel
@@ -127,21 +150,12 @@ function HorizontalScrollContainer({
         {/* Progress indicator */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-50 flex gap-2">
           {sections.map((_, i) => (
-            <motion.div
+            <HorizontalProgressSegment
               key={i}
-              className="w-8 h-1 rounded-full bg-white/20 overflow-hidden"
-            >
-              <motion.div
-                className="h-full bg-white rounded-full"
-                style={{
-                  width: useTransform(
-                    scrollYProgress,
-                    [i / sections.length, (i + 1) / sections.length],
-                    ["0%", "100%"]
-                  ),
-                }}
-              />
-            </motion.div>
+              index={i}
+              totalSections={sections.length}
+              progress={scrollYProgress}
+            />
           ))}
         </div>
 

@@ -255,6 +255,20 @@ registerAnimation({
 });
 
 registerAnimation({
+  id: "anchor-elements",
+  path: "/anchor-elements",
+  title: "Anchor Elements",
+  description: "Sticky viewport rails with three independently timed enter and exit windows",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["anchor", "sticky", "viewport", "scroll", "pin", "overlap"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
   id: "transition",
   path: "/transition",
   title: "Transition Lab",

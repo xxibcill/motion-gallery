@@ -7,7 +7,7 @@ import {
   useSpring,
   useReducedMotion,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // Parallax layer configuration
 interface ParallaxLayer {
@@ -82,6 +82,14 @@ function ParallaxSection({ layers, className }: ParallaxSectionProps) {
 function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [stars] = useState(() =>
+    Array.from({ length: 50 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 3}s`,
+      opacity: Math.random() * 0.8 + 0.2,
+    }))
+  );
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -124,16 +132,11 @@ function HeroSection() {
         className="absolute inset-0"
         style={{ y: smoothY2, opacity }}
       >
-        {[...Array(50)].map((_, i) => (
+        {stars.map((star, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              opacity: Math.random() * 0.8 + 0.2,
-            }}
+            style={star}
           />
         ))}
       </motion.div>

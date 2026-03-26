@@ -6,6 +6,7 @@ import {
   useTransform,
   useSpring,
   useReducedMotion,
+  type MotionValue,
 } from "framer-motion";
 import { useRef, ReactNode } from "react";
 
@@ -229,25 +230,41 @@ function ProgressIndicator({
       transition={{ delay: 0.5 }}
     >
       {Array.from({ length: totalSections }).map((_, i) => (
-        <motion.div
+        <ProgressSegment
           key={i}
-          className="w-1.5 h-8 rounded-full bg-white/20 overflow-hidden"
-        >
-          <motion.div
-            className="w-full bg-white/80 rounded-full"
-            style={{
-              height: useTransform(
-                scrollYProgress,
-                [i / totalSections, (i + 1) / totalSections],
-                [0, 100]
-              ),
-            }}
-          />
-        </motion.div>
+          index={i}
+          totalSections={totalSections}
+          progress={scrollYProgress}
+        />
       ))}
       <motion.div
         className="absolute -left-8 top-0 w-1 h-full bg-white/10 rounded-full"
         style={{ scaleY: smoothProgress, transformOrigin: "top" }}
+      />
+    </motion.div>
+  );
+}
+
+function ProgressSegment({
+  index,
+  totalSections,
+  progress,
+}: {
+  index: number;
+  totalSections: number;
+  progress: MotionValue<number>;
+}) {
+  const height = useTransform(
+    progress,
+    [index / totalSections, (index + 1) / totalSections],
+    [0, 100]
+  );
+
+  return (
+    <motion.div className="w-1.5 h-8 rounded-full bg-white/20 overflow-hidden">
+      <motion.div
+        className="w-full bg-white/80 rounded-full"
+        style={{ height }}
       />
     </motion.div>
   );

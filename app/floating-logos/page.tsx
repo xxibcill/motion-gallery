@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ControlsPanel, ControlSlider } from '@/components/ControlsPanel'
 
 // Sample logo colors - you can replace these with actual logos
@@ -29,6 +29,23 @@ interface FloatingLogoProps {
   floatDistance: number
   rotationDuration: number
   delay: number
+}
+
+function generateLogos(
+  floatSpeed: number,
+  floatDistance: number,
+  logoCount: number
+): Array<FloatingLogoProps> {
+  return Array.from({ length: logoCount }, (_, i) => ({
+    color: logoColors[i % logoColors.length],
+    size: 40 + Math.random() * 40,
+    initialX: 5 + i * (90 / logoCount) + Math.random() * 5,
+    initialY: 10 + Math.random() * 80,
+    floatDuration: floatSpeed + Math.random() * 2,
+    floatDistance: floatDistance + Math.random() * 10,
+    rotationDuration: floatSpeed * 2 + Math.random() * 4,
+    delay: i * 0.1,
+  }))
 }
 
 function FloatingLogo({
@@ -88,21 +105,24 @@ export default function FloatingLogosPage() {
   const [floatSpeed, setFloatSpeed] = useState(6)
   const [floatDistance, setFloatDistance] = useState(20)
   const [logoCount, setLogoCount] = useState(12)
-  const [logos, setLogos] = useState<Array<FloatingLogoProps>>([])
+  const [logos, setLogos] = useState<Array<FloatingLogoProps>>(() =>
+    generateLogos(6, 20, 12)
+  )
 
-  useEffect(() => {
-    const newLogos = Array.from({ length: logoCount }, (_, i) => ({
-      color: logoColors[i % logoColors.length],
-      size: 40 + Math.random() * 40,
-      initialX: 5 + i * (90 / logoCount) + Math.random() * 5,
-      initialY: 10 + Math.random() * 80,
-      floatDuration: floatSpeed + Math.random() * 2,
-      floatDistance: floatDistance + Math.random() * 10,
-      rotationDuration: floatSpeed * 2 + Math.random() * 4,
-      delay: i * 0.1,
-    }))
-    setLogos(newLogos)
-  }, [floatSpeed, floatDistance, logoCount])
+  const updateFloatSpeed = (value: number) => {
+    setFloatSpeed(value)
+    setLogos(generateLogos(value, floatDistance, logoCount))
+  }
+
+  const updateFloatDistance = (value: number) => {
+    setFloatDistance(value)
+    setLogos(generateLogos(floatSpeed, value, logoCount))
+  }
+
+  const updateLogoCount = (value: number) => {
+    setLogoCount(value)
+    setLogos(generateLogos(floatSpeed, floatDistance, value))
+  }
 
   return (
     <main className="min-h-screen bg-zinc-950 overflow-hidden relative">
@@ -134,7 +154,7 @@ export default function FloatingLogosPage() {
         <ControlSlider
           label="Float Speed"
           value={floatSpeed}
-          onChange={setFloatSpeed}
+          onChange={updateFloatSpeed}
           min={2}
           max={15}
           step={0.5}
@@ -143,7 +163,7 @@ export default function FloatingLogosPage() {
         <ControlSlider
           label="Float Distance"
           value={floatDistance}
-          onChange={setFloatDistance}
+          onChange={updateFloatDistance}
           min={5}
           max={50}
           unit="px"
@@ -151,7 +171,7 @@ export default function FloatingLogosPage() {
         <ControlSlider
           label="Logo Count"
           value={logoCount}
-          onChange={setLogoCount}
+          onChange={updateLogoCount}
           min={4}
           max={20}
           unit=" logos"
