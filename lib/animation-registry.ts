@@ -477,3 +477,31 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+
+registerAnimation({
+  id: "shrinkable-sticky-box",
+  path: "/shrinkable-sticky-box",
+  title: "Shrinkable Sticky Box",
+  description: "A peek card that settles centered in the viewport instead of taking over the full screen",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["peek", "sticky", "center", "reveal", "scroll", "card"],
+  color: "orange",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "center-peek-shrink",
+  path: "/center-peek-shrink",
+  title: "Center Peek Shrink",
+  description: "Two-phase animation: card expands to fill viewport, then shrinks into a compact header anchored at the top",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["peek", "shrink", "anchor", "header", "scroll", "two-phase"],
+  color: "amber",
+  group: "core",
+  status: "ready",
+});
