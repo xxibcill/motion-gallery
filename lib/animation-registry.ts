@@ -377,7 +377,7 @@ registerAnimation({
   keywords: ["paper", "fold", "hinge", "material", "shadow"],
   color: "amber",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -391,7 +391,7 @@ registerAnimation({
   keywords: ["magnetic", "collapse", "attractor", "fragments", "rebuild"],
   color: "fuchsia",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -405,7 +405,7 @@ registerAnimation({
   keywords: ["portal", "void", "vortex", "radial", "consume"],
   color: "slate",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -419,5 +419,5 @@ registerAnimation({
   keywords: ["curtain", "veil", "fabric", "theatrical", "gradient"],
   color: "violet",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
