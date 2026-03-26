@@ -349,7 +349,7 @@ registerAnimation({
   keywords: ["depth", "stage", "cinematic", "layers", "scene"],
   color: "indigo",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -363,7 +363,7 @@ registerAnimation({
   keywords: ["glitch", "scan", "rgb", "distortion", "broadcast"],
   color: "rose",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
