@@ -293,7 +293,7 @@ registerAnimation({
   keywords: ["editorial", "panels", "stagger", "poster", "impact"],
   color: "amber",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -307,7 +307,7 @@ registerAnimation({
   keywords: ["liquid", "blob", "morph", "mask", "fluid"],
   color: "violet",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -321,7 +321,7 @@ registerAnimation({
   keywords: ["shutter", "slice", "strips", "wipe", "mechanical"],
   color: "zinc",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({
@@ -335,7 +335,7 @@ registerAnimation({
   keywords: ["shared element", "hero", "continuity", "card", "focus"],
   color: "emerald",
   group: "transition-lab",
-  status: "planned",
+  status: "ready",
 });
 
 registerAnimation({

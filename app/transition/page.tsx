@@ -141,7 +141,9 @@ export default function TransitionHubPage() {
             </div>
           </div>
           <p>
-            The routes are live now as section-aware placeholders, so later demo pages can replace them without changing navigation, gallery cards, or registry wiring.
+            The first demo routes are live now, and the remaining planned routes
+            still sit behind section-aware placeholders so later work can land
+            without changing navigation, gallery cards, or registry wiring.
           </p>
         </div>
       }

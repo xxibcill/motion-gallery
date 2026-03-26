@@ -66,7 +66,10 @@ const toneByColor: Record<string, { background: string; from: string; to: string
 };
 
 function getPlannedAnimation(slug: string): AnimationMeta | undefined {
-  return getTransitionLabRoutes().find((animation) => animation.path === `/transition/${slug}`);
+  return getTransitionLabRoutes().find(
+    (animation) =>
+      animation.status === "planned" && animation.path === `/transition/${slug}`
+  );
 }
 
 function getTone(color: string) {
@@ -90,9 +93,11 @@ function getRouteChecklist(animation: AnimationMeta) {
 }
 
 export async function generateStaticParams() {
-  return getTransitionLabRoutes().map((animation) => ({
-    slug: animation.path.split("/").at(-1) ?? animation.id,
-  }));
+  return getTransitionLabRoutes()
+    .filter((animation) => animation.status === "planned")
+    .map((animation) => ({
+      slug: animation.path.split("/").at(-1) ?? animation.id,
+    }));
 }
 
 export default async function TransitionPlaceholderPage({
