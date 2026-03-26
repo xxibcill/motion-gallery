@@ -772,3 +772,17 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+
+registerAnimation({
+  id: "scroll-expand-grid",
+  path: "/scroll-expand-grid",
+  title: "Scroll Expand Grid",
+  description: "Grid cards expand to reveal content with scroll-triggered spring animations",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["scroll", "expand", "grid", "card", "reveal", "spring"],
+  color: "teal",
+  group: "core",
+  status: "ready",
+});
