@@ -1,32 +1,42 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Plus, Mic, ArrowUp } from "lucide-react";
 import { springPresets } from "@/lib/animation-presets";
+
+type ChatBarDemoState = "idle" | "typing" | "holding";
 
 interface ChatBarProps {
   placeholder?: string;
   onSend?: (message: string) => void;
-  isTyping?: boolean;
-  typingText?: string;
-  typingSpeed?: number;
-  onTypingComplete?: () => void;
+  demoState?: ChatBarDemoState;
+  demoText?: string;
+  demoTypingSpeed?: number;
+  onDemoComplete?: () => void;
   className?: string;
 }
 
 export function ChatBar({
   placeholder = "Do a deep-dive research in crypto today",
   onSend,
-  isTyping = false,
-  typingText = "",
-  typingSpeed = 50,
-  onTypingComplete,
+  demoState = "idle",
+  demoText = "",
+  demoTypingSpeed = 50,
+  onDemoComplete,
   className = "",
 }: ChatBarProps) {
   const [value, setValue] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [animatedText, setAnimatedText] = useState("");
+  const [demoDisplayText, setDemoDisplayText] = useState("");
+  const onDemoCompleteRef = useRef(onDemoComplete);
+  const demoRunIdRef = useRef(0);
+  const demoViewportRef = useRef<HTMLDivElement>(null);
+
+  // Keep ref updated
+  useEffect(() => {
+    onDemoCompleteRef.current = onDemoComplete;
+  }, [onDemoComplete]);
 
   // Blinking cursor animation
   useEffect(() => {
@@ -36,30 +46,95 @@ export function ChatBar({
     return () => clearInterval(interval);
   }, []);
 
-  // Animated typing effect
+  // Demo typing is driven by explicit visual states so the parent can keep
+  // the fully-typed message visible before advancing the sequence.
   useEffect(() => {
-    if (!isTyping || !typingText) {
-      setAnimatedText("");
+    demoRunIdRef.current += 1;
+    const currentRunId = demoRunIdRef.current;
+
+    if (value !== "") {
       return;
     }
 
-    let currentIndex = 0;
-    let timeoutId: NodeJS.Timeout;
-    setAnimatedText("");
+    if (demoState === "idle") {
+      const idleFrameId = window.requestAnimationFrame(() => {
+        if (demoRunIdRef.current === currentRunId) {
+          setDemoDisplayText("");
+        }
+      });
+      return () => window.cancelAnimationFrame(idleFrameId);
+    }
 
-    const typeChar = () => {
-      if (currentIndex < typingText.length) {
-        setAnimatedText(typingText.slice(0, currentIndex + 1));
-        currentIndex++;
-        timeoutId = setTimeout(typeChar, typingSpeed);
-      } else {
-        onTypingComplete?.();
+    if (demoState === "holding") {
+      const holdingFrameId = window.requestAnimationFrame(() => {
+        if (demoRunIdRef.current === currentRunId) {
+          setDemoDisplayText(demoText);
+        }
+      });
+      return () => window.cancelAnimationFrame(holdingFrameId);
+    }
+
+    if (!demoText) {
+      const emptyFrameId = window.requestAnimationFrame(() => {
+        if (demoRunIdRef.current === currentRunId) {
+          setDemoDisplayText("");
+        }
+      });
+      return () => window.cancelAnimationFrame(emptyFrameId);
+    }
+
+    let currentIndex = 0;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const typingFrameId = window.requestAnimationFrame(() => {
+      if (demoRunIdRef.current === currentRunId) {
+        setDemoDisplayText("");
       }
+    });
+
+    const typeNextChar = () => {
+      if (demoRunIdRef.current !== currentRunId) {
+        return;
+      }
+
+      const nextIndex = currentIndex + 1;
+      setDemoDisplayText(demoText.slice(0, nextIndex));
+      currentIndex = nextIndex;
+
+      if (nextIndex < demoText.length) {
+        timeoutId = setTimeout(typeNextChar, demoTypingSpeed);
+        return;
+      }
+
+      onDemoCompleteRef.current?.();
     };
 
-    timeoutId = setTimeout(typeChar, typingSpeed);
-    return () => clearTimeout(timeoutId);
-  }, [isTyping, typingText, typingSpeed, onTypingComplete]);
+    timeoutId = setTimeout(typeNextChar, demoTypingSpeed);
+
+    return () => {
+      window.cancelAnimationFrame(typingFrameId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [demoState, demoText, demoTypingSpeed, value]);
+
+  useEffect(() => {
+    if (value !== "" || demoState === "idle") {
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      const viewport = demoViewportRef.current;
+
+      if (!viewport) {
+        return;
+      }
+
+      viewport.scrollLeft = viewport.scrollWidth;
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [demoDisplayText, demoState, value]);
 
   const handleSubmit = () => {
     if (value.trim() && onSend) {
@@ -74,6 +149,8 @@ export function ChatBar({
       handleSubmit();
     }
   };
+
+  const isDemoVisible = value === "" && demoState !== "idle";
 
   return (
     <motion.div
@@ -95,7 +172,7 @@ export function ChatBar({
       <div className="flex-1 relative">
         <div className="relative flex items-center">
           <AnimatePresence mode="wait">
-            {value === "" && !isTyping && (
+            {value === "" && demoState === "idle" && (
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -107,21 +184,31 @@ export function ChatBar({
             )}
           </AnimatePresence>
 
-          {/* Typing animation */}
-          <AnimatePresence>
-            {isTyping && value === "" && (
+          {/* Demo typing / hold state */}
+          <AnimatePresence mode="wait">
+            {isDemoVisible && (
               <motion.div
+                key={demoState}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center whitespace-nowrap overflow-hidden"
+                className="pointer-events-none absolute inset-0 flex items-center"
               >
-                <span className="text-zinc-800 text-sm">{animatedText}</span>
-                <motion.span
-                  animate={{ opacity: cursorVisible ? 1 : 0 }}
-                  transition={{ duration: 0.1 }}
-                  className="w-0.5 h-4 bg-zinc-800 ml-0.5 flex-shrink-0"
-                />
+                <div
+                  ref={demoViewportRef}
+                  className="w-full overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
+                  <div className="inline-flex items-center pr-1">
+                    <span className="text-zinc-800 text-sm">{demoDisplayText}</span>
+                    {demoState === "typing" && (
+                      <motion.span
+                        animate={{ opacity: cursorVisible ? 1 : 0 }}
+                        transition={{ duration: 0.1 }}
+                        className="w-0.5 h-4 bg-zinc-800 ml-0.5 flex-shrink-0"
+                      />
+                    )}
+                  </div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -131,7 +218,10 @@ export function ChatBar({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="w-full bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-400 relative z-10"
+            readOnly={isDemoVisible}
+            className={`w-full bg-transparent text-sm outline-none placeholder:text-zinc-400 relative z-10 ${
+              isDemoVisible ? "text-transparent caret-transparent" : "text-zinc-800"
+            }`}
           />
         </div>
       </div>

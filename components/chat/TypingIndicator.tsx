@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { springPresets, staggerPresets } from "@/lib/animation-presets";
+import { springPresets } from "@/lib/animation-presets";
 
 interface TypingIndicatorProps {
   className?: string;

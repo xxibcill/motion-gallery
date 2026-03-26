@@ -30,43 +30,114 @@ function Section({
 
 // Chat demo component with scroll-triggered animation
 function ChatDemo() {
-  const [phase, setPhase] = useState<'idle' | 'typing-input' | 'user' | 'typing' | 'response'>(
-    'idle',
-  )
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const [phase, setPhase] = useState<
+    'idle' | 'input-typing' | 'input-holding' | 'user' | 'typing' | 'response'
+  >('idle')
+  const [hasAutoStarted, setHasAutoStarted] = useState(false)
+  const [runCount, setRunCount] = useState(0)
 
   const containerRef = useRef<HTMLDivElement>(null)
+  const activeRunIdRef = useRef(0)
+  const pendingChatbarCompletionRef = useRef<{
+    runId: number
+    resolve: () => void
+  } | null>(null)
   const isInView = useInView(containerRef, { once: true, margin: '-20%' })
   const prefersReducedMotion = useReducedMotion()
 
+  const wait = (duration: number) =>
+    new Promise<void>((resolve) => {
+      window.setTimeout(resolve, duration)
+    })
+
   const startDemo = () => {
-    setPhase('idle')
-    // Start typing in chatbar after brief delay
-    setTimeout(() => setPhase('typing-input'), 300)
+    setRunCount((current) => current + 1)
   }
 
-  // When chatbar finishes typing, show user message then AI typing indicator
   const handleChatbarTypingComplete = () => {
-    setPhase('user')
-    // Show typing indicator after user message appears
-    setTimeout(() => setPhase('typing'), 400)
-    // Show AI response after typing indicator
-    setTimeout(() => {
-      setPhase('response')
-      setHasAnimated(true)
-    }, 1500)
+    const pendingCompletion = pendingChatbarCompletionRef.current
+
+    if (!pendingCompletion || pendingCompletion.runId !== activeRunIdRef.current) {
+      return
+    }
+
+    pendingChatbarCompletionRef.current = null
+    pendingCompletion.resolve()
   }
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      if (prefersReducedMotion) {
-        setPhase('response')
-        setHasAnimated(true)
-      } else {
-        startDemo()
+    if (!isInView || hasAutoStarted) {
+      return
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      setHasAutoStarted(true)
+      startDemo()
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [isInView, hasAutoStarted])
+
+  useEffect(() => {
+    if (runCount === 0) {
+      return
+    }
+
+    const runId = runCount
+    activeRunIdRef.current = runId
+    pendingChatbarCompletionRef.current = null
+
+    if (prefersReducedMotion) {
+      const frame = window.requestAnimationFrame(() => {
+        if (activeRunIdRef.current === runId) {
+          setPhase('response')
+        }
+      })
+
+      return () => window.cancelAnimationFrame(frame)
+    }
+
+    let cancelled = false
+    const isActiveRun = () => !cancelled && activeRunIdRef.current === runId
+
+    const waitForChatbarCompletion = () =>
+      new Promise<void>((resolve) => {
+        pendingChatbarCompletionRef.current = { runId, resolve }
+      })
+
+    const runSequence = async () => {
+      setPhase('idle')
+      await wait(300)
+      if (!isActiveRun()) return
+
+      setPhase('input-typing')
+      await waitForChatbarCompletion()
+      if (!isActiveRun()) return
+
+      setPhase('input-holding')
+      await wait(260)
+      if (!isActiveRun()) return
+
+      setPhase('user')
+      await wait(420)
+      if (!isActiveRun()) return
+
+      setPhase('typing')
+      await wait(1500)
+      if (!isActiveRun()) return
+
+      setPhase('response')
+    }
+
+    runSequence()
+
+    return () => {
+      cancelled = true
+      if (pendingChatbarCompletionRef.current?.runId === runId) {
+        pendingChatbarCompletionRef.current = null
       }
     }
-  }, [isInView, hasAnimated, prefersReducedMotion])
+  }, [runCount, prefersReducedMotion])
 
   return (
     <motion.div
@@ -130,10 +201,16 @@ function ChatDemo() {
       {/* ChatBar */}
       <div className="px-4 py-4 bg-zinc-100">
         <ChatBar
-          isTyping={phase === 'typing-input'}
-          typingText={demoConversation.userMessage}
-          typingSpeed={20}
-          onTypingComplete={handleChatbarTypingComplete}
+          demoState={
+            phase === 'input-typing'
+              ? 'typing'
+              : phase === 'input-holding'
+                ? 'holding'
+                : 'idle'
+          }
+          demoText={demoConversation.userMessage}
+          demoTypingSpeed={20}
+          onDemoComplete={handleChatbarTypingComplete}
           onSend={(message) => console.log('Sent:', message)}
         />
       </div>

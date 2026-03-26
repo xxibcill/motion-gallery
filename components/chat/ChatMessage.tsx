@@ -1,9 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { springPresets } from "@/lib/animation-presets";
-import { TypingIndicator } from "./TypingIndicator";
 
 interface UserMessageProps {
   message: string;
