@@ -35,6 +35,8 @@ const libraryColors: Record<AnimationLibrary, string> = {
 const colorClasses: Record<string, string> = {
   zinc: "from-zinc-800 to-zinc-900",
   slate: "from-slate-800 to-slate-950",
+  sky: "from-sky-800 to-sky-950",
+  orange: "from-orange-800 to-orange-950",
   indigo: "from-indigo-800 to-indigo-950",
   violet: "from-violet-800 to-violet-950",
   fuchsia: "from-fuchsia-800 to-fuchsia-950",

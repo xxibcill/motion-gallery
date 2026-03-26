@@ -505,3 +505,114 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+registerAnimation({
+  id: "micro-magnetic-cta",
+  path: "/micro-interactions/magnetic-cta",
+  title: "Magnetic CTA Button",
+  description: "Intent-aware button pull with restrained hover travel, press compression, and reduced-motion fallback",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "magnetic", "cta", "button", "hover", "pointer"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-ripple-press",
+  path: "/micro-interactions/ripple-press",
+  title: "Ripple Press Button",
+  description: "Contained radial ripple feedback with keyboard-centered activation and a reduced-motion flash fallback",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "ripple", "press", "button", "tap", "feedback"],
+  color: "rose",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-play-pause-toggle",
+  path: "/micro-interactions/play-pause-toggle",
+  title: "Morph Play Pause Toggle",
+  description: "Play and pause states morph through shared geometry instead of blinking between isolated icons",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "toggle", "play", "pause", "icon", "media"],
+  color: "emerald",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-copy-chip",
+  path: "/micro-interactions/copy-chip",
+  title: "Copy Confirmation Chip",
+  description: "Compact copy confirmation with an optimistic state flip, checkmark draw, and timed reset",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "copy", "clipboard", "confirmation", "chip", "success"],
+  color: "amber",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-slide-toggle",
+  path: "/micro-interactions/slide-toggle",
+  title: "Slide Toggle Switch",
+  description: "Weighted switch travel with a track bloom that keeps state changes tactile and legible",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "switch", "toggle", "thumb", "track", "state"],
+  color: "sky",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-segmented-rail",
+  path: "/micro-interactions/segmented-rail",
+  title: "Segmented Control Rail",
+  description: "Selection state rides on a shared rail highlight for clearer filter and mode changes",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "segmented", "rail", "selection", "filter", "shared layout"],
+  color: "violet",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-chevron-accordion",
+  path: "/micro-interactions/chevron-accordion",
+  title: "Chevron Accordion",
+  description: "Chevron rotation and masked content reveal make expand and collapse feel directional",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "accordion", "chevron", "expand", "collapse", "reveal"],
+  color: "slate",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-tab-underline",
+  path: "/micro-interactions/tab-underline",
+  title: "Tab Underline Follower",
+  description: "Underline or pill highlights travel between tabs with separate content transitions",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "tabs", "underline", "follower", "shared element", "navigation"],
+  color: "fuchsia",
+  group: "core",
+  status: "ready",
+});

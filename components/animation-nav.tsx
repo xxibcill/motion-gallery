@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  getAllAnimations,
   getAnimationsByGroup,
   type AnimationMeta,
   type AnimationCategory,
@@ -15,6 +14,8 @@ import { isAnimationActive } from "@/lib/route-matching";
 const colorClasses: Record<string, string> = {
   zinc: "text-zinc-400 hover:text-zinc-300",
   slate: "text-slate-400 hover:text-slate-300",
+  sky: "text-sky-400 hover:text-sky-300",
+  orange: "text-orange-400 hover:text-orange-300",
   indigo: "text-indigo-400 hover:text-indigo-300",
   violet: "text-violet-400 hover:text-violet-300",
   fuchsia: "text-fuchsia-400 hover:text-fuchsia-300",
@@ -27,6 +28,8 @@ const colorClasses: Record<string, string> = {
 const activeColorClasses: Record<string, string> = {
   zinc: "text-zinc-200",
   slate: "text-slate-200",
+  sky: "text-sky-200",
+  orange: "text-orange-200",
   indigo: "text-indigo-200",
   violet: "text-violet-200",
   fuchsia: "text-fuchsia-200",
@@ -43,15 +46,6 @@ const categoryIcons: Record<AnimationCategory, string> = {
   "3d-transforms": "◇",
   "page-transitions": "▶",
   "layout-animations": "▦",
-};
-
-const categoryLabels: Record<AnimationCategory, string> = {
-  "scroll-based": "Scroll",
-  "text-effects": "Text",
-  "hover-interactions": "Hover",
-  "3d-transforms": "3D",
-  "page-transitions": "Page",
-  "layout-animations": "Layout",
 };
 
 interface NavSectionProps {

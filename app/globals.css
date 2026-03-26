@@ -3,6 +3,16 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --mi-duration-xs: 120ms;
+  --mi-duration-sm: 180ms;
+  --mi-duration-md: 240ms;
+  --mi-duration-lg: 280ms;
+  --mi-duration-xl: 420ms;
+  --mi-ease-decisive: cubic-bezier(0.16, 1, 0.3, 1);
+  --mi-ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --mi-ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  --mi-shadow-soft: 0 18px 40px -24px rgba(15, 23, 42, 0.7);
+  --mi-shadow-strong: 0 24px 54px -28px rgba(14, 116, 144, 0.5);
 }
 
 @theme inline {
@@ -21,6 +31,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(125, 211, 252, 0.28);
+  color: white;
 }
 
 /* Ensure full-height sections work correctly */
