@@ -800,3 +800,31 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+
+registerAnimation({
+  id: "dimensional-rift",
+  path: "/dimensional-rift",
+  title: "Dimensional Rift",
+  description: "4-phase dimensional tear with 3D shard physics, gravitational void, chromatic tunnel, and magnetic reassembly",
+  category: "page-transitions",
+  difficulty: "advanced",
+  library: ["framer-motion"],
+  keywords: ["rift", "dimensional", "3d", "physics", "fragments", "tunnel", "chromatic", "void"],
+  color: "fuchsia",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "transition-dimensional-rift",
+  path: "/transition/dimensional-rift",
+  title: "Dimensional Rift (Full Breakdown)",
+  description: "Detailed breakdown of the 4-phase dimensional tear with technical specs and code examples",
+  category: "page-transitions",
+  difficulty: "advanced",
+  library: ["framer-motion"],
+  keywords: ["rift", "dimensional", "3d", "physics", "fragments", "tunnel", "chromatic", "void", "breakdown"],
+  color: "fuchsia",
+  group: "transition-lab",
+  status: "ready",
+});
