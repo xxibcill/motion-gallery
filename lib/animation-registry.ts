@@ -786,3 +786,17 @@ registerAnimation({
   group: "core",
   status: "ready",
 });
+
+registerAnimation({
+  id: "image-compare",
+  path: "/image-compare",
+  title: "Image Compare",
+  description: "Side-by-side image comparison slider with hover-driven divider and spring physics",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["compare", "slider", "before", "after", "image", "hover"],
+  color: "fuchsia",
+  group: "core",
+  status: "ready",
+});
