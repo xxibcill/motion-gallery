@@ -15,36 +15,12 @@ import {
   useRef,
   type ReactNode,
 } from "react";
+import { BOTTOM_PEEK_V2_CONFIG } from "@/components/peek-cards/configs";
 
 const BottomPeekProgressContext = createContext<MotionValue<number> | null>(null);
 
-export const BOTTOM_PEEK_CONFIG = {
-  scrollHeight: 2.2,
-  settleThreshold: 0.42,
-  peek: {
-    translateY: 220,
-    scale: 0.975,
-    borderRadius: 32,
-    opacity: 0.84,
-  },
-  settled: {
-    translateY: 0,
-    scale: 1,
-    borderRadius: 0,
-    opacity: 1,
-  },
-  content: {
-    start: 0.18,
-    end: 0.54,
-    translateY: 56,
-    scale: 0.985,
-  },
-  spring: {
-    stiffness: 110,
-    damping: 28,
-    mass: 0.95,
-  },
-} as const;
+// Re-export config for backward compatibility
+export const BOTTOM_PEEK_CONFIG = BOTTOM_PEEK_V2_CONFIG;
 
 export interface BottomPeekCardProps {
   children: ReactNode;

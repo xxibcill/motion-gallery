@@ -11,25 +11,10 @@ import {
 } from 'motion/react'
 import type { ReactNode } from 'react'
 import { useMemo, useRef } from 'react'
+import { CENTER_PEEK_CONFIG as SHARED_CENTER_PEEK_CONFIG } from '@/components/peek-cards/configs'
 
-export const CENTER_PEEK_CONFIG = {
-  scrollHeight: 2.4,
-  settleThreshold: 0.42,
-  containerPadding: 40, // Adjustable padding in pixels
-  peek: {
-    width: 760, // Starting width in pixels
-    height: 48,
-    borderRadius: 32,
-    translateY: 180,
-    scale: 0.94,
-    opacity: 0.75,
-  },
-  spring: {
-    stiffness: 110,
-    damping: 28,
-    mass: 0.9,
-  },
-} as const
+// Re-export config for backward compatibility
+export const CENTER_PEEK_CONFIG = SHARED_CENTER_PEEK_CONFIG
 
 export interface CenterPeekCardProps {
   children: ReactNode

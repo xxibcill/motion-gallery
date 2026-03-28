@@ -111,88 +111,10 @@ import {
 } from 'motion/react'
 import type { ReactNode } from 'react'
 import { useMemo, useRef } from 'react'
+import { CENTER_PEEK_SHRINK_CONFIG as SHARED_CONFIG } from '@/components/peek-cards/configs'
 
-// ============================================================================
-// CONFIGURATION
-// ============================================================================
-// All animation parameters are centralized here for easy customization.
-// See the documentation above for detailed explanations of each property.
-// ============================================================================
-export const CENTER_PEEK_SHRINK_CONFIG = {
-  // ---------------------------------------------------------------------------
-  // TIMING: Controls the scroll-based animation phases
-  // ---------------------------------------------------------------------------
-  // scrollHeight: Total height of the scroll container in viewport units
-  // - 4.5 = 450vh = user scrolls 4.5x the viewport height
-  // - Higher value = more scroll distance = longer collapsed state at the end
-  scrollHeight: 10.5,
-
-  // settleThreshold: When Phase 1 (grow) completes and card reaches full size
-  // - 0.22 means at 22% of total scroll, the card is fully expanded
-  // - Lower = card settles to full size faster
-  settleThreshold: 0.22,
-
-  // shrinkThreshold: When Phase 2 (shrink) begins
-  // - Card starts shrinking immediately at settleThreshold (0.22)
-  // - Setting shrinkThreshold equal to settleThreshold means no pause - shrink starts right away
-  // - Shrink animation completes by 50% scroll, leaving 50% for collapsed state
-  // - Formula: shrinkProgress goes from 0→1 between settleThreshold (22%) and 50%
-  shrinkThreshold: 0.22, // Start shrinking immediately after grow completes
-
-  // containerPadding: Space (in px) around the card when settled/full
-  // - Creates the "frame" effect around the card
-  containerPadding: 40,
-
-  // ---------------------------------------------------------------------------
-  // PEEK STATE: Initial appearance when card first enters viewport
-  // ---------------------------------------------------------------------------
-  peek: {
-    // Starting width in pixels (fixed size, not responsive)
-    width: 760,
-    // Starting height in viewport height units (48vh = 48% of screen height)
-    height: 48,
-    // Starting border radius in pixels
-    borderRadius: 32,
-    // Starting Y offset from center (positive = below center)
-    // Card "rises up" as user scrolls
-    translateY: 180,
-    // Starting scale (0.94 = slightly smaller, creates zoom-in effect)
-    scale: 0.94,
-    // Starting opacity (0.75 = slightly transparent, fades in to 1)
-    opacity: 0.75,
-  },
-
-  // ---------------------------------------------------------------------------
-  // SHRINK STATE: Final collapsed appearance (Phase 2 end state)
-  // ---------------------------------------------------------------------------
-  shrink: {
-    // Final collapsed height in pixels
-    // 300px fits ~2 lines of text + 1 action button
-    targetHeight: 300,
-    // Final border radius when collapsed (smaller = more compact look)
-    targetBorderRadius: 20,
-  },
-
-  // ---------------------------------------------------------------------------
-  // SPRING PHYSICS: Controls animation feel and responsiveness
-  // ---------------------------------------------------------------------------
-  // These values apply spring physics to all animated properties for
-  // smooth, natural-feeling motion instead of linear interpolation
-  spring: {
-    // stiffness: How "tight" the spring feels
-    // - Higher (200+) = snappy, quick response
-    // - Lower (50-80) = smooth, gradual response
-    stiffness: 110,
-    // damping: How quickly oscillation settles
-    // - Higher (40+) = no bounce, settles immediately
-    // - Lower (10-20) = bouncy, oscillates before settling
-    damping: 28,
-    // mass: Virtual weight of the animated object
-    // - Higher (1.5+) = feels heavier, moves slower
-    // - Lower (0.3-0.5) = feels lighter, moves faster
-    mass: 0.9,
-  },
-} as const
+// Re-export config for backward compatibility
+export const CENTER_PEEK_SHRINK_CONFIG = SHARED_CONFIG
 
 // ============================================================================
 // COMPONENT PROPS
@@ -566,6 +488,7 @@ export function CenterPeekShrinkCard({
             - originY: 0 = transform origin at top (shrinks from bottom to top)
             ---------------------------------------------------------------------------- */}
         <motion.div
+          data-testid="center-peek-card"
           className={`relative min-w-[18rem] overflow-hidden shadow-[0_32px_120px_rgba(0,0,0,0.45)] ${cardClassName ?? ''}`}
           style={{
             width,

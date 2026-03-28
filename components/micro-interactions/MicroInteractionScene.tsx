@@ -4,6 +4,19 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
 
+// Re-export controls from unified module for backward compatibility
+export {
+  SliderControl,
+  ToggleControl,
+  OptionPills,
+  type SliderControlProps,
+  type ToggleControlProps,
+  type OptionPillsProps,
+} from "@/components/ui/controls";
+
+// Legacy aliases
+export { SliderControl as RangeControl } from "@/components/ui/controls";
+
 interface MicroInteractionSceneProps {
   title: string;
   description: string;
@@ -11,117 +24,6 @@ interface MicroInteractionSceneProps {
   controls?: ReactNode;
   notes?: string[];
   children: ReactNode;
-}
-
-interface RangeControlProps {
-  label: string;
-  value: number;
-  onChange: (value: number) => void;
-  min: number;
-  max: number;
-  step?: number;
-  valueLabel?: string;
-}
-
-interface ToggleControlProps {
-  label: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-}
-
-interface OptionPillsProps<T extends string> {
-  label: string;
-  value: T;
-  onChange: (value: T) => void;
-  options: Array<{ label: string; value: T }>;
-}
-
-export function RangeControl({
-  label,
-  value,
-  onChange,
-  min,
-  max,
-  step = 1,
-  valueLabel,
-}: RangeControlProps) {
-  return (
-    <label className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-      <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-medium text-zinc-100">{label}</span>
-        <span className="text-xs uppercase tracking-[0.24em] text-cyan-200/75">
-          {valueLabel ?? value}
-        </span>
-      </div>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-cyan-300"
-      />
-    </label>
-  );
-}
-
-export function ToggleControl({ label, checked, onChange }: ToggleControlProps) {
-  return (
-    <label className="flex items-center justify-between gap-4 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-      <span className="text-sm font-medium text-zinc-100">{label}</span>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={checked}
-        onClick={() => onChange(!checked)}
-        className={`relative inline-flex h-7 w-12 items-center rounded-full border transition-colors ${
-          checked
-            ? "border-cyan-300/50 bg-cyan-300/25"
-            : "border-white/10 bg-white/6"
-        }`}
-      >
-        <span
-          className={`absolute h-5 w-5 rounded-full bg-white transition-transform ${
-            checked ? "translate-x-6" : "translate-x-1"
-          }`}
-        />
-      </button>
-    </label>
-  );
-}
-
-export function OptionPills<T extends string>({
-  label,
-  value,
-  onChange,
-  options,
-}: OptionPillsProps<T>) {
-  return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-      <span className="text-sm font-medium text-zinc-100">{label}</span>
-      <div className="flex flex-wrap gap-2">
-        {options.map((option) => {
-          const isActive = option.value === value;
-
-          return (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => onChange(option.value)}
-              className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
-                isActive
-                  ? "bg-cyan-200 text-zinc-950"
-                  : "bg-white/6 text-zinc-300 hover:bg-white/12"
-              }`}
-            >
-              {option.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
 }
 
 export function MicroInteractionScene({

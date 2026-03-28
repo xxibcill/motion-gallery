@@ -6,7 +6,7 @@ import {
   useAnimation,
   useReducedMotion,
 } from "motion/react";
-import { useRef, useEffect, ReactNode } from "react";
+import React, { useRef, useEffect, ReactNode } from "react";
 
 // Split text into individual characters with staggered animation
 interface SplitTextProps {
@@ -221,9 +221,6 @@ function Typewriter({
     </div>
   );
 }
-
-// We need to import React for useState
-import React from "react";
 
 // Reveal text with mask
 interface RevealTextProps {

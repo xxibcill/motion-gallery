@@ -8,40 +8,10 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { useRef, ReactNode } from "react";
+import { BOTTOM_PEEK_V1_CONFIG } from "@/components/peek-cards/configs";
 
-// Configuration for the bottom peek card effect
-export const BOTTOM_PEEK_CONFIG = {
-  // Viewport height multiplier for scroll distance
-  scrollHeight: 2, // 200vh of scroll room
-
-  // Scroll progress where card transitions from peek to full (0-1)
-  expandThreshold: 0.4,
-
-  // Initial peek state (half-width card at bottom)
-  peek: {
-    width: 0.5, // 50% width
-    borderRadius: 24,
-    translateY: 0,
-    scale: 0.98,
-    opacity: 1,
-  },
-
-  // Full expanded state
-  full: {
-    width: 1, // 100% width
-    borderRadius: 0,
-    translateY: 0,
-    scale: 1,
-    opacity: 1,
-  },
-
-  // Spring physics
-  spring: {
-    stiffness: 100,
-    damping: 30,
-    mass: 1,
-  },
-} as const;
+// Re-export config for backward compatibility
+export const BOTTOM_PEEK_CONFIG = BOTTOM_PEEK_V1_CONFIG;
 
 // Props for the bottom peek card
 export interface BottomPeekCardProps {
@@ -118,6 +88,7 @@ export function BottomPeekCard({
       style={{ height: `${BOTTOM_PEEK_CONFIG.scrollHeight * 100}vh` }}
     >
       <motion.div
+        data-testid="bottom-peek-card"
         className={`sticky bottom-0 h-screen ${bgClass} overflow-hidden shadow-2xl mx-auto`}
         style={{
           width: width,
