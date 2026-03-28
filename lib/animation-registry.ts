@@ -424,6 +424,21 @@ registerAnimation({
 });
 
 registerAnimation({
+  id: "combined-animation",
+  path: "/combined-animation",
+  title: "Combined Animation",
+  description:
+    "A cinematic singularity scene that combines phase choreography, pointer depth, orbit fields, and scroll-linked collapse",
+  category: "3d-transforms",
+  difficulty: "advanced",
+  library: ["framer-motion"],
+  keywords: ["singularity", "pointer", "scroll", "phase", "cinematic", "orbits", "layers"],
+  color: "amber",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
   id: "transition",
   path: "/transition",
   title: "Transition Lab",

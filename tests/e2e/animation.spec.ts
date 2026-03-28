@@ -11,6 +11,11 @@ test.describe("Animation Pages", () => {
     await expect(page.locator("body")).toBeVisible();
   });
 
+  test("should render combined animation page", async ({ page }) => {
+    await page.goto("/combined-animation");
+    await expect(page.locator("body")).toBeVisible();
+  });
+
   test("should render transition lab landing", async ({ page }) => {
     await page.goto("/transition");
     await expect(page.locator("body")).toBeVisible();
