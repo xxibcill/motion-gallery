@@ -1014,6 +1014,20 @@ registerAnimation({
 });
 
 registerAnimation({
+  id: "fear-greed-gauge",
+  path: "/fear-greed-gauge",
+  title: "Fear & Greed Gauge Modes",
+  description: "Interactive gauge lab with selectable movement styles, threshold presets, and replay controls",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["gauge", "fear greed", "modes", "easing", "replay", "controls"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
   id: "dimensional-rift",
   path: "/dimensional-rift",
   title: "Dimensional Rift",
