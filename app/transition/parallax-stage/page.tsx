@@ -85,7 +85,7 @@ export default function ParallaxStagePage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 08"
+      eyebrow="Transition 05 · Depth Shift"
       title="Parallax Stage"
       description="A scene-change demo built like a miniature set: background light, midground architecture, and foreground framing all travel on distinct ratios so the transition reads as cinematic depth instead of a scroll trick."
       aside={

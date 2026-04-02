@@ -72,7 +72,7 @@ export default function VoidPortalPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 12"
+      eyebrow="Transition 09 · Radial Consume"
       title="Void Portal"
       description="A dramatic portal transition with a real center of gravity: the outgoing scene gets consumed into a void, then the next chamber emerges through the same aperture on a distinct second beat."
       aside={

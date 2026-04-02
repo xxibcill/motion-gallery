@@ -37,7 +37,7 @@ export default function TransitionLayout({
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.35em] text-white/45">
-                Section Shell
+                Transition Lab
               </p>
               <div className="space-y-2">
                 <h1 className="font-serif text-3xl sm:text-4xl">
@@ -54,19 +54,22 @@ export default function TransitionLayout({
                 <p className="text-[0.65rem] uppercase tracking-[0.26em] text-white/40">
                   Demos
                 </p>
-                <p className="mt-2 text-lg text-white">10 routes</p>
+                <p className="mt-2 text-lg text-white">11 transitions</p>
+                <p className="mt-1 text-xs text-white/40">Interactive demos with unique motion signatures</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
                 <p className="text-[0.65rem] uppercase tracking-[0.26em] text-white/40">
                   Showcase
                 </p>
-                <p className="mt-2 text-lg text-white">1 flagship path</p>
+                <p className="mt-2 text-lg text-white">Side-by-side comparison</p>
+                <p className="mt-1 text-xs text-white/40">All modes from one control surface</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
                 <p className="text-[0.65rem] uppercase tracking-[0.26em] text-white/40">
                   Toolkit
                 </p>
                 <p className="mt-2 text-lg text-white">Shared primitives</p>
+                <p className="mt-1 text-xs text-white/40">Reusable components for building transitions</p>
               </div>
             </div>
           </div>

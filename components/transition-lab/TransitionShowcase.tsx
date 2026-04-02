@@ -1404,7 +1404,7 @@ export function TransitionShowcase() {
 
   return (
     <SceneFrame
-      eyebrow="Task 14"
+      eyebrow="Transition Showcase"
       title="Transition Showcase"
       description="The flagship lab route keeps one scene architecture fixed and lets every transition mode take a turn around it. Use the shared controller to compare direction, drag, tempo, and atmosphere without navigating away."
       aside={

@@ -35,7 +35,7 @@ interface SceneFrameProps {
  * @component
  * @example
  * <SceneFrame
- *   eyebrow="Task 14"
+ *   eyebrow="Transition Showcase"
  *   title="Transition Showcase"
  *   description="Compare every transition mode side by side."
  *   aside={<div>Additional info</div>}

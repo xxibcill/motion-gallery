@@ -71,7 +71,7 @@ export default function KineticPanelsPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 04"
+      eyebrow="Transition 01 · Editorial Slam"
       title="Kinetic Panels"
       description="A forceful editorial transition built from slab-like panels that enter on separate axes, overshoot their marks, and settle into a sharp reading rhythm."
       aside={

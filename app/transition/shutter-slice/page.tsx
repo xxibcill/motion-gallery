@@ -78,7 +78,7 @@ export default function ShutterSlicePage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 06"
+      eyebrow="Transition 03 · Mechanical Wipe"
       title="Shutter Slice"
       description="A segmented wipe that breaks the stage into independent shutters, varies the distance per strip, and proves the effect works in both directions."
       aside={

@@ -27,7 +27,7 @@ interface DimensionalRiftProps {
 }
 
 function DimensionalRiftComponent({
-  eyebrow = "Task 13",
+  eyebrow = "Transition 11 · Dimensional Tear",
   title = "Dimensional Rift",
   description = "The most complex transition: a 4-phase dimensional tear combining 3D shard physics, gravitational void, chromatic tunnel, and magnetic reassembly.",
 }: DimensionalRiftProps) {

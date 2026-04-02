@@ -165,7 +165,7 @@ export default function GlitchScanPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 09"
+      eyebrow="Transition 06 · Signal Break"
       title="Glitch Scan"
       description="A broadcast-style transition that uses scan passes, short chroma splits, and deliberate frame jumps without letting the distortion linger long enough to feel broken."
       aside={

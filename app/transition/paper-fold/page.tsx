@@ -132,7 +132,7 @@ export default function PaperFoldPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 10"
+      eyebrow="Transition 07 · Material Hinge"
       title="Paper Fold"
       description="A tactile transition built like scored card stock: fold planes hinge away, shadows drag across the surface, and the next scene is revealed from underneath instead of being swapped flat on top."
       aside={

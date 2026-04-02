@@ -105,7 +105,7 @@ export default function MagneticCollapsePage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 11"
+      eyebrow="Transition 08 · Attractor Field"
       title="Magnetic Collapse"
       description="A focal-point transition where the outgoing frame breaks into fragments, gets pulled into a magnetic center, and then reassembles as the next state with controlled spring energy."
       aside={

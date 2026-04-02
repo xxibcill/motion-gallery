@@ -102,7 +102,7 @@ export default function LiquidRevealPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 05"
+      eyebrow="Transition 02 · Elastic Bloom"
       title="Liquid Reveal"
       description="An organic reveal that uses layered blob masks, bloom-heavy gradients, and frosted depth so the stage feels poured open instead of mechanically wiped."
       aside={

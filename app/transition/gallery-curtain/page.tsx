@@ -126,7 +126,7 @@ export default function GalleryCurtainPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 13"
+      eyebrow="Transition 10 · Theatrical Sweep"
       title="Gallery Curtain"
       description="A theatrical curtain transition that layers heavy drapes, translucent veils, grain, and controlled reveal timing so the stage feels luxurious instead of like a generic full-screen wipe."
       aside={

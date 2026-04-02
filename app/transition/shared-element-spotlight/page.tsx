@@ -48,7 +48,7 @@ export default function SharedElementSpotlightPage() {
 
   return (
     <SceneFrame
-      eyebrow="Task 07"
+      eyebrow="Transition 04 · Continuity Anchor"
       title="Shared Element Spotlight"
       description="A UI transition pattern where one hero object survives the scene change and the rest of the layout reorganizes around it."
       aside={

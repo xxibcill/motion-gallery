@@ -118,7 +118,7 @@ export default function DimensionalRiftPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <SceneFrame
-        eyebrow="Task 13"
+        eyebrow="Transition 11 · Dimensional Tear"
         title="Dimensional Rift"
         description="The most complex animation in the gallery: a 4-phase dimensional tear combining 3D shard physics, gravitational void, chromatic tunnel, and magnetic reassembly."
         aside={

@@ -1,157 +1,66 @@
 import Link from "next/link";
-import {
-  getTransitionLabRoutes,
-  type AnimationMeta,
-} from "@/lib/animation-registry";
+import { getTransitionLabRoutes } from "@/lib/animation-registry";
 import { SceneFrame } from "@/components/transition-lab/SceneFrame";
 import { TransitionStage } from "@/components/transition-lab/TransitionStage";
 import { GradientVeil } from "@/components/transition-lab/GradientVeil";
-import { SharedElementShell } from "@/components/transition-lab/SharedElementShell";
-import { transitionLabControlPillars } from "@/lib/transition-lab";
+import { TransitionPreviewCard } from "@/components/transition-lab/TransitionPreviewCard";
 
-const cardTones: Record<string, { stage: string; from: string; to: string; accent: string }> = {
-  cyan: {
-    stage: "bg-[#04131d]",
-    from: "rgba(14, 116, 144, 0.72)",
-    to: "rgba(8, 47, 73, 0.96)",
-    accent: "rgba(103, 232, 249, 0.18)",
+const toolkitItems = [
+  {
+    name: "TransitionStage",
+    description: "Scene container with layered backgrounds, overlays, and entrance animations",
+    importPath: "@/components/transition-lab/TransitionStage",
   },
-  amber: {
-    stage: "bg-[#1a1106]",
-    from: "rgba(217, 119, 6, 0.76)",
-    to: "rgba(120, 53, 15, 0.96)",
-    accent: "rgba(253, 230, 138, 0.18)",
+  {
+    name: "SceneFrame",
+    description: "Page header with eyebrow, title, description, and optional aside",
+    importPath: "@/components/transition-lab/SceneFrame",
   },
-  violet: {
-    stage: "bg-[#13081f]",
-    from: "rgba(124, 58, 237, 0.68)",
-    to: "rgba(59, 7, 100, 0.96)",
-    accent: "rgba(221, 214, 254, 0.2)",
+  {
+    name: "GradientVeil",
+    description: "Gradient overlay system for rich stage backgrounds",
+    importPath: "@/components/transition-lab/GradientVeil",
   },
-  emerald: {
-    stage: "bg-[#051912]",
-    from: "rgba(5, 150, 105, 0.72)",
-    to: "rgba(6, 78, 59, 0.96)",
-    accent: "rgba(167, 243, 208, 0.2)",
+  {
+    name: "SharedElementShell",
+    description: "Card with layoutId for shared element transitions across routes",
+    importPath: "@/components/transition-lab/SharedElementShell",
   },
-  indigo: {
-    stage: "bg-[#0b1024]",
-    from: "rgba(67, 56, 202, 0.7)",
-    to: "rgba(30, 27, 75, 0.96)",
-    accent: "rgba(199, 210, 254, 0.2)",
+  {
+    name: "DemoToolbar",
+    description: "Controls for scene selection and replay actions",
+    importPath: "@/components/transition-lab/DemoToolbar",
   },
-  rose: {
-    stage: "bg-[#1b0911]",
-    from: "rgba(225, 29, 72, 0.72)",
-    to: "rgba(76, 5, 25, 0.96)",
-    accent: "rgba(254, 205, 211, 0.18)",
+  {
+    name: "useTransitionDemo",
+    description: "Hook for managing active value and replay state",
+    importPath: "@/components/transition-lab/useTransitionDemo",
   },
-  fuchsia: {
-    stage: "bg-[#190718]",
-    from: "rgba(192, 38, 211, 0.72)",
-    to: "rgba(74, 4, 78, 0.96)",
-    accent: "rgba(245, 208, 254, 0.2)",
-  },
-  slate: {
-    stage: "bg-[#090d16]",
-    from: "rgba(51, 65, 85, 0.76)",
-    to: "rgba(15, 23, 42, 0.96)",
-    accent: "rgba(226, 232, 240, 0.14)",
-  },
-  zinc: {
-    stage: "bg-[#111111]",
-    from: "rgba(63, 63, 70, 0.74)",
-    to: "rgba(9, 9, 11, 0.96)",
-    accent: "rgba(244, 244, 245, 0.12)",
-  },
-};
-
-function getCardTone(color: string) {
-  return cardTones[color] ?? cardTones.slate;
-}
-
-function TransitionCard({ animation }: { animation: AnimationMeta }) {
-  const tone = getCardTone(animation.color);
-
-  return (
-    <Link href={animation.path} className="block">
-      <TransitionStage
-        className="h-full min-h-[17rem] transition-transform duration-300 hover:-translate-y-1"
-        backgroundClassName={tone.stage}
-        overlays={
-          <GradientVeil
-            from={tone.from}
-            to={tone.to}
-            accent={tone.accent}
-          />
-        }
-        chrome={
-          <div className="flex h-full items-start justify-end p-5">
-            <span className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[0.65rem] uppercase tracking-[0.26em] text-white/60">
-              {animation.status === "planned" ? "Planned" : "Live"}
-            </span>
-          </div>
-        }
-      >
-        <div className="flex h-full flex-col justify-between p-6">
-          <div className="space-y-3">
-            <p className="text-[0.65rem] uppercase tracking-[0.28em] text-white/45">
-              {animation.path.split("/").at(-1)}
-            </p>
-            <h2 className="font-serif text-3xl text-white">{animation.title}</h2>
-            <p className="max-w-md text-sm leading-6 text-white/70">
-              {animation.description}
-            </p>
-          </div>
-          <div className="flex items-center justify-between text-sm text-white/58">
-            <span>{animation.difficulty}</span>
-            <span>Open route</span>
-          </div>
-        </div>
-      </TransitionStage>
-    </Link>
-  );
-}
+];
 
 export default function TransitionHubPage() {
   const routes = getTransitionLabRoutes();
   const showcase = routes.find((route) => route.id === "transition-showcase");
-  const demos = routes.filter((route) => route.id !== "transition-showcase");
+  const gallery = routes.find((route) => route.id === "transition-gallery");
+  const demos = routes.filter(
+    (route) =>
+      route.id !== "transition-showcase" &&
+      route.id !== "transition-gallery" &&
+      route.id !== "transition-dimensional-rift"
+  );
+  const rift = routes.find((route) => route.id === "transition-dimensional-rift");
 
   return (
     <SceneFrame
-      eyebrow="Transition Wow"
-      title="Ten transition directions, one section shell, and a live showcase controller."
-      description="This hub is the permanent home for the transition collection. The flagship showcase compares all ten modes from one control surface, while each demo route keeps its own atmosphere and choreography."
-      aside={
-        <div className="space-y-4">
-          <div>
-            <p className="text-[0.65rem] uppercase tracking-[0.24em] text-white/40">
-              Control Pillars
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {transitionLabControlPillars.map((pillar) => (
-                <span
-                  key={pillar}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/65"
-                >
-                  {pillar}
-                </span>
-              ))}
-            </div>
-          </div>
-          <p>
-            Every route is wired into the shared registry and section navigation.
-            The showcase now acts as the comparison bench, while the individual
-            pages stay focused on their own motion language.
-          </p>
-        </div>
-      }
+      eyebrow="Transition Lab"
+      title="Eleven transition effects for scene changes, route swaps, and high-drama reveals."
+      description="Each demo is a self-contained transition with its own motion signature. Compare them all side-by-side in the showcase, or explore individually."
     >
+      {/* Section A — Showcase & Gallery */}
       {showcase ? (
-        <div className="mb-6">
+        <div className="mb-10">
           <TransitionStage
-            className="min-h-[22rem]"
+            className="min-h-[20rem]"
             backgroundClassName="bg-[#07111e]"
             overlays={
               <GradientVeil
@@ -164,62 +73,98 @@ export default function TransitionHubPage() {
             <div className="grid h-full gap-6 p-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-center lg:p-8">
               <div className="space-y-5">
                 <p className="text-xs uppercase tracking-[0.35em] text-cyan-100/60">
-                  Flagship Route
+                  Showcase
                 </p>
                 <div className="space-y-3">
                   <h2 className="font-serif text-4xl text-white sm:text-5xl">
-                    {showcase.title}
+                    Compare all transitions side by side
                   </h2>
                   <p className="max-w-2xl text-base leading-7 text-cyan-50/75">
-                    {showcase.description}
+                    One shared scene cycles through every transition mode from a single control surface. Switch modes, adjust speed and intensity, replay instantly.
                   </p>
                 </div>
-                <Link
-                  href={showcase.path}
-                  className="inline-flex rounded-full border border-cyan-200/20 bg-cyan-200/10 px-5 py-3 text-sm text-white transition-colors hover:bg-cyan-200/16"
-                >
-                  Open showcase route
-                </Link>
-              </div>
-              <SharedElementShell
-                layoutId="transition-lab-showcase-shell"
-                label="Shared Shell"
-                title="Controller live"
-              >
-                <p className="text-sm leading-6 text-white/68">
-                  The showcase route now uses the shared scene shell for live
-                  mode switching, replay, and reduced-motion-aware comparisons.
-                </p>
-                <div className="grid gap-3 pt-2 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/40">
-                      Modes
-                    </p>
-                    <p className="mt-2 text-white">10</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/40">
-                      Replay
-                    </p>
-                    <p className="mt-2 text-white">Live</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/40">
-                      Stage
-                    </p>
-                    <p className="mt-2 text-white">Shared shell</p>
-                  </div>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={showcase.path}
+                    className="inline-flex rounded-full border border-cyan-200/20 bg-cyan-200/10 px-5 py-3 text-sm text-white transition-colors hover:bg-cyan-200/16"
+                  >
+                    Open showcase
+                  </Link>
+                  {gallery && (
+                    <Link
+                      href={gallery.path}
+                      className="inline-flex rounded-full border border-white/12 bg-white/[0.05] px-5 py-3 text-sm text-white/75 transition-colors hover:bg-white/[0.08] hover:text-white"
+                    >
+                      Scroll gallery
+                    </Link>
+                  )}
                 </div>
-              </SharedElementShell>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+                    Modes
+                  </p>
+                  <p className="mt-2 text-2xl font-medium text-white">10</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+                    Controls
+                  </p>
+                  <p className="mt-2 text-2xl font-medium text-white">Speed</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+                    Intensity
+                  </p>
+                  <p className="mt-2 text-2xl font-medium text-white">3 levels</p>
+                </div>
+              </div>
             </div>
           </TransitionStage>
         </div>
       ) : null}
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {/* Section B — Demo Grid */}
+      <div className="mb-4">
+        <p className="text-xs uppercase tracking-[0.3em] text-white/40">Demos</p>
+        <p className="mt-1 text-sm text-white/55">
+          Hover to preview each transition&apos;s signature motion. Click to open the full demo.
+        </p>
+      </div>
+      <div className="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {demos.map((demo) => (
-          <TransitionCard key={demo.id} animation={demo} />
+          <TransitionPreviewCard key={demo.id} animation={demo} />
         ))}
+      </div>
+
+      {/* Dimensional Rift — featured */}
+      {rift ? (
+        <div className="mb-10">
+          <TransitionPreviewCard animation={rift} />
+        </div>
+      ) : null}
+
+      {/* Section C — Toolkit */}
+      <div className="mt-10">
+        <div className="mb-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Toolkit</p>
+          <p className="mt-1 text-sm text-white/55">
+            Shared primitives used across every transition demo. Import and compose them to build your own.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {toolkitItems.map((item) => (
+            <div
+              key={item.name}
+              className="rounded-2xl border border-white/8 bg-white/[0.03] p-4"
+            >
+              <p className="font-mono text-sm text-white/90">{item.name}</p>
+              <p className="mt-1.5 text-xs leading-5 text-white/50">{item.description}</p>
+              <p className="mt-2 font-mono text-[0.65rem] text-white/30">{item.importPath}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </SceneFrame>
   );
