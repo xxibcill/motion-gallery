@@ -44,15 +44,11 @@ function DimensionalRiftComponent({
   const stars = useMemo(() => generateStars(80), []);
 
   // Adaptive counts for mobile
-  const shardCount = useMemo(() => {
-    if (typeof window === "undefined") return 16;
-    return window.innerWidth < 768 ? 12 : 16;
-  }, []);
+  const shardCount = 16;
 
   // Phase orchestration
   useEffect(() => {
     if (replayKey === 0) {
-      setPhase("idle");
       return;
     }
 
@@ -88,7 +84,6 @@ function DimensionalRiftComponent({
 
   const stageKey = `${activeValue}-${replayKey}`;
 
-  const showFracture = phase === "fracture" || phase === "void";
   const showVoid = phase === "void";
   const showTunnel = phase === "tunnel";
   const showReassembly = phase === "reassembly" || phase === "idle";

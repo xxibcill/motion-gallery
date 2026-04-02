@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { motion } from "motion/react";
 import { StarField } from "./StarField";
 import type { StarConfig } from "./dimensional-rift-presets";
@@ -23,6 +23,16 @@ function DimensionalTunnelComponent({
   isActive,
   prefersReducedMotion,
 }: DimensionalTunnelProps) {
+  const speedLines = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        angle: (i / 12) * Math.PI * 2,
+        distance: 30 + ((i * 11) % 5) * 4,
+        id: `speed-line-${i}`,
+      })),
+    []
+  );
+
   return (
     <div
       aria-hidden="true"
@@ -73,13 +83,10 @@ function DimensionalTunnelComponent({
       {/* Speed lines */}
       {isActive &&
         !prefersReducedMotion &&
-        Array.from({ length: 12 }).map((_, i) => {
-          const angle = (i / 12) * Math.PI * 2;
-          const distance = 30 + Math.random() * 20;
-
+        speedLines.map(({ angle, distance, id }, i) => {
           return (
             <motion.div
-              key={`speed-line-${i}`}
+              key={id}
               className="absolute h-px"
               style={{
                 left: `calc(50% + ${Math.cos(angle) * distance}%)`,

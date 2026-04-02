@@ -34,18 +34,11 @@ export default function DimensionalRiftDemoPage() {
 
   const [phase, setPhase] = useState<RiftPhase>("idle");
   const stars = useMemo(() => generateStars(80), []);
-  const [shardCount, setShardCount] = useState(16);
-
-  useEffect(() => {
-    if (window.innerWidth < 640) {
-      setShardCount(12);
-    }
-  }, []);
+  const shardCount = 16;
 
   // Phase orchestration
   useEffect(() => {
     if (replayKey === 0) {
-      setPhase("idle");
       return;
     }
 

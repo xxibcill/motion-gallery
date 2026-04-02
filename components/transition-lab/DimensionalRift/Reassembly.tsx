@@ -38,7 +38,7 @@ function ReassemblyComponent({
     >
       <div className="relative">
         <div className="grid gap-4 lg:grid-cols-2">
-          {reassemblyCards.map((card, index) => (
+          {reassemblyCards.map((card) => (
             <motion.div
               key={card.id}
               className={`${card.className} ${

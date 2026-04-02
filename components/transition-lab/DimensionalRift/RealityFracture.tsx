@@ -2,7 +2,7 @@
 
 import { memo, useMemo } from "react";
 import { Shard } from "./Shard";
-import { generateShards, type ShardConfig } from "./dimensional-rift-presets";
+import { generateShards } from "./dimensional-rift-presets";
 
 interface RealityFractureProps {
   shardCount: number;

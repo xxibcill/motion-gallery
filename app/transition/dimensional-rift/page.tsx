@@ -1,12 +1,13 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { DemoToolbar } from "@/components/transition-lab/DemoToolbar";
 import { GradientVeil } from "@/components/transition-lab/GradientVeil";
 import { SceneFrame } from "@/components/transition-lab/SceneFrame";
 import { TransitionStage } from "@/components/transition-lab/TransitionStage";
 import { useTransitionDemo } from "@/components/transition-lab/useTransitionDemo";
-import { transitionLabDurations, transitionLabEasings } from "@/lib/animation-presets";
+import { transitionLabDurations } from "@/lib/animation-presets";
 import { RealityFracture } from "@/components/transition-lab/DimensionalRift/RealityFracture";
 import { VoidPull } from "@/components/transition-lab/DimensionalRift/VoidPull";
 import { DimensionalTunnel } from "@/components/transition-lab/DimensionalRift/DimensionalTunnel";
@@ -14,7 +15,6 @@ import { Reassembly } from "@/components/transition-lab/DimensionalRift/Reassemb
 import {
   riftScenes,
   riftPhaseDurations,
-  riftSprings,
   generateStars,
   type RiftSceneId,
   type RiftPhase,
@@ -74,12 +74,11 @@ export default function DimensionalRiftPage() {
 
   const [phase, setPhase] = useState<RiftPhase>("idle");
   const stars = useMemo(() => generateStars(80), []);
-  const [shardCount] = useState(16);
+  const shardCount = 16;
 
   // Phase orchestration
   useEffect(() => {
     if (replayKey === 0) {
-      setPhase("idle");
       return;
     }
 
@@ -421,6 +420,3 @@ useEffect(() => {
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
-// Import useState and useMemo
-import { useState, useEffect, useMemo } from "react";
