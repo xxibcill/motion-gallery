@@ -677,6 +677,34 @@ registerAnimation({
 });
 
 registerAnimation({
+  id: "micro-beam-focus-input",
+  path: "/micro-interactions/beam-focus-input",
+  title: "Beam Focus Input",
+  description: "Focus input with a directional beam sweep, edge glow, and reduced-motion border fallback",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "input", "focus", "beam", "glow", "form"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-inline-validation",
+  path: "/micro-interactions/inline-validation",
+  title: "Inline Validation Field",
+  description: "Stable validation field with typing, error, and success states that avoid layout jump",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "validation", "field", "form", "error", "success"],
+  color: "emerald",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
   id: "micro-magnetic-cta",
   path: "/micro-interactions/magnetic-cta",
   title: "Magnetic CTA Button",
@@ -719,6 +747,21 @@ registerAnimation({
 });
 
 registerAnimation({
+  id: "micro-like-burst",
+  path: "/micro-interactions/like-burst",
+  title: "Like Burst Button",
+  description:
+    "Favorite toggle with heart fill, compact celebratory particles, and a reduced-motion glow fallback",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "like", "favorite", "heart", "burst", "save"],
+  color: "rose",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
   id: "micro-copy-chip",
   path: "/micro-interactions/copy-chip",
   title: "Copy Confirmation Chip",
@@ -728,6 +771,104 @@ registerAnimation({
   library: ["framer-motion"],
   keywords: ["micro interaction", "copy", "clipboard", "confirmation", "chip", "success"],
   color: "amber",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-hover-tilt-card",
+  path: "/micro-interactions/hover-tilt-card",
+  title: "Hover Tilt Product Card",
+  description: "Bounded 3D tilt, passing sheen, and depth-separated content layers for premium hover feedback",
+  category: "3d-transforms",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "tilt", "card", "3d", "glare", "hover"],
+  color: "sky",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-spotlight-links",
+  path: "/micro-interactions/spotlight-links",
+  title: "Spotlight Hover Link List",
+  description: "Dense link list with cursor-led spotlight and shared active row treatment",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "spotlight", "links", "hover", "focus", "list"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-notification-bell",
+  path: "/micro-interactions/notification-bell",
+  title: "Notification Bell Peek",
+  description: "Anchored notification tray with badge pulse, focus management, and restrained panel choreography",
+  category: "layout-animations",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "notification", "bell", "tray", "popover", "badge"],
+  color: "sky",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-toast-stack",
+  path: "/micro-interactions/toast-stack",
+  title: "Toast Stack Dismiss",
+  description: "Stacked toast system with staggered entry, swipe dismissal, and clean layout reflow",
+  category: "layout-animations",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "toast", "stack", "dismiss", "swipe", "notification"],
+  color: "amber",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-drag-sort",
+  path: "/micro-interactions/drag-sort",
+  title: "Drag Lift Sort Cards",
+  description: "Reorderable card list with lift, placeholder spacing, and keyboard-friendly fallback",
+  category: "layout-animations",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "drag", "sort", "reorder", "cards", "lift"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-dropzone-upload",
+  path: "/micro-interactions/dropzone-upload",
+  title: "Dropzone Pulse Upload",
+  description: "Dropzone with drag-over pulse, upload progress, and confirmation state handoff",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "dropzone", "upload", "progress", "drag", "file"],
+  color: "emerald",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-count-up-number",
+  path: "/micro-interactions/count-up-number",
+  title: "Count Up Number",
+  description: "Animated stat readout with fast acceleration, formatting support, and an immediate reduced-motion fallback",
+  category: "text-effects",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "count up", "number", "counter", "stat", "metric"],
+  color: "cyan",
   group: "core",
   status: "ready",
 });
@@ -784,6 +925,48 @@ registerAnimation({
   library: ["framer-motion"],
   keywords: ["micro interaction", "tabs", "underline", "follower", "shared element", "navigation"],
   color: "fuchsia",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-theme-switch",
+  path: "/micro-interactions/theme-switch",
+  title: "Theme Switch Orb",
+  description: "Orb-like theme switch with contained palette shift and reduced-motion direct swap",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "theme", "switch", "toggle", "orb", "palette"],
+  color: "violet",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-command-palette",
+  path: "/micro-interactions/command-palette",
+  title: "Command Palette Highlight",
+  description: "Command palette result list with a shared active highlight across pointer and keyboard input",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "command palette", "highlight", "listbox", "results", "keyboard"],
+  color: "fuchsia",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "micro-stepper-progress",
+  path: "/micro-interactions/stepper-progress",
+  title: "Stepper Progress Pulse",
+  description: "Stepper connector pulse clarifies forward progress while preserving completed and active state contrast",
+  category: "layout-animations",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "stepper", "progress", "pulse", "connector", "workflow"],
+  color: "emerald",
   group: "core",
   status: "ready",
 });

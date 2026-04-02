@@ -134,11 +134,11 @@ Tapping the heart triggers a fast scale pop, soft rotation, and a controlled par
 
 Tasks:
 
-- [ ] Create `components/micro-interactions/LikeBurstButton.tsx`.
-- [ ] Create `app/micro-interactions/like-burst/page.tsx` with burst density and accent color controls.
-- [ ] Animate icon fill, scale, and decorative particles in one sequence.
-- [ ] Support toggling off with a calmer reverse animation.
-- [ ] Replace particles with glow and fill-only feedback when reduced motion is enabled.
+- [x] Create `components/micro-interactions/LikeBurstButton.tsx`.
+- [x] Create `app/micro-interactions/like-burst/page.tsx` with burst density and accent color controls.
+- [x] Animate icon fill, scale, and decorative particles in one sequence.
+- [x] Support toggling off with a calmer reverse animation.
+- [x] Replace particles with glow and fill-only feedback when reduced motion is enabled.
 
 ### MI-05 Copy Confirmation Chip
 
