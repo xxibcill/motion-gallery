@@ -20,6 +20,8 @@ export function SpotlightLinkList({
   spotlightSize = 180,
   feel = "soft",
 }: SpotlightLinkListProps) {
+  const crispEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+  const softEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
   const prefersReducedMotion = useReducedMotion() ?? false;
   const rowRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -42,8 +44,8 @@ export function SpotlightLinkList({
 
   const transition =
     feel === "crisp"
-      ? { duration: prefersReducedMotion ? 0.01 : 0.18, ease: [0.22, 1, 0.36, 1] }
-      : { duration: prefersReducedMotion ? 0.01 : 0.28, ease: [0.16, 1, 0.3, 1] };
+      ? { duration: prefersReducedMotion ? 0.01 : 0.18, ease: crispEase }
+      : { duration: prefersReducedMotion ? 0.01 : 0.28, ease: softEase };
 
   return (
     <div

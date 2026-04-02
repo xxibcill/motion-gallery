@@ -119,12 +119,10 @@ function getActiveSegmentIndex(value: number): number {
 // --- Count-up Hook ---
 function useCountUp(target: number, active: boolean, duration = 1200) {
   const [count, setCount] = useState(0);
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
-    if (!active) return;
-    if (prefersReducedMotion) {
-      setCount(target);
+    if (!active || prefersReducedMotion) {
       return;
     }
 
@@ -148,18 +146,16 @@ function useCountUp(target: number, active: boolean, duration = 1200) {
     return () => cancelAnimationFrame(raf);
   }, [active, target, duration, prefersReducedMotion]);
 
-  return count;
+  return prefersReducedMotion && active ? target : count;
 }
 
 // --- Segmented Gauge ---
 function SegmentedGauge({
   value,
   needleRotation,
-  glowProgress,
 }: {
   value: number;
   needleRotation: MotionValue<number>;
-  glowProgress: MotionValue<number>;
 }) {
   const activeIdx = getActiveSegmentIndex(value);
 
@@ -251,11 +247,9 @@ function SegmentedGauge({
 // --- Mini Gauge ---
 function MiniGauge({
   value,
-  color,
   active,
 }: {
   value: number;
-  color: string;
   active: boolean;
 }) {
   const rotation = -90 + (value / 100) * 180;
@@ -339,7 +333,7 @@ function CryptoCard({
             {item.sentiment}
           </span>
         </div>
-        <MiniGauge value={item.value} color={item.color} active={cardsVisible} />
+        <MiniGauge value={item.value} active={cardsVisible} />
       </div>
     </motion.div>
   );
@@ -348,7 +342,7 @@ function CryptoCard({
 // --- Main Page ---
 export default function FearGreedIndexPage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion() ?? false;
 
   const [cardsVisible, setCardsVisible] = useState(prefersReducedMotion);
   const [gaugeActive, setGaugeActive] = useState(prefersReducedMotion);
@@ -393,17 +387,6 @@ export default function FearGreedIndexPage() {
   const needleRotation = useSpring(rawNeedleRotation, {
     stiffness: 60,
     damping: 20,
-  });
-
-  // Gauge glow progress (for segment illumination)
-  const rawGlowProgress = useTransform(
-    scrollYProgress,
-    [CONFIG.enterEnd, CONFIG.gaugeComplete],
-    [0, 1]
-  );
-  const glowProgress = useSpring(rawGlowProgress, {
-    stiffness: 80,
-    damping: 25,
   });
 
   // Phase triggers
@@ -509,7 +492,6 @@ export default function FearGreedIndexPage() {
           <SegmentedGauge
             value={mainValue}
             needleRotation={needleRotation}
-            glowProgress={glowProgress}
           />
 
           {/* Value display */}

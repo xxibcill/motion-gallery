@@ -53,7 +53,7 @@ test.describe("Peek Card Animations", () => {
 
       // Scroll to full expansion first (25% into the tall section)
       await page.evaluate(() => {
-        const section = document.querySelector('section[style*="height"]');
+        const section = document.querySelector<HTMLElement>('section[style*="height"]');
         if (section) {
           // Get the section's offset from top of document
           const sectionTop = section.offsetTop;
@@ -70,7 +70,7 @@ test.describe("Peek Card Animations", () => {
 
       // Scroll past shrink threshold (60% into the section)
       await page.evaluate(() => {
-        const section = document.querySelector('section[style*="height"]');
+        const section = document.querySelector<HTMLElement>('section[style*="height"]');
         if (section) {
           const sectionTop = section.offsetTop;
           const sectionHeight = section.offsetHeight;
