@@ -1000,6 +1000,20 @@ registerAnimation({
 });
 
 registerAnimation({
+  id: "fear-greed-index",
+  path: "/fear-greed-index",
+  title: "Fear & Greed Index",
+  description: "Scroll-driven gauge dashboard with segmented arc animation, spring needle sweep, and staggered card reveals",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["gauge", "dashboard", "scroll", "stagger", "spring", "segmented arc"],
+  color: "orange",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
   id: "dimensional-rift",
   path: "/dimensional-rift",
   title: "Dimensional Rift",
