@@ -77,15 +77,15 @@ export default function DimensionalRiftDemoPage() {
   return (
     <main className="min-h-screen bg-[#08080c]">
       {/* Header */}
-      <header className="border-b border-white/10 px-6 py-8">
+      <header className="border-b border-[var(--border-subtle)] px-6 py-8">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-400/70">
             Transition Lab Demo
           </p>
-          <h1 className="mt-2 font-serif text-4xl text-white md:text-5xl">
+          <h1 className="mt-2 font-serif text-4xl text-[var(--text-primary)] md:text-5xl">
             Dimensional Rift
           </h1>
-          <p className="mt-3 max-w-2xl text-white/60">
+          <p className="mt-3 max-w-2xl text-[var(--text-secondary)]">
             A 4-phase dimensional tear with 3D shard physics, gravitational void,
             chromatic tunnel, and magnetic reassembly.
           </p>
@@ -176,20 +176,20 @@ export default function DimensionalRiftDemoPage() {
                   transition={{ delay: 0.3 }}
                 >
                   <div
-                    className={`w-full max-w-xl rounded-[1.75rem] border p-6 text-center sm:rounded-[2rem] sm:p-8 ${activeScene.palette.card} ${activeScene.palette.text}`}
+                    className={`w-full max-w-xl rounded-lg border p-6 text-center sm:p-8 ${activeScene.palette.card} ${activeScene.palette.text}`}
                   >
-                    <p className="text-xs uppercase tracking-[0.34em] text-white/46">
+                    <p className="text-xs uppercase tracking-[0.34em] text-[var(--text-tertiary)]">
                       {activeScene.eyebrow}
                     </p>
                     <h2 className="mx-auto mt-5 max-w-xl font-serif text-[2.15rem] leading-[0.94] sm:text-3xl md:text-5xl">
                       Click &quot;Open rift&quot; to begin
                     </h2>
-                    <p className="mx-auto mt-4 max-w-md text-base leading-7 text-white/74">
+                    <p className="mx-auto mt-4 max-w-md text-base leading-7 text-[var(--text-secondary)]">
                       Experience a 4-phase dimensional transition
                     </p>
                     <motion.button
                       onClick={replay}
-                      className="mt-6 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur-sm transition-colors hover:bg-white/20"
+                      className="mt-6 rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--surface-3)]"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -206,17 +206,17 @@ export default function DimensionalRiftDemoPage() {
             {["fracture", "void", "tunnel", "reassembly"].map((p, i) => (
               <div
                 key={p}
-                className={`h-2 w-8 rounded-full transition-all duration-300 ${
+                className={`h-2 w-8 rounded-md transition-all duration-300 ${
                   phase === p
                     ? "bg-fuchsia-500"
                     : phase !== "idle" && i < ["fracture", "void", "tunnel", "reassembly"].indexOf(phase)
                     ? "bg-fuchsia-500/40"
-                    : "bg-white/10"
+                    : "bg-[var(--surface-2)]"
                 }`}
               />
             ))}
           </div>
-          <p className="mt-3 text-center text-xs uppercase tracking-[0.2em] text-white/40">
+          <p className="mt-3 text-center text-xs uppercase tracking-[0.2em] text-[var(--text-tertiary)]">
             {phase === "idle" ? "Ready" : `Phase: ${phase}`}
           </p>
         </div>

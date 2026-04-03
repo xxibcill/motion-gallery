@@ -72,7 +72,7 @@ export default function ChevronAccordionPage() {
         </>
       }
     >
-      <div className="mx-auto flex min-h-[340px] w-full max-w-3xl items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.12),transparent_52%)] px-4 py-10 sm:px-6">
+      <div className="mx-auto flex min-h-[340px] w-full max-w-3xl items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-10 sm:px-6">
         <ChevronAccordion items={items} spacing={spacing} className="w-full" />
       </div>
     </MicroInteractionScene>

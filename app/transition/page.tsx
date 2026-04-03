@@ -72,28 +72,28 @@ export default function TransitionHubPage() {
           >
             <div className="grid h-full gap-6 p-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-center lg:p-8">
               <div className="space-y-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-cyan-100/60">
+                <p className="text-xs uppercase tracking-[0.35em] text-[var(--text-tertiary)]">
                   Showcase
                 </p>
                 <div className="space-y-3">
-                  <h2 className="font-serif text-4xl text-white sm:text-5xl">
+                  <h2 className="font-serif text-4xl text-[var(--text-primary)] sm:text-5xl">
                     Compare all transitions side by side
                   </h2>
-                  <p className="max-w-2xl text-base leading-7 text-cyan-50/75">
+                  <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
                     One shared scene cycles through every transition mode from a single control surface. Switch modes, adjust speed and intensity, replay instantly.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <Link
                     href={showcase.path}
-                    className="inline-flex rounded-full border border-cyan-200/20 bg-cyan-200/10 px-5 py-3 text-sm text-white transition-colors hover:bg-cyan-200/16"
+                    className="inline-flex rounded-md border border-[var(--accent)] bg-[var(--accent-muted)] px-5 py-3 text-sm text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-white"
                   >
                     Open showcase
                   </Link>
                   {gallery && (
                     <Link
                       href={gallery.path}
-                      className="inline-flex rounded-full border border-white/12 bg-white/[0.05] px-5 py-3 text-sm text-white/75 transition-colors hover:bg-white/[0.08] hover:text-white"
+                      className="inline-flex rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-5 py-3 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--text-primary)]"
                     >
                       Scroll gallery
                     </Link>
@@ -101,23 +101,23 @@ export default function TransitionHubPage() {
                 </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+                <div className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-tertiary)]">
                     Modes
                   </p>
-                  <p className="mt-2 text-2xl font-medium text-white">10</p>
+                  <p className="mt-2 text-2xl font-medium text-[var(--text-primary)]">10</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+                <div className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-tertiary)]">
                     Controls
                   </p>
-                  <p className="mt-2 text-2xl font-medium text-white">Speed</p>
+                  <p className="mt-2 text-2xl font-medium text-[var(--text-primary)]">Speed</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+                <div className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-tertiary)]">
                     Intensity
                   </p>
-                  <p className="mt-2 text-2xl font-medium text-white">3 levels</p>
+                  <p className="mt-2 text-2xl font-medium text-[var(--text-primary)]">3 levels</p>
                 </div>
               </div>
             </div>
@@ -127,8 +127,8 @@ export default function TransitionHubPage() {
 
       {/* Section B — Demo Grid */}
       <div className="mb-4">
-        <p className="text-xs uppercase tracking-[0.3em] text-white/40">Demos</p>
-        <p className="mt-1 text-sm text-white/55">
+        <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">Demos</p>
+        <p className="mt-1 text-sm text-[var(--text-secondary)]">
           Hover to preview each transition&apos;s signature motion. Click to open the full demo.
         </p>
       </div>
@@ -148,8 +148,8 @@ export default function TransitionHubPage() {
       {/* Section C — Toolkit */}
       <div className="mt-10">
         <div className="mb-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Toolkit</p>
-          <p className="mt-1 text-sm text-white/55">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">Toolkit</p>
+          <p className="mt-1 text-sm text-[var(--text-secondary)]">
             Shared primitives used across every transition demo. Import and compose them to build your own.
           </p>
         </div>
@@ -157,11 +157,11 @@ export default function TransitionHubPage() {
           {toolkitItems.map((item) => (
             <div
               key={item.name}
-              className="rounded-2xl border border-white/8 bg-white/[0.03] p-4"
+              className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4"
             >
-              <p className="font-mono text-sm text-white/90">{item.name}</p>
-              <p className="mt-1.5 text-xs leading-5 text-white/50">{item.description}</p>
-              <p className="mt-2 font-mono text-[0.65rem] text-white/30">{item.importPath}</p>
+              <p className="font-mono text-sm text-[var(--text-primary)]">{item.name}</p>
+              <p className="mt-1.5 text-xs leading-5 text-[var(--text-secondary)]">{item.description}</p>
+              <p className="mt-2 font-mono text-[0.65rem] text-[var(--text-tertiary)]">{item.importPath}</p>
             </div>
           ))}
         </div>

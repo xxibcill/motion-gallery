@@ -379,7 +379,7 @@ export default function ImageComparePage() {
   const afterSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234c1d95'/%3E%3Cstop offset='50%25' style='stop-color:%23831b8b'/%3E%3Cstop offset='100%25' style='stop-color:%2388133e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='800' height='500'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' fill='white' font-family='system-ui' font-size='48' font-weight='bold'%3EAFTER%3C/text%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='white/70' font-family='system-ui' font-size='18'%3EEnhanced Design%3C/text%3E%3Crect x='250' y='260' width='300' height='80' rx='16' fill='white/10' stroke='white/20'/%3E%3Ctext x='400' y='308' text-anchor='middle' fill='white' font-family='system-ui' font-size='16'%3EGlassmorphism Card%3C/text%3E%3C/svg%3E`;
 
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen bg-[var(--surface-0)]">
       {/* Hero Section */}
       <section className="py-16 px-8 md:px-16">
         <motion.div
@@ -387,17 +387,17 @@ export default function ImageComparePage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
+          <h1 className="text-5xl md:text-7xl font-serif text-[var(--text-primary)] mb-4">
             Image Compare
           </h1>
-          <p className="text-xl text-zinc-400">
+          <p className="text-xl text-[var(--text-secondary)]">
             Two interaction modes: hover or drag
           </p>
         </motion.div>
       </section>
 
       {/* Version 1: Hover */}
-      <section className="py-16 px-8 md:px-16 bg-gradient-to-b from-zinc-950 to-zinc-900">
+      <section className="py-16 px-8 md:px-16">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -406,12 +406,12 @@ export default function ImageComparePage() {
             className="mb-8"
           >
             <div className="flex items-center gap-3 mb-2">
-              <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider rounded-full">
+              <span className="px-3 py-1 bg-[var(--surface-1)] text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider rounded-md">
                 Version 1
               </span>
-              <h2 className="text-2xl font-bold text-white">Hover Mode</h2>
+              <h2 className="text-2xl font-serif text-[var(--text-primary)]">Hover Mode</h2>
             </div>
-            <p className="text-zinc-400">
+            <p className="text-[var(--text-secondary)]">
               Move your cursor across the image to reveal the comparison. No handle needed.
             </p>
           </motion.div>
@@ -439,7 +439,7 @@ export default function ImageComparePage() {
               setActiveTitle("ImageCompareHover.tsx");
               setCodeOpen(true);
             }}
-            className="mt-4 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-sm rounded-lg transition-colors"
+            className="mt-4 px-4 py-2 bg-[var(--surface-1)] hover:bg-[var(--surface-2)] text-[var(--text-secondary)] text-sm rounded-lg transition-colors"
           >
             View Code
           </motion.button>
@@ -447,7 +447,7 @@ export default function ImageComparePage() {
       </section>
 
       {/* Version 2: Drag */}
-      <section className="py-16 px-8 md:px-16 bg-gradient-to-b from-zinc-900 to-zinc-950">
+      <section className="py-16 px-8 md:px-16">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -456,12 +456,12 @@ export default function ImageComparePage() {
             className="mb-8"
           >
             <div className="flex items-center gap-3 mb-2">
-              <span className="px-3 py-1 bg-fuchsia-500/20 text-fuchsia-400 text-xs font-semibold uppercase tracking-wider rounded-full">
+              <span className="px-3 py-1 bg-[var(--surface-1)] text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider rounded-md">
                 Version 2
               </span>
-              <h2 className="text-2xl font-bold text-white">Drag Mode</h2>
+              <h2 className="text-2xl font-serif text-[var(--text-primary)]">Drag Mode</h2>
             </div>
-            <p className="text-zinc-400">
+            <p className="text-[var(--text-secondary)]">
               Click and drag the handle to control the divider position.
             </p>
           </motion.div>
@@ -490,7 +490,7 @@ export default function ImageComparePage() {
               setActiveTitle("ImageCompareDrag.tsx");
               setCodeOpen(true);
             }}
-            className="mt-4 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-sm rounded-lg transition-colors"
+            className="mt-4 px-4 py-2 bg-[var(--surface-1)] hover:bg-[var(--surface-2)] text-[var(--text-secondary)] text-sm rounded-lg transition-colors"
           >
             View Code
           </motion.button>
@@ -498,7 +498,7 @@ export default function ImageComparePage() {
       </section>
 
       {/* Handle Variants */}
-      <section className="py-16 px-8 md:px-16 bg-gradient-to-b from-zinc-950 to-zinc-900">
+      <section className="py-16 px-8 md:px-16">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -506,10 +506,10 @@ export default function ImageComparePage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white mb-2">
+            <h2 className="text-3xl font-serif text-[var(--text-primary)] mb-2">
               Customize the Drag Handle
             </h2>
-            <p className="text-zinc-400">
+            <p className="text-[var(--text-secondary)]">
               Choose from different handle styles using the <code className="text-fuchsia-400">handleVariant</code> prop
             </p>
           </motion.div>
@@ -530,8 +530,8 @@ export default function ImageComparePage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <div className="mb-3">
-                  <span className="text-white font-semibold">{item.name}</span>
-                  <span className="text-zinc-500 text-sm ml-2">— {item.desc}</span>
+                  <span className="text-[var(--text-primary)] font-semibold">{item.name}</span>
+                  <span className="text-[var(--text-tertiary)] text-sm ml-2">— {item.desc}</span>
                 </div>
                 <ImageCompareDrag
                   beforeImage={beforeSvg}
@@ -546,7 +546,7 @@ export default function ImageComparePage() {
       </section>
 
       {/* Live Card Comparison */}
-      <section className="py-16 px-8 md:px-16 bg-gradient-to-b from-zinc-950 to-zinc-900">
+      <section className="py-16 px-8 md:px-16">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -554,10 +554,10 @@ export default function ImageComparePage() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl font-bold text-white mb-2">
+            <h2 className="text-3xl font-serif text-[var(--text-primary)] mb-2">
               UI Card Comparison
             </h2>
-            <p className="text-zinc-400">
+            <p className="text-[var(--text-secondary)]">
               Drag the handle to compare card designs
             </p>
           </motion.div>
@@ -566,7 +566,7 @@ export default function ImageComparePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-2xl overflow-hidden shadow-2xl"
+            className="rounded-lg overflow-hidden"
             style={{ aspectRatio: "16/9" }}
           >
             <ImageCompareSliderDrag />

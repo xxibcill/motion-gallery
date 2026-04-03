@@ -73,17 +73,17 @@ const rebuiltCards = [
   {
     id: "hero",
     className:
-      "lg:col-span-2 rounded-[2rem] border p-6 shadow-[0_28px_90px_rgba(0,0,0,0.24)] md:p-8",
+      "lg:col-span-2 rounded-lg border p-6 md:p-8",
     offset: { x: -110, y: 36 },
   },
   {
     id: "brief",
-    className: "rounded-[1.6rem] border p-5",
+    className: "rounded-lg border p-5",
     offset: { x: 118, y: -64 },
   },
   {
     id: "metrics",
-    className: "rounded-[1.6rem] border p-5",
+    className: "rounded-lg border p-5",
     offset: { x: 142, y: 64 },
   },
 ] as const;
@@ -110,7 +110,7 @@ export default function MagneticCollapsePage() {
       description="A focal-point transition where the outgoing frame breaks into fragments, gets pulled into a magnetic center, and then reassembles as the next state with controlled spring energy."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The center attractor is the only true origin in the scene. Every
             fragment and rebuilt card references that same point, which keeps
             the collapse and reassembly legible instead of chaotic.
@@ -119,7 +119,7 @@ export default function MagneticCollapsePage() {
             {activeScene.chips.map((chip) => (
               <span
                 key={chip}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {chip}
               </span>
@@ -225,8 +225,8 @@ export default function MagneticCollapsePage() {
                       key={card.id}
                       className={`${card.className} ${
                         card.id === "hero"
-                          ? `${activeScene.palette.hero} ${activeScene.palette.text}`
-                          : activeScene.palette.panel
+                          ? `border-[var(--border-subtle)] bg-[var(--surface-1)] text-[var(--text-primary)]`
+                          : `border-[var(--border-subtle)] bg-[var(--surface-2)] text-[var(--text-secondary)]`
                       }`}
                       initial={{
                         opacity: 0,
@@ -249,22 +249,22 @@ export default function MagneticCollapsePage() {
                     >
                       {card.id === "hero" ? (
                         <>
-                          <p className="text-xs uppercase tracking-[0.34em] text-white/46">
+                          <p className="text-xs uppercase tracking-[0.34em] text-[var(--text-tertiary)]">
                             {activeScene.eyebrow}
                           </p>
-                          <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-[0.94] md:text-6xl">
+                          <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-[0.94] text-[var(--text-primary)] md:text-6xl">
                             {activeScene.title}
                           </h2>
-                          <p className="mt-4 max-w-2xl text-base leading-7 text-white/74 md:text-lg">
+                          <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                             {activeScene.body}
                           </p>
                         </>
                       ) : card.id === "brief" ? (
                         <>
-                          <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                          <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                             Collapse field
                           </p>
-                          <p className="mt-4 text-sm leading-6 text-white/68">
+                          <p className="mt-4 text-sm leading-6 text-[var(--text-secondary)]">
                             Pieces do not shrink together. Each fragment takes
                             its own route into the field, which makes the scene
                             feel magnetized instead of simply scaled down.
@@ -272,14 +272,14 @@ export default function MagneticCollapsePage() {
                         </>
                       ) : (
                         <>
-                          <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                          <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                             Rebuild metrics
                           </p>
                           <div className="mt-4 grid gap-3">
                             {activeScene.metrics.map((metric) => (
                               <div
                                 key={metric}
-                                className="rounded-[1.2rem] border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white/66"
+                                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] px-4 py-3 text-sm text-[var(--text-secondary)]"
                               >
                                 {metric}
                               </div>
@@ -293,7 +293,7 @@ export default function MagneticCollapsePage() {
               </div>
 
               <motion.aside
-                className="rounded-[1.75rem] border border-white/10 bg-black/24 p-5 text-sm text-white/66 backdrop-blur-md"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-sm text-[var(--text-secondary)]"
                 initial={{
                   opacity: 0,
                   x: getMotionOffset(prefersReducedMotion, 26),
@@ -306,7 +306,7 @@ export default function MagneticCollapsePage() {
                   delay: prefersReducedMotion ? 0 : 0.48,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                   Choreography
                 </p>
                 <ol className="mt-5 space-y-3 leading-6">

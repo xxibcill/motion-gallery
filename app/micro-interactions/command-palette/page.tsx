@@ -55,7 +55,7 @@ export default function CommandPalettePage() {
         </>
       }
     >
-      <div className="flex min-h-[420px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_34%),linear-gradient(180deg,rgba(15,23,42,0.76),rgba(2,6,23,0.94))] px-6 py-8">
+      <div className="flex min-h-[420px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-6 py-8">
         <CommandPaletteHighlight items={baseItems.slice(0, resultCount)} density={density} loading={false} />
       </div>
     </MicroInteractionScene>

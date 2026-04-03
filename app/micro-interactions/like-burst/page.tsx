@@ -44,14 +44,14 @@ export default function LikeBurstPage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] flex-col items-center justify-center gap-6 rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_center,rgba(244,63,94,0.12),transparent_38%),linear-gradient(180deg,rgba(15,23,42,0.72),rgba(2,6,23,0.92))]">
+      <div className="flex min-h-[340px] flex-col items-center justify-center gap-6 rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)]">
         <LikeBurstButton
           burstDensity={burstDensity}
           accent={accent}
           idleLabel="Save to Library"
           likedLabel="Saved to Library"
         />
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-[var(--text-secondary)]">
           Use pointer, Enter, or Space to toggle the saved state.
         </p>
       </div>

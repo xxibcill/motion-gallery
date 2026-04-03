@@ -170,7 +170,7 @@ export default function GlitchScanPage() {
       description="A broadcast-style transition that uses scan passes, short chroma splits, and deliberate frame jumps without letting the distortion linger long enough to feel broken."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The demo keeps expensive effects out of the steady state. Most of
             the glitch language comes from transforms, opacity, layered text,
             and gradient bands that animate once per transition.
@@ -179,7 +179,7 @@ export default function GlitchScanPage() {
             {activeScene.chips.map((chip) => (
               <span
                 key={chip}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {chip}
               </span>
@@ -291,7 +291,7 @@ export default function GlitchScanPage() {
               }}
             >
               <motion.div
-                className={`rounded-[2rem] border p-6 backdrop-blur-md md:p-8 ${activeScene.palette.panel}`}
+                className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 md:p-8`}
                 initial={{
                   opacity: 0,
                   scale: prefersReducedMotion ? 1 : 0.97,
@@ -305,7 +305,7 @@ export default function GlitchScanPage() {
                   ease: transitionLabEasings.emphasis,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.34em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.34em] text-[var(--text-tertiary)]">
                   {activeScene.eyebrow}
                 </p>
                 <div className="mt-5">
@@ -315,14 +315,14 @@ export default function GlitchScanPage() {
                     prefersReducedMotion={prefersReducedMotion}
                   />
                 </div>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/72 md:text-lg">
+                <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                   {activeScene.body}
                 </p>
                 <div className="mt-8 grid gap-3 sm:grid-cols-3">
                   {activeScene.diagnostics.map((item) => (
                     <div
                       key={item}
-                      className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 text-sm text-white/68"
+                      className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text-secondary)]"
                     >
                       {item}
                     </div>
@@ -331,7 +331,7 @@ export default function GlitchScanPage() {
               </motion.div>
 
               <motion.aside
-                className="rounded-[1.75rem] border border-white/10 bg-black/35 p-5 text-white/68 backdrop-blur-md"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-[var(--text-secondary)]"
                 initial={{
                   x: prefersReducedMotion ? 0 : 34,
                   opacity: 0,
@@ -346,19 +346,19 @@ export default function GlitchScanPage() {
                 }}
               >
                 <div className="flex items-center justify-between gap-4">
-                  <p className="text-xs uppercase tracking-[0.28em] text-white/38">
+                  <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                     Scan order
                   </p>
-                  <span className="h-2.5 w-16 rounded-full bg-white/18" />
+                  <span className="h-2.5 w-16 rounded-full bg-[var(--surface-3)]" />
                 </div>
                 <div className="mt-5 space-y-4 text-sm leading-6">
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
                     Scan band establishes direction and masks the scene change.
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
                     RGB echoes and jitter spikes briefly, then clear out.
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
                     Final state remains crisp so text and controls stay usable.
                   </div>
                 </div>

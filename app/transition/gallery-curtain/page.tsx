@@ -140,7 +140,7 @@ export default function GalleryCurtainPage() {
             {activeScene.chips.map((chip) => (
               <span
                 key={chip}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {chip}
               </span>
@@ -210,7 +210,7 @@ export default function GalleryCurtainPage() {
               }}
             >
               <div
-                className={`rounded-[2rem] border p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] md:p-8 ${activeScene.palette.shell}`}
+                className={`rounded-lg border p-6 md:p-8 ${activeScene.palette.shell}`}
               >
                 <p className="text-xs uppercase tracking-[0.34em] text-white/42">
                   {activeScene.eyebrow}
@@ -227,7 +227,7 @@ export default function GalleryCurtainPage() {
                   {activeScene.cues.map((cue) => (
                     <div
                       key={cue}
-                      className="rounded-[1.35rem] border border-white/10 bg-white/[0.05] p-4 text-sm text-white/64"
+                      className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text-secondary)]"
                     >
                       {cue}
                     </div>
@@ -236,7 +236,7 @@ export default function GalleryCurtainPage() {
               </div>
 
               <motion.aside
-                className={`rounded-[1.75rem] border p-5 text-sm text-white/66 backdrop-blur-md ${activeScene.palette.panel}`}
+                className={`rounded-lg border p-5 text-sm text-[var(--text-secondary)] ${activeScene.palette.panel}`}
                 initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 24 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{

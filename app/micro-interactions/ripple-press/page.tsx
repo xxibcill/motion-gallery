@@ -40,7 +40,7 @@ export default function RipplePressPage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[linear-gradient(180deg,rgba(236,72,153,0.08),rgba(15,23,42,0.55))]">
+      <div className="flex min-h-[340px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)]">
         <RipplePressButton label="Queue Action" rippleSize={rippleSize} duration={duration} />
       </div>
     </MicroInteractionScene>

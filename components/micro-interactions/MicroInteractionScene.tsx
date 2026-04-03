@@ -35,18 +35,18 @@ export function MicroInteractionScene({
   children,
 }: MicroInteractionSceneProps) {
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(14,116,144,0.2),_transparent_38%),linear-gradient(180deg,_#09090b_0%,_#0f172a_100%)]">
+    <main className="min-h-screen bg-[var(--surface-0)]">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-8 sm:px-8 lg:px-10">
         <div className="flex items-center justify-between gap-4">
           <Link
             href="/micro-interactions"
-            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 transition-colors hover:bg-white/10"
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
           >
             Micro Interactions
           </Link>
           <Link
             href="/gallery"
-            className="rounded-full border border-cyan-200/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition-colors hover:bg-cyan-300/18"
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
           >
             Open Gallery
           </Link>
@@ -57,15 +57,15 @@ export function MicroInteractionScene({
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[var(--mi-shadow-soft)] backdrop-blur-sm"
+            className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-8"
           >
-            <p className="mb-4 text-xs uppercase tracking-[0.32em] text-cyan-200/80">
+            <p className="mb-4 text-xs uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
               Phase 1 Demo
             </p>
-            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            <h1 className="max-w-3xl text-4xl font-serif tracking-tight text-[var(--text-primary)] sm:text-5xl">
               {title}
             </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-secondary)] sm:text-lg">
               {description}
             </p>
 
@@ -74,7 +74,7 @@ export function MicroInteractionScene({
                 {notes.map((note) => (
                   <span
                     key={note}
-                    className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-sm text-zinc-200"
+                    className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1.5 text-sm text-[var(--text-secondary)]"
                   >
                     {note}
                   </span>
@@ -87,18 +87,18 @@ export function MicroInteractionScene({
             initial={{ opacity: 0, x: 18 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-4 rounded-[2rem] border border-cyan-200/10 bg-slate-950/80 p-6 shadow-[var(--mi-shadow-soft)]"
+            className="flex flex-col gap-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6"
           >
-            <div className="rounded-2xl border border-cyan-200/10 bg-cyan-300/8 p-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-cyan-100/75">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4">
+              <p className="text-xs uppercase tracking-[0.24em] text-[var(--text-tertiary)]">
                 Reduced Motion
               </p>
-              <p className="mt-2 text-sm leading-6 text-zinc-300">{reducedMotionNote}</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{reducedMotionNote}</p>
             </div>
 
             {controls ? (
               <div className="flex flex-col gap-3">
-                <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--text-tertiary)]">
                   Controls
                 </p>
                 {controls}
@@ -111,10 +111,10 @@ export function MicroInteractionScene({
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] shadow-[var(--mi-shadow-strong)]"
+          className="overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)]"
         >
-          <div className="border-b border-white/10 px-6 py-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">Live Example</p>
+          <div className="border-b border-[var(--border-subtle)] px-6 py-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">Live Example</p>
           </div>
           <div className="min-h-[420px] px-6 py-8 sm:px-8">{children}</div>
         </motion.section>

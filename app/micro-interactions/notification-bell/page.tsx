@@ -46,7 +46,7 @@ export default function NotificationBellPage() {
         </>
       }
     >
-      <div className="min-h-[420px] rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.12),transparent_32%),linear-gradient(180deg,rgba(15,23,42,0.74),rgba(2,6,23,0.94))] px-6 py-8">
+      <div className="min-h-[420px] rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-6 py-8">
         <NotificationBellPeek items={notifications} badgeCount={badgeCount} trayWidth={trayWidth} />
       </div>
     </MicroInteractionScene>

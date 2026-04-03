@@ -114,18 +114,18 @@ function TransitionSection({ mode, index }: TransitionSectionProps) {
 
               {/* Centered content */}
               <div className="relative z-10 flex flex-col items-center text-center">
-                <div className={`rounded-3xl border px-8 py-6 backdrop-blur-md ${mode.shellClassName}`}>
-                  <span className="block text-xs uppercase tracking-[0.28em] text-white/48">
+                <div className={`rounded-lg border px-8 py-6 ${mode.shellClassName}`}>
+                  <span className="block text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                     {String(index + 1).padStart(2, "0")} · {mode.stageLabel}
                   </span>
-                  <h4 className="mt-2 text-3xl font-semibold text-white/92 sm:text-4xl">
+                  <h4 className="mt-2 text-3xl font-semibold text-[var(--text-primary)] sm:text-4xl">
                     {mode.label}
                   </h4>
                 </div>
 
                 <button
                   onClick={handleReplay}
-                  className="mt-6 rounded-full border border-white/12 bg-white/[0.06] px-5 py-2 text-xs uppercase tracking-[0.2em] text-white/56 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white/80"
+                  className="mt-6 rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-5 py-2 text-xs uppercase tracking-[0.2em] text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-3)] hover:text-[var(--text-primary)]"
                 >
                   Replay
                 </button>
@@ -168,19 +168,19 @@ export function TransitionGallery() {
       {/* Header */}
       <header className="space-y-4">
         <div className="flex items-center gap-3">
-          <span className="rounded-full border border-cyan-200/16 bg-cyan-200/8 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-cyan-200/72">
+          <span className="rounded-sm border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--text-secondary)]">
             {showcaseModes.length} Transitions
           </span>
           {prefersReducedMotion && (
-            <span className="rounded-full border border-amber-200/16 bg-amber-200/8 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-amber-200/72">
+            <span className="rounded-sm border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--text-secondary)]">
               Reduced Motion
             </span>
           )}
         </div>
-        <h1 className="text-2xl font-semibold text-white/92 sm:text-3xl">
+        <h1 className="font-serif text-2xl font-semibold text-[var(--text-primary)] sm:text-3xl">
           {galleryScene.title}
         </h1>
-        <p className="max-w-2xl text-base leading-7 text-white/64">
+        <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
           {galleryScene.body}
         </p>
       </header>

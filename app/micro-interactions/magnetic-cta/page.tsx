@@ -40,9 +40,9 @@ export default function MagneticCtaPage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] flex-col items-center justify-center gap-6 rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_top,rgba(103,232,249,0.14),transparent_48%)]">
+      <div className="flex min-h-[340px] flex-col items-center justify-center gap-6 rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)]">
         <MagneticCtaButton intensity={intensity} radius={radius} label="Start the Sequence" />
-        <p className="text-sm text-zinc-400">Hover with a pointer or tab onto the button.</p>
+        <p className="text-sm text-[var(--text-secondary)]">Hover with a pointer or tab onto the button.</p>
       </div>
     </MicroInteractionScene>
   );

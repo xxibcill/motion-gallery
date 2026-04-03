@@ -137,7 +137,7 @@ export default function PaperFoldPage() {
       description="A tactile transition built like scored card stock: fold planes hinge away, shadows drag across the surface, and the next scene is revealed from underneath instead of being swapped flat on top."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The effect uses perspective, hinge origins, and timed shadow loss
             to read as material. The reveal remains stable on smaller screens
             because the fold planes are broad and the under-scene layout stays
@@ -147,7 +147,7 @@ export default function PaperFoldPage() {
             {activeScene.notes.map((note) => (
               <span
                 key={note}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {note}
               </span>
@@ -210,16 +210,16 @@ export default function PaperFoldPage() {
                 }}
               >
                 <div
-                  className={`rounded-[2rem] border p-6 shadow-[0_28px_80px_rgba(0,0,0,0.28)] md:p-8 ${activeScene.palette.shell}`}
+                  className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 md:p-8`}
                 >
-                  <p className="text-xs uppercase tracking-[0.34em] text-black/44">
+                  <p className="text-xs uppercase tracking-[0.34em] text-[var(--text-tertiary)]">
                     {activeScene.eyebrow}
                   </p>
                   <div className="mt-5 space-y-4">
-                    <h2 className="max-w-3xl font-serif text-4xl leading-[0.94] md:text-6xl">
+                    <h2 className="max-w-3xl font-serif text-4xl leading-[0.94] text-[var(--text-primary)] md:text-6xl">
                       {activeScene.title}
                     </h2>
-                    <p className="max-w-2xl text-base leading-7 text-black/68 md:text-lg">
+                    <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                       {activeScene.body}
                     </p>
                   </div>
@@ -227,7 +227,7 @@ export default function PaperFoldPage() {
                     {underScenePillars.map((pillar) => (
                       <div
                         key={pillar}
-                        className={`rounded-[1.35rem] border p-4 text-sm leading-6 ${activeScene.palette.detail}`}
+                        className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm leading-6 text-[var(--text-secondary)]`}
                       >
                         {pillar}
                       </div>
@@ -236,7 +236,7 @@ export default function PaperFoldPage() {
                 </div>
 
                 <motion.aside
-                  className="rounded-[1.75rem] border border-white/10 bg-black/18 p-5 text-white/72 backdrop-blur-md"
+                  className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-[var(--text-secondary)]"
                   initial={{
                     opacity: 0,
                     x: getFoldTravel(prefersReducedMotion, 28),
@@ -250,21 +250,21 @@ export default function PaperFoldPage() {
                     ease: transitionLabEasings.emphasis,
                   }}
                 >
-                  <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                  <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                     Hinge order
                   </p>
                   <div className="mt-5 space-y-3">
                     {activeScene.steps.map((step, index) => (
                       <div
                         key={step}
-                        className="flex items-center justify-between rounded-[1.3rem] border border-white/10 bg-white/[0.05] px-4 py-3 text-sm"
+                        className="flex items-center justify-between rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-3 text-sm"
                       >
                         <span>{step}</span>
-                        <span className="text-white/40">0{index + 1}</span>
+                        <span className="text-[var(--text-tertiary)]">0{index + 1}</span>
                       </div>
                     ))}
                   </div>
-                  <p className="mt-5 text-sm leading-6 text-white/62">
+                  <p className="mt-5 text-sm leading-6 text-[var(--text-secondary)]">
                     The reveal works because the content below gains contrast as
                     the folds lose light and thickness.
                   </p>

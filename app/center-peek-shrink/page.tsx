@@ -2,7 +2,7 @@ import { CenterPeekShrinkCard } from '@/components/center-peek-shrink-card'
 
 export default function CenterPeekShrinkPage() {
   return (
-    <main className="min-h-screen bg-[#080808] text-white">
+    <main className="min-h-screen bg-[var(--surface-0)] text-[var(--text-primary)]">
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 py-20 md:px-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(251,146,60,0.22),_transparent_42%),linear-gradient(180deg,_#16110f_0%,_#080808_65%)]" />
         <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
@@ -10,23 +10,23 @@ export default function CenterPeekShrinkPage() {
             <p className="mb-5 text-sm uppercase tracking-[0.35em] text-orange-200/80">
               Center Peek Shrink
             </p>
-            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
+            <h1 className="max-w-4xl text-5xl font-serif tracking-tight text-[var(--text-primary)] md:text-7xl">
               A peek card that grows, then shrinks and anchors to the top.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-300 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
               Two-phase animation: first the card expands to fill the viewport, then continues
               scrolling to shrink it into a compact header anchored at the top.
             </p>
           </div>
 
-          <div className="grid gap-4 text-sm text-zinc-300 md:grid-cols-3 lg:max-w-xl">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+          <div className="grid gap-4 text-sm text-[var(--text-secondary)] md:grid-cols-3 lg:max-w-xl">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
               Phase 1: Grow to full
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
               Phase 2: Shrink to header
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
               Top-anchored collapse
             </div>
           </div>
@@ -47,10 +47,10 @@ export default function CenterPeekShrinkPage() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,_#090909_0%,_#140d0a_100%)]" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-sm uppercase tracking-[0.32em] text-orange-200/75">Content Revealed</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+          <h2 className="mt-4 text-4xl font-serif tracking-tight text-[var(--text-primary)] md:text-6xl">
             The card shrinks to 300px at the top, exposing this content below.
           </h2>
-          <p className="mt-6 text-base leading-7 text-zinc-400 md:text-lg">
+          <p className="mt-6 text-base leading-7 text-[var(--text-tertiary)] md:text-lg">
             This creates a seamless transition from a full-screen hero to a compact header that
             stays visible as users scroll through the page content.
           </p>

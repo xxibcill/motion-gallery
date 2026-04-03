@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  /* Surfaces */
+  --surface-0: #111111;
+  --surface-1: #1a1a1a;
+  --surface-2: #222222;
+  --surface-3: #2a2a2a;
+
+  /* Text */
+  --text-primary: #e8e4de;
+  --text-secondary: #8a8580;
+  --text-tertiary: #5c5854;
+
+  /* Accent */
+  --accent: #e85d3a;
+  --accent-muted: rgba(232, 93, 58, 0.15);
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  /* Legacy aliases */
+  --background: var(--surface-0);
+  --foreground: var(--text-primary);
+
+  /* Motion */
   --mi-duration-xs: 120ms;
   --mi-duration-sm: 180ms;
   --mi-duration-md: 240ms;
@@ -11,14 +32,15 @@
   --mi-ease-decisive: cubic-bezier(0.16, 1, 0.3, 1);
   --mi-ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --mi-ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
-  --mi-shadow-soft: 0 18px 40px -24px rgba(15, 23, 42, 0.7);
-  --mi-shadow-strong: 0 24px 54px -28px rgba(14, 116, 144, 0.5);
+  --mi-shadow-soft: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
+  --mi-shadow-strong: 0 12px 32px -8px rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-instrument-serif);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -40,7 +62,7 @@ body {
 }
 
 ::selection {
-  background: rgba(125, 211, 252, 0.28);
+  background: rgba(232, 93, 58, 0.28);
   color: white;
 }
 

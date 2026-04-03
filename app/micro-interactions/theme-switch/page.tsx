@@ -45,7 +45,7 @@ export default function ThemeSwitchPage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.12),transparent_32%),linear-gradient(180deg,rgba(15,23,42,0.76),rgba(2,6,23,0.94))] px-6 py-8">
+      <div className="flex min-h-[340px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-6 py-8">
         <ThemeSwitchOrb checked={checked} onChange={setChecked} palette={palette} orbSize={orbSize} />
       </div>
     </MicroInteractionScene>

@@ -40,7 +40,7 @@ export default function HoverTiltCardPage() {
         </>
       }
     >
-      <div className="flex min-h-[420px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.14),transparent_36%),linear-gradient(180deg,rgba(15,23,42,0.74),rgba(2,6,23,0.94))] px-6 py-8">
+      <div className="flex min-h-[420px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-6 py-8">
         <HoverTiltCard tilt={tilt} glare={glare} />
       </div>
     </MicroInteractionScene>

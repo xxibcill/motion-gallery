@@ -156,7 +156,7 @@ function AnchoredElementTrack({
 
   const card = (
     <article
-      className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 text-white shadow-[0_24px_120px_rgba(0,0,0,0.38)] backdrop-blur-xl md:p-7"
+      className="relative overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 text-[var(--text-primary)] md:p-7"
       style={{ width: "min(100%, calc(100vw - 2rem))", maxWidth: config.maxWidth }}
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${config.palette.shell}`} />
@@ -166,16 +166,16 @@ function AnchoredElementTrack({
           <span className={`text-[0.7rem] font-medium uppercase tracking-[0.28em] ${config.palette.accent}`}>
             {config.eyebrow}
           </span>
-          <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[0.65rem] uppercase tracking-[0.22em] text-zinc-300">
+          <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-[0.65rem] uppercase tracking-[0.22em] text-[var(--text-secondary)]">
             {Math.round(config.enter[0] * 100)}-{Math.round(config.exit[1] * 100)}%
           </span>
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+          <h2 className="text-3xl font-serif tracking-tight md:text-4xl">
             {config.title}
           </h2>
-          <p className="max-w-md text-sm leading-6 text-zinc-200/80 md:text-[0.95rem]">
+          <p className="max-w-md text-sm leading-6 text-[var(--text-secondary)] md:text-[0.95rem]">
             {config.description}
           </p>
         </div>
@@ -184,7 +184,7 @@ function AnchoredElementTrack({
           {config.notes.map((note) => (
             <span
               key={note}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-200"
+              className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs text-[var(--text-secondary)]"
             >
               {note}
             </span>
@@ -241,10 +241,10 @@ function AnchorGuides() {
           style={{ top: guide.top }}
         >
           <div className="flex items-center gap-4">
-            <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-zinc-400">
+            <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--text-tertiary)]">
               {guide.label}
             </span>
-            <div className="h-px flex-1 border-t border-dashed border-white/10" />
+            <div className="h-px flex-1 border-t border-dashed border-[var(--border-subtle)]" />
           </div>
         </div>
       ))}
@@ -254,20 +254,20 @@ function AnchorGuides() {
 
 export function AnchorElementsDemo() {
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#050816] text-white">
-      <section className="relative isolate flex min-h-screen items-center overflow-hidden border-b border-white/10">
+    <main className="min-h-screen overflow-x-clip bg-[var(--surface-0)] text-[var(--text-primary)]">
+      <section className="relative isolate flex min-h-screen items-center overflow-hidden border-b border-[var(--border-subtle)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_36%),radial-gradient(circle_at_80%_20%,rgba(232,121,249,0.14),transparent_28%),linear-gradient(180deg,#050816_0%,#090d1f_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--border-subtle)] to-transparent" />
         <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-24 md:px-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl space-y-6">
-            <span className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-cyan-200">
+            <span className="inline-flex rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-[var(--text-secondary)]">
               Anchor Elements
             </span>
             <div className="space-y-4">
-              <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.04em] md:text-7xl">
+              <h1 className="max-w-4xl text-5xl font-serif tracking-[-0.04em] md:text-7xl">
                 Sticky cards with their own enter, hold, and exit windows.
               </h1>
-              <p className="max-w-2xl text-base leading-7 text-zinc-300 md:text-lg">
+              <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                 Each element pins to a different viewport rail, keeps its own
                 in-out scroll points, and can overlap with the others while the
                 page continues to move underneath.
@@ -275,14 +275,14 @@ export function AnchorElementsDemo() {
             </div>
           </div>
 
-          <div className="grid max-w-sm gap-3 text-sm text-zinc-300">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+          <div className="grid max-w-sm gap-3 text-sm text-[var(--text-secondary)]">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-4">
               Three independent tracks are layered in one long scroll field so
               more than one anchored element can stay visible at once.
             </div>
             <Link
               href="/gallery"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10"
+              className="inline-flex w-fit items-center gap-2 rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
             >
               Browse all demos
               <span aria-hidden="true">→</span>
@@ -291,7 +291,7 @@ export function AnchorElementsDemo() {
         </div>
       </section>
 
-      <section className="relative h-[360vh] border-b border-white/10 bg-[linear-gradient(180deg,rgba(6,10,25,1)_0%,rgba(11,16,33,1)_52%,rgba(7,9,19,1)_100%)]">
+      <section className="relative h-[360vh] border-b border-[var(--border-subtle)] bg-[var(--surface-0)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.08),transparent_24%),radial-gradient(circle_at_80%_32%,rgba(244,114,182,0.08),transparent_22%),radial-gradient(circle_at_45%_72%,rgba(251,191,36,0.08),transparent_24%)]" />
         <AnchorGuides />
         {anchorElements.map((element) => (
@@ -303,15 +303,15 @@ export function AnchorElementsDemo() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.12),transparent_28%),linear-gradient(180deg,#080b17_0%,#050816_100%)]" />
         <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-24 md:px-10">
           <div className="space-y-3">
-            <p className="text-sm uppercase tracking-[0.32em] text-zinc-500">
+            <p className="text-sm uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
               What this example proves
             </p>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="text-3xl font-serif tracking-tight md:text-5xl">
               The anchor point and the animation window do not have to be the
               same thing.
             </h2>
           </div>
-          <p className="max-w-3xl text-lg leading-8 text-zinc-300">
+          <p className="max-w-3xl text-lg leading-8 text-[var(--text-secondary)]">
             Each card uses sticky positioning for the anchor rail, while the
             entrance and exit are driven by its own scroll progress. That keeps
             the viewport position stable while still letting every element fade

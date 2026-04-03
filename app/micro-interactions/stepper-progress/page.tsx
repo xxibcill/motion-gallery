@@ -51,7 +51,7 @@ export default function StepperProgressPage() {
         </>
       }
     >
-      <div className="flex min-h-[380px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.1),transparent_36%),linear-gradient(180deg,rgba(15,23,42,0.76),rgba(2,6,23,0.94))] px-6 py-8">
+      <div className="flex min-h-[380px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-6 py-8">
         <StepperProgressPulse stepCount={stepCount} activeIndex={activeIndex} pulseKey={pulseKey} />
       </div>
     </MicroInteractionScene>

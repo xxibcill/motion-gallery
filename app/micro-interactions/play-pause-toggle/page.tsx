@@ -40,9 +40,9 @@ export default function PlayPauseTogglePage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] flex-col items-center justify-center gap-6 rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.16),transparent_42%)]">
+      <div className="flex min-h-[340px] flex-col items-center justify-center gap-6 rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)]">
         <MorphPlayPauseToggle size={size} cornerRounding={cornerRounding} />
-        <p className="text-sm text-zinc-400">Use pointer, Enter, or Space to toggle playback.</p>
+        <p className="text-sm text-[var(--text-secondary)]">Use pointer, Enter, or Space to toggle playback.</p>
       </div>
     </MicroInteractionScene>
   );

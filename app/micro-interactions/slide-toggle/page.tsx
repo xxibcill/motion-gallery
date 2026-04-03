@@ -40,7 +40,7 @@ export default function SlideTogglePage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.16),transparent_44%)]">
+      <div className="flex min-h-[340px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)]">
         <SlideToggleSwitch size={size} damping={damping} />
       </div>
     </MicroInteractionScene>

@@ -9,34 +9,34 @@ const sections: SectionData[] = [
   {
     id: "hero",
     title: "Motion Gallery",
-    subtitle: "Premium scroll experiences",
+    subtitle: "Scroll-driven transitions",
     description:
-      "Scroll down to experience smooth, premium section transitions with a peek-before-commit effect.",
-    bgClass: "bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900",
+      "Scroll down to experience peek-snap section transitions with spring physics.",
+    bgClass: "bg-[var(--surface-0)]",
   },
   {
     id: "design",
-    title: "Crafted Design",
-    subtitle: "Every detail matters",
+    title: "Scroll-driven transforms",
+    subtitle: "Spring physics",
     description:
-      "The transition you're experiencing uses scroll-driven transforms with spring physics for a natural feel.",
-    bgClass: "bg-gradient-to-br from-indigo-950 via-indigo-900 to-violet-950",
+      "Scroll progress drives transforms with spring-smoothed easing for a natural, physical feel.",
+    bgClass: "bg-[var(--surface-1)]",
   },
   {
     id: "technology",
-    title: "Modern Stack",
-    subtitle: "Built with care",
+    title: "useScroll + useTransform",
+    subtitle: "Framer Motion",
     description:
-      "Powered by Framer Motion's useScroll and useTransform hooks, combined with sticky positioning for native scroll feel.",
-    bgClass: "bg-gradient-to-br from-emerald-950 via-teal-900 to-cyan-950",
+      "Framer Motion's useScroll and useTransform hooks combined with sticky positioning for native scroll feel.",
+    bgClass: "bg-[var(--surface-0)]",
   },
   {
     id: "finale",
-    title: "Fully Reusable",
-    subtitle: "Ready for your project",
+    title: "Fully Configurable",
+    subtitle: "PEEK_CONFIG",
     description:
       "Tune the effect by adjusting PEEK_CONFIG in the component. Control threshold, transforms, and spring physics.",
-    bgClass: "bg-gradient-to-br from-amber-950 via-orange-900 to-red-950",
+    bgClass: "bg-[var(--surface-1)]",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Bottom peek transition - lifts the next section into place */}
       <BottomPeekCard
-        bgClass="bg-gradient-to-br from-rose-950 via-pink-900 to-fuchsia-950"
+        bgClass="bg-[var(--surface-1)]"
         className="relative z-10"
       >
         <BottomPeekContent
@@ -58,12 +58,12 @@ export default function Home() {
       </BottomPeekCard>
 
       {/* Another section after the transition */}
-      <div className="h-screen bg-gradient-to-br from-sky-950 via-blue-900 to-indigo-950 flex items-center justify-center">
+      <div className="h-screen bg-[var(--surface-0)] flex items-center justify-center">
         <div className="max-w-3xl px-8 text-center">
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="font-serif text-5xl md:text-7xl text-[var(--text-primary)] mb-6 tracking-tight">
             Continue Exploring
           </h2>
-          <p className="text-lg text-zinc-400 max-w-xl mx-auto">
+          <p className="text-lg text-[var(--text-secondary)] max-w-xl mx-auto">
             The bottom peek transition resolves into a normal section, so you can stack it with other full-screen effects without the layout breaking into separate demo blocks.
           </p>
         </div>

@@ -72,18 +72,18 @@ export function SceneFrame({
         transition={entrance.transition}
       >
         <div className="space-y-4">
-          <p className="text-xs uppercase tracking-[0.32em] text-white/55">
+          <p className="text-xs uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
             {eyebrow}
           </p>
-          <h1 className="max-w-4xl font-serif text-4xl leading-none text-white sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl font-serif text-4xl leading-none text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
             {title}
           </h1>
-          <p className="max-w-3xl text-base leading-7 text-white/70 sm:text-lg">
+          <p className="max-w-3xl text-base leading-7 text-[var(--text-secondary)] sm:text-lg">
             {description}
           </p>
         </div>
         {aside ? (
-          <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 text-sm text-white/70 backdrop-blur-md">
+          <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-5 text-sm text-[var(--text-secondary)]">
             {aside}
           </div>
         ) : null}

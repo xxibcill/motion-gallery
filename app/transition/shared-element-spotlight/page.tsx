@@ -53,19 +53,19 @@ export default function SharedElementSpotlightPage() {
       description="A UI transition pattern where one hero object survives the scene change and the rest of the layout reorganizes around it."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The focal card keeps the same layout identity across both states.
             That continuity is the point of the demo: the scene can rebuild
             without making the user reacquire the hero object.
           </p>
           <div className="flex flex-wrap gap-2">
-            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52">
+            <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]">
               Shared shell
             </span>
-            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52">
+            <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]">
               Layout aware
             </span>
-            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52">
+            <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]">
               Toggle views
             </span>
           </div>
@@ -112,13 +112,13 @@ export default function SharedElementSpotlightPage() {
                   ease: transitionLabEasings.emphasis,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.32em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
                   {activeView.eyebrow}
                 </p>
-                <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-[0.95] text-white md:text-6xl">
+                <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-[0.95] text-[var(--text-primary)] md:text-6xl">
                   {activeView.title}
                 </h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/72 md:text-lg">
+                <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                   {activeView.body}
                 </p>
               </motion.div>
@@ -144,14 +144,14 @@ export default function SharedElementSpotlightPage() {
                         className="mt-1 rounded-[1.5rem] border border-emerald-200/12 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.32),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.02))] p-5"
                       >
                         <div className="flex items-center justify-between gap-4">
-                          <span className="rounded-full border border-white/14 px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/54">
+                          <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]">
                             Hero object
                           </span>
-                          <span className="text-sm text-white/62">01</span>
+                          <span className="text-sm text-[var(--text-tertiary)]">01</span>
                         </div>
                         <div className="mt-8 h-40 rounded-[1.5rem] bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.52),transparent_18%),linear-gradient(180deg,rgba(12,74,54,0.88),rgba(6,24,20,0.96))]" />
                       </motion.div>
-                      <p className="text-sm leading-6 text-white/68">
+                      <p className="text-sm leading-6 text-[var(--text-secondary)]">
                         In the rail view, the focal card sits inside a wider
                         browsing layout while small companions provide context.
                       </p>
@@ -167,7 +167,7 @@ export default function SharedElementSpotlightPage() {
                       {supportingCards.map((card) => (
                         <div
                           key={card}
-                          className="rounded-[1.5rem] border border-white/10 bg-black/25 p-4 text-sm text-white/66 backdrop-blur-md"
+                          className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text-secondary)]"
                         >
                           {card}
                         </div>
@@ -193,21 +193,21 @@ export default function SharedElementSpotlightPage() {
                         className="mt-1 rounded-[1.75rem] border border-emerald-200/12 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.32),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0.02))] p-6"
                       >
                         <div className="flex items-center justify-between gap-4">
-                          <span className="rounded-full border border-white/14 px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/54">
+                          <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]">
                             Shared expansion
                           </span>
-                          <span className="text-sm text-white/62">Product focus</span>
+                          <span className="text-sm text-[var(--text-tertiary)]">Product focus</span>
                         </div>
                         <div className="mt-8 h-48 rounded-[1.75rem] bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.52),transparent_18%),linear-gradient(180deg,rgba(12,74,54,0.88),rgba(6,24,20,0.96))]" />
                       </motion.div>
                       <div className="grid gap-3 pt-1 sm:grid-cols-3">
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm text-white/68">
+                        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3 text-sm text-[var(--text-secondary)]">
                           1800 lumen beam
                         </div>
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm text-white/68">
+                        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3 text-sm text-[var(--text-secondary)]">
                           42 hour reserve
                         </div>
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm text-white/68">
+                        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3 text-sm text-[var(--text-secondary)]">
                           Magnetic dock
                         </div>
                       </div>
@@ -229,7 +229,7 @@ export default function SharedElementSpotlightPage() {
                       ].map((item) => (
                         <div
                           key={item}
-                          className="rounded-[1.5rem] border border-white/10 bg-black/25 p-4 text-sm leading-6 text-white/66 backdrop-blur-md"
+                          className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm leading-6 text-[var(--text-secondary)]"
                         >
                           {item}
                         </div>
@@ -241,7 +241,7 @@ export default function SharedElementSpotlightPage() {
             </div>
 
             <motion.aside
-              className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5 text-sm text-white/66 backdrop-blur-md"
+              className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-sm text-[var(--text-secondary)]"
               initial={{
                 opacity: 0,
                 x: prefersReducedMotion ? 0 : 24,
@@ -254,7 +254,7 @@ export default function SharedElementSpotlightPage() {
                 delay: prefersReducedMotion ? 0 : 0.12,
               }}
             >
-              <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+              <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                 Spotlight rules
               </p>
               <div className="mt-5 space-y-4 leading-6">

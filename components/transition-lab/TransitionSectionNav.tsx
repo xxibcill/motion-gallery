@@ -51,10 +51,10 @@ export function TransitionSectionNav({ items }: TransitionSectionNavProps) {
               key={item.id}
               href={item.path}
               aria-current={isActive ? "page" : undefined}
-              className={`rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09101d] ${
+              className={`rounded-md border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-0)] ${
                 isActive
-                  ? "border-white/25 bg-white/14 text-white"
-                  : "border-white/10 bg-white/[0.03] text-white/65 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                  ? "border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--text-primary)]"
+                  : "border-[var(--border-subtle)] bg-[var(--surface-2)] text-[var(--text-secondary)] hover:bg-[var(--surface-3)] hover:text-[var(--text-primary)]"
               }`}
             >
               {item.title}

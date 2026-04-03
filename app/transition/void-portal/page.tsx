@@ -77,7 +77,7 @@ export default function VoidPortalPage() {
       description="A dramatic portal transition with a real center of gravity: the outgoing scene gets consumed into a void, then the next chamber emerges through the same aperture on a distinct second beat."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The portal stays anchored in the same place for both phases. That
             single shared aperture is what makes the consume and reveal read as
             one spatial event instead of two unrelated tricks.
@@ -86,7 +86,7 @@ export default function VoidPortalPage() {
             {activeScene.chips.map((chip) => (
               <span
                 key={chip}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {chip}
               </span>
@@ -163,24 +163,24 @@ export default function VoidPortalPage() {
               }}
             >
               <div
-                className={`rounded-[2rem] border p-6 shadow-[0_30px_90px_rgba(0,0,0,0.28)] md:p-8 ${activeScene.palette.shell}`}
+                className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 md:p-8`}
               >
-                <p className="text-xs uppercase tracking-[0.34em] text-white/42">
+                <p className="text-xs uppercase tracking-[0.34em] text-[var(--text-tertiary)]">
                   {activeScene.eyebrow}
                 </p>
                 <h2
-                  className={`mt-5 max-w-3xl font-serif text-4xl leading-[0.94] md:text-6xl ${activeScene.palette.titleClassName}`}
+                  className={`mt-5 max-w-3xl font-serif text-4xl leading-[0.94] md:text-6xl text-[var(--text-primary)]`}
                 >
                   {activeScene.title}
                 </h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/70 md:text-lg">
+                <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                   {activeScene.body}
                 </p>
                 <div className="mt-8 grid gap-3 sm:grid-cols-3">
                   {activeScene.telemetry.map((item) => (
                     <div
                       key={item}
-                      className="rounded-[1.35rem] border border-white/10 bg-white/[0.05] p-4 text-sm text-white/64"
+                      className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text-secondary)]"
                     >
                       {item}
                     </div>
@@ -189,7 +189,7 @@ export default function VoidPortalPage() {
               </div>
 
               <motion.aside
-                className={`rounded-[1.75rem] border p-5 text-sm text-white/66 backdrop-blur-md ${activeScene.palette.panel}`}
+                className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-sm text-[var(--text-secondary)]`}
                 initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 32 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -199,7 +199,7 @@ export default function VoidPortalPage() {
                   delay: prefersReducedMotion ? 0 : 0.5,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                   Portal sequence
                 </p>
                 <ol className="mt-5 space-y-3 leading-6">

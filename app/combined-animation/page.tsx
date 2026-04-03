@@ -201,8 +201,8 @@ function PhasePill({
       onClick={onClick}
       className={`rounded-full border px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.28em] transition-colors ${
         active
-          ? "border-white/40 bg-white/14 text-[#fff2d0]"
-          : "border-white/10 bg-white/[0.04] text-white/50 hover:border-white/20 hover:text-white/80"
+          ? "border-[var(--border-subtle)] bg-[var(--surface-2)] text-[var(--text-primary)]"
+          : "border-[var(--border-subtle)] bg-[var(--surface-1)] text-[var(--text-tertiary)] hover:border-[var(--border-subtle)] hover:text-[var(--text-secondary)]"
       }`}
     >
       {label}
@@ -335,7 +335,7 @@ export default function CombinedAnimationPage() {
                 <p className="text-[0.7rem] uppercase tracking-[0.38em] text-[#f2c78f]/78">
                   Combined Animation
                 </p>
-                <h1 className="max-w-xl font-serif text-[clamp(3rem,7vw,6.8rem)] leading-[0.9] text-[#fff8e9]">
+                <h1 className="max-w-xl font-serif text-[clamp(3rem,7vw,6.8rem)] leading-[0.9] text-[var(--text-primary)]">
                   Abyssal
                   <br />
                   Convergence
@@ -350,7 +350,7 @@ export default function CombinedAnimationPage() {
                 {phaseMetrics.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-4 backdrop-blur-sm"
+                    className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-4"
                   >
                     <p className="text-[0.62rem] uppercase tracking-[0.26em] text-white/38">
                       {item.label}
@@ -361,7 +361,7 @@ export default function CombinedAnimationPage() {
               </div>
 
               <div className="space-y-3">
-                <div className="h-px w-full bg-white/10" />
+                <div className="h-px w-full bg-[var(--border-subtle)]" />
                 <p className="text-sm leading-6 text-white/60">
                   Reduced motion freezes the auto-cycle on the final composition while keeping the
                   same atmosphere, palette, and scene structure intact.
@@ -526,7 +526,7 @@ export default function CombinedAnimationPage() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={phase.id}
-                    className="max-w-[14rem] rounded-[1.7rem] border border-white/12 bg-black/20 px-5 py-4 text-center backdrop-blur-md"
+                    className="max-w-[14rem] rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] px-5 py-4 text-center"
                     initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -18 }}
@@ -543,7 +543,7 @@ export default function CombinedAnimationPage() {
             </motion.div>
 
             <motion.div className="space-y-6 lg:pl-4" style={{ y: detailY }}>
-              <div className="rounded-[2rem] border border-white/10 bg-black/18 p-6 backdrop-blur-md">
+              <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6">
                 <p className="text-[0.62rem] uppercase tracking-[0.28em] text-white/40">
                   Active direction
                 </p>
@@ -555,13 +555,13 @@ export default function CombinedAnimationPage() {
                     exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -12 }}
                     transition={{ duration: prefersReducedMotion ? 0.12 : 0.35 }}
                   >
-                    <h2 className="mt-3 font-serif text-3xl text-[#fff7e6]">{phase.title}</h2>
+                    <h2 className="mt-3 font-serif text-3xl text-[var(--text-primary)]">{phase.title}</h2>
                     <p className="mt-3 text-sm leading-7 text-white/64">{phase.description}</p>
                     <div className="mt-5 flex flex-wrap gap-2">
                       {phase.copy.map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/58"
+                          className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--text-tertiary)]"
                         >
                           {item}
                         </span>
@@ -571,12 +571,12 @@ export default function CombinedAnimationPage() {
                 </AnimatePresence>
               </div>
 
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5">
+              <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-5">
                 <div className="flex items-center justify-between text-[0.62rem] uppercase tracking-[0.28em] text-white/40">
                   <span>Cycle</span>
                   <span>{activePhase + 1}/5</span>
                 </div>
-                <div className="mt-4 h-2 rounded-full bg-white/10">
+                <div className="mt-4 h-2 rounded-md bg-[var(--surface-2)]">
                   <motion.div
                     className="h-full rounded-full bg-[linear-gradient(90deg,#f8c47e,#8de6d5)]"
                     animate={{ width: progressWidth }}
@@ -599,13 +599,13 @@ export default function CombinedAnimationPage() {
         </section>
       </div>
 
-      <section className="relative z-10 border-t border-white/10 bg-[linear-gradient(180deg,rgba(6,8,14,0.94),rgba(4,3,10,1))] px-6 pb-24 pt-16 lg:px-10">
+      <section className="relative z-10 border-t border-[var(--border-subtle)] bg-[var(--surface-0)] px-6 pb-24 pt-16 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-          <div className="rounded-[2.2rem] border border-white/10 bg-white/[0.04] p-7">
+          <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-7">
             <p className="text-[0.62rem] uppercase tracking-[0.28em] text-[#f2c78f]/76">
               Construction Notes
             </p>
-            <h2 className="mt-4 max-w-2xl font-serif text-4xl text-[#fff7e2]">
+            <h2 className="mt-4 max-w-2xl font-serif text-4xl text-[var(--text-primary)]">
               One hero moment, multiple motion systems.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-white/64">
@@ -616,21 +616,21 @@ export default function CombinedAnimationPage() {
           </div>
 
           <div className="grid gap-4">
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6">
               <p className="text-[0.62rem] uppercase tracking-[0.28em] text-white/42">
                 Motion stack
               </p>
-              <ul className="mt-4 space-y-3 text-sm leading-7 text-white/62">
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--text-secondary)]">
                 <li>Phase loop reconfigures shards, rings, beams, and copy every 2.4 seconds.</li>
                 <li>Pointer tracking feeds tilt, drift, and a dynamic radial light field.</li>
                 <li>Scroll progress compresses the entire hero so the page exits like a machine retracting.</li>
               </ul>
             </div>
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6">
               <p className="text-[0.62rem] uppercase tracking-[0.28em] text-white/42">
                 Accessibility
               </p>
-              <p className="mt-4 text-sm leading-7 text-white/62">
+              <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
                 `prefers-reduced-motion` disables the auto-cycle and pointer travel, then lands the
                 page in the resolved bloom phase with the same typography, hierarchy, and color
                 treatment still intact.

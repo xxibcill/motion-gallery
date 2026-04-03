@@ -37,7 +37,7 @@ const scenarios: Record<ScenarioKey, ScenarioDefinition> = {
   community: {
     title: "Community Pulse",
     stageClass:
-      "bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.2),transparent_34%),linear-gradient(180deg,rgba(8,47,73,0.42),rgba(15,23,42,0.82))]",
+      "bg-[var(--surface-1)]",
     hero: {
       label: "Live creators tracked",
       value: 18450,
@@ -66,7 +66,7 @@ const scenarios: Record<ScenarioKey, ScenarioDefinition> = {
   revenue: {
     title: "Revenue Snapshot",
     stageClass:
-      "bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.18),transparent_30%),linear-gradient(180deg,rgba(69,26,3,0.3),rgba(15,23,42,0.84))]",
+      "bg-[var(--surface-1)]",
     hero: {
       label: "Monthly recurring revenue",
       value: 247500,
@@ -94,7 +94,7 @@ const scenarios: Record<ScenarioKey, ScenarioDefinition> = {
   uptime: {
     title: "Operations Readout",
     stageClass:
-      "bg-[radial-gradient(circle_at_top_left,rgba(244,63,94,0.18),transparent_32%),linear-gradient(180deg,rgba(76,5,25,0.26),rgba(15,23,42,0.84))]",
+      "bg-[var(--surface-1)]",
     hero: {
       label: "System uptime",
       value: 99.98,
@@ -159,7 +159,7 @@ export default function CountUpNumberPage() {
           <button
             type="button"
             onClick={() => setReplaySeed((value) => value + 1)}
-            className="rounded-2xl border border-cyan-200/16 bg-cyan-300/10 px-4 py-3 text-left text-sm font-medium text-cyan-100 transition-colors hover:bg-cyan-300/16 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/75 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] px-4 py-3 text-left text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--surface-3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-0)]"
           >
             Replay sequence
           </button>
@@ -167,7 +167,7 @@ export default function CountUpNumberPage() {
       }
     >
       <div
-        className={`grid min-h-[340px] gap-4 rounded-[1.8rem] border border-dashed border-white/10 p-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] ${activeScenario.stageClass}`}
+        className={`grid min-h-[340px] gap-4 rounded-lg border border-dashed border-[var(--border-subtle)] p-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] ${activeScenario.stageClass}`}
       >
         <CountUpNumber
           key={`hero-${scenario}-${duration}-${replaySeed}`}

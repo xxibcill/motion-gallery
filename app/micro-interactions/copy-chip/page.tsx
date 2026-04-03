@@ -46,7 +46,7 @@ export default function CopyChipPage() {
         </>
       }
     >
-      <div className="flex min-h-[340px] items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[linear-gradient(180deg,rgba(251,191,36,0.08),rgba(15,23,42,0.52))]">
+      <div className="flex min-h-[340px] items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)]">
         <CopyChipButton
           resetAfter={resetAfter}
           idleLabel={labelSets[labelSet].idle}

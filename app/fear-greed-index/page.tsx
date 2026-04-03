@@ -137,7 +137,7 @@ function MiniGauge({ value, active }: { value: number; active: boolean }) {
 function SentimentChip({ value }: { value: number }) {
   return (
     <span
-      className="rounded-full px-2.5 py-1 text-xs font-medium text-zinc-950"
+      className="rounded-md px-2.5 py-1 text-xs font-medium text-zinc-950"
       style={{ backgroundColor: getScoreColor(value) }}
     >
       {getScoreLabel(value)}
@@ -156,7 +156,7 @@ function CryptoCard({
 }) {
   return (
     <motion.div
-      className="flex items-center gap-4 rounded-2xl border border-zinc-800/50 bg-zinc-900/80 p-5 backdrop-blur-sm"
+      className="flex items-center gap-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-5"
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       animate={cardsVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.95 }}
       transition={{
@@ -169,7 +169,7 @@ function CryptoCard({
       {item.icon}
       <div className="min-w-0 flex-1">
         <div className="mb-1 flex items-center justify-between">
-          <span className="text-sm font-semibold text-white">{item.name}</span>
+          <span className="text-sm font-semibold text-[var(--text-primary)]">{item.name}</span>
           <SentimentChip value={item.value} />
         </div>
         <MiniGauge value={item.value} active={cardsVisible} />
@@ -215,16 +215,16 @@ export default function FearGreedIndexPage() {
 
   if (prefersReducedMotion) {
     return (
-      <main className="min-h-screen bg-zinc-950 p-8">
+      <main className="min-h-screen bg-[var(--surface-0)] p-8">
         <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
-          <h1 className="text-center text-2xl font-bold tracking-tight text-white md:text-3xl">
+          <h1 className="text-center text-2xl font-serif tracking-tight text-[var(--text-primary)] md:text-3xl">
             Membit True Fear &amp; Greed Index
           </h1>
 
-          <div className="rounded-3xl border border-zinc-800/50 bg-zinc-900/70 p-8 backdrop-blur-sm">
+          <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-8">
             <div className="mb-4 flex items-center gap-2">
               {CRYPTO_DATA[0].icon}
-              <span className="text-sm font-semibold text-white">{CRYPTO_DATA[0].name}</span>
+              <span className="text-sm font-semibold text-[var(--text-primary)]">{CRYPTO_DATA[0].name}</span>
               <div className="ml-auto">
                 <SentimentChip value={mainTargetValue} />
               </div>
@@ -236,10 +236,10 @@ export default function FearGreedIndexPage() {
             {CRYPTO_DATA.slice(1).map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-4 rounded-2xl border border-zinc-800/50 bg-zinc-900 p-5"
+                className="flex items-center gap-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-5"
               >
                 {item.icon}
-                <span className="text-sm font-semibold text-white">{item.name}</span>
+                <span className="text-sm font-semibold text-[var(--text-primary)]">{item.name}</span>
                 <div className="ml-auto">
                   <SentimentChip value={item.value} />
                 </div>
@@ -252,7 +252,7 @@ export default function FearGreedIndexPage() {
   }
 
   return (
-    <div ref={containerRef} className="bg-zinc-950" style={{ height: `${CONFIG.scrollHeight * 100}vh` }}>
+    <div ref={containerRef} className="bg-[var(--surface-0)]" style={{ height: `${CONFIG.scrollHeight * 100}vh` }}>
       <motion.div
         className="sticky top-0 flex h-screen flex-col items-center justify-center px-6"
         style={{
@@ -264,26 +264,26 @@ export default function FearGreedIndexPage() {
         <div className="mb-6 flex w-full max-w-2xl items-center justify-between gap-4">
           <Link
             href="/gallery"
-            className="rounded-full border border-white/12 bg-white/6 px-4 py-2 text-sm text-zinc-200 transition-colors hover:bg-white/12"
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
           >
             Open Gallery
           </Link>
           <Link
             href="/fear-greed-gauge"
-            className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-4 py-2 text-sm text-emerald-100 transition-colors hover:bg-emerald-300/16"
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
           >
             Gauge Animation Lab
           </Link>
         </div>
 
-        <motion.h1 className="mb-8 text-center text-2xl font-bold tracking-tight text-white md:text-3xl">
+        <motion.h1 className="mb-8 text-center text-2xl font-serif tracking-tight text-[var(--text-primary)] md:text-3xl">
           Membit True Fear &amp; Greed Index
         </motion.h1>
 
-        <div className="w-full max-w-2xl rounded-3xl border border-zinc-800/50 bg-zinc-900/60 p-8 backdrop-blur-sm">
+        <div className="w-full max-w-2xl rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-8">
           <div className="mb-4 flex items-center gap-2">
             {CRYPTO_DATA[0].icon}
-            <span className="text-sm font-semibold text-white">{CRYPTO_DATA[0].name}</span>
+            <span className="text-sm font-semibold text-[var(--text-primary)]">{CRYPTO_DATA[0].name}</span>
             <div className="ml-auto">
               <SentimentChip value={mainTargetValue} />
             </div>

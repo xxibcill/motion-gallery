@@ -115,7 +115,7 @@ function TransitionPreview({ slug, isHovered, prefersReducedMotion }: Transition
   const noMotion = prefersReducedMotion;
   const active = isHovered && !noMotion;
 
-  const base = "absolute inset-0 overflow-hidden rounded-[2rem]";
+  const base = "absolute inset-0 overflow-hidden rounded-lg";
 
   switch (slug) {
     case "kinetic-panels":
@@ -351,7 +351,7 @@ export function TransitionPreviewCard({ animation }: TransitionPreviewCardProps)
           overlays={<GradientVeil from={tone.from} to={tone.to} accent={tone.accent} />}
           chrome={
             <div className="flex h-full items-start justify-end p-5">
-              <span className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[0.65rem] uppercase tracking-[0.26em] text-white/60">
+              <span className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-3 py-1 text-[0.65rem] uppercase tracking-[0.26em] text-[var(--text-secondary)]">
                 {animation.status === "planned" ? "Planned" : "Live"}
               </span>
             </div>
@@ -368,17 +368,17 @@ export function TransitionPreviewCard({ animation }: TransitionPreviewCardProps)
           )}
           <div className="relative flex h-full flex-col justify-between p-6">
             <div className="space-y-3">
-              <p className="text-[0.65rem] uppercase tracking-[0.28em] text-white/45">
+              <p className="text-[0.65rem] uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                 {animation.path.split("/").at(-1)}
               </p>
-              <h2 className="font-serif text-3xl text-white">{animation.title}</h2>
-              <p className="max-w-md text-sm leading-6 text-white/70">
+              <h2 className="font-serif text-3xl text-[var(--text-primary)]">{animation.title}</h2>
+              <p className="max-w-md text-sm leading-6 text-[var(--text-secondary)]">
                 {animation.description}
               </p>
             </div>
-            <div className="flex items-center justify-between text-sm text-white/58">
+            <div className="flex items-center justify-between text-sm text-[var(--text-tertiary)]">
               <span className="capitalize">{animation.difficulty}</span>
-              <span className="flex items-center gap-1.5 text-white/50 transition-colors group-hover:text-white/70">
+              <span className="flex items-center gap-1.5 text-[var(--text-tertiary)] transition-colors group-hover:text-[var(--text-secondary)]">
                 Open demo
                 <svg
                   width="14"

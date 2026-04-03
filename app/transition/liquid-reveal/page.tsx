@@ -107,7 +107,7 @@ export default function LiquidRevealPage() {
       description="An organic reveal that uses layered blob masks, bloom-heavy gradients, and frosted depth so the stage feels poured open instead of mechanically wiped."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             High-cost filters stay localized to the blob layers. The content
             panel stays clean so the page remains legible while the reveal stays
             fluid.
@@ -116,7 +116,7 @@ export default function LiquidRevealPage() {
             {activeScene.notes.map((note) => (
               <span
                 key={note}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {note}
               </span>
@@ -199,7 +199,7 @@ export default function LiquidRevealPage() {
 
             <div className="relative grid min-h-[29rem] gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-end">
               <motion.div
-                className={`${activeScene.palette.shell} rounded-[2rem] border p-6 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-8`}
+                className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 md:p-8`}
                 initial={{
                   y: prefersReducedMotion ? 0 : 28,
                   opacity: 0,
@@ -214,14 +214,14 @@ export default function LiquidRevealPage() {
                   ease: transitionLabEasings.fluid,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.34em] text-white/44">
+                <p className="text-xs uppercase tracking-[0.34em] text-[var(--text-tertiary)]">
                   {activeScene.eyebrow}
                 </p>
-                <div className={`mt-5 space-y-4 ${activeScene.palette.text}`}>
+                <div className={`mt-5 space-y-4 text-[var(--text-primary)]`}>
                   <h2 className="max-w-2xl font-serif text-4xl leading-[0.94] md:text-6xl">
                     {activeScene.title}
                   </h2>
-                  <p className="max-w-xl text-base leading-7 text-white/76 md:text-lg">
+                  <p className="max-w-xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                     {activeScene.body}
                   </p>
                 </div>
@@ -229,7 +229,7 @@ export default function LiquidRevealPage() {
                   {activeScene.notes.map((note) => (
                     <div
                       key={note}
-                      className="rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-white/68"
+                      className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 text-sm text-[var(--text-secondary)]"
                     >
                       {note}
                     </div>
@@ -238,7 +238,7 @@ export default function LiquidRevealPage() {
               </motion.div>
 
               <motion.div
-                className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5"
                 initial={{
                   x: prefersReducedMotion ? 0 : 38,
                   opacity: 0,
@@ -252,15 +252,15 @@ export default function LiquidRevealPage() {
                   ease: transitionLabEasings.emphasis,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                   Wave sequence
                 </p>
-                <div className="mt-5 space-y-4 text-sm leading-6 text-white/68">
+                <div className="mt-5 space-y-4 text-sm leading-6 text-[var(--text-secondary)]">
                   <p>Blob one establishes the main aperture.</p>
                   <p>Blob two broadens the reveal and softens the edge.</p>
                   <p>Blob three lingers to keep the scene feeling alive.</p>
                 </div>
-                <div className="mt-6 h-32 rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_25%_35%,rgba(255,255,255,0.24),transparent_22%),radial-gradient(circle_at_62%_52%,rgba(255,255,255,0.18),transparent_18%),linear-gradient(135deg,rgba(255,255,255,0.14),transparent)]" />
+                <div className="mt-6 h-32 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)]" />
               </motion.div>
             </div>
           </motion.div>

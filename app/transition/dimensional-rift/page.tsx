@@ -131,7 +131,7 @@ export default function DimensionalRiftPage() {
               {activeScene.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/52"
+                  className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
                 >
                   {chip}
                 </span>
@@ -221,7 +221,7 @@ export default function DimensionalRiftPage() {
                 transition={{ delay: 0.3 }}
               >
                 <div
-                  className={`rounded-[2rem] border p-8 text-center ${activeScene.palette.card} ${activeScene.palette.text}`}
+                  className={`rounded-lg border p-8 text-center ${activeScene.palette.card} ${activeScene.palette.text}`}
                 >
                   <p className="text-xs uppercase tracking-[0.34em] text-white/46">
                     {activeScene.eyebrow}
@@ -234,7 +234,7 @@ export default function DimensionalRiftPage() {
                   </p>
                   <motion.button
                     onClick={replay}
-                    className="mt-6 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur-sm transition-colors hover:bg-white/20"
+                    className="mt-6 rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--surface-3)]"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -248,7 +248,7 @@ export default function DimensionalRiftPage() {
       </SceneFrame>
 
       {/* Phase Breakdown Section */}
-      <section className="border-t border-white/10 bg-[#0a0a0f] px-6 py-16">
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--surface-0)] px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -256,13 +256,13 @@ export default function DimensionalRiftPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-400/70">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
               Animation Breakdown
             </p>
-            <h2 className="mt-3 font-serif text-3xl text-white md:text-4xl">
+            <h2 className="mt-3 font-serif text-3xl text-[var(--text-primary)] md:text-4xl">
               Four Distinct Phases
             </h2>
-            <p className="mt-4 max-w-2xl text-white/60">
+            <p className="mt-4 max-w-2xl text-[var(--text-secondary)]">
               The dimensional rift transitions through four carefully choreographed phases,
               each with its own physics, timing, and visual language.
             </p>
@@ -276,29 +276,29 @@ export default function DimensionalRiftPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-fuchsia-500/30 bg-fuchsia-500/10 text-2xl text-fuchsia-300">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] text-2xl text-[var(--accent)]">
                     {phaseInfo.icon}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3">
-                      <h3 className="font-serif text-lg text-white">
+                      <h3 className="font-serif text-lg text-[var(--text-primary)]">
                         {phaseInfo.title}
                       </h3>
-                      <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/60">
+                      <span className="rounded-md bg-[var(--surface-2)] px-2 py-0.5 text-xs text-[var(--text-secondary)]">
                         {phaseInfo.duration}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm text-white/60">
+                    <p className="mt-2 text-sm text-[var(--text-secondary)]">
                       {phaseInfo.description}
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {phaseInfo.techniques.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-white/50"
+                          className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-2.5 py-1 text-xs text-[var(--text-secondary)]"
                         >
                           {tech}
                         </span>
@@ -313,7 +313,7 @@ export default function DimensionalRiftPage() {
       </section>
 
       {/* Technical Specifications */}
-      <section className="border-t border-white/10 bg-[#08080c] px-6 py-16">
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--surface-0)] px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -321,10 +321,10 @@ export default function DimensionalRiftPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-cyan-400/70">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
               Technical Details
             </p>
-            <h2 className="mt-3 font-serif text-3xl text-white md:text-4xl">
+            <h2 className="mt-3 font-serif text-3xl text-[var(--text-primary)] md:text-4xl">
               Specifications
             </h2>
           </motion.div>
@@ -337,12 +337,12 @@ export default function DimensionalRiftPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="rounded-xl border border-white/10 bg-white/[0.02] p-5"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-5"
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-tertiary)]">
                   {spec.label}
                 </p>
-                <p className="mt-2 font-mono text-lg text-white/90">
+                <p className="mt-2 font-mono text-lg text-[var(--text-primary)]">
                   {spec.value}
                 </p>
               </motion.div>
@@ -352,7 +352,7 @@ export default function DimensionalRiftPage() {
       </section>
 
       {/* Code Example */}
-      <section className="border-t border-white/10 bg-[#0a0a0f] px-6 py-16">
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--surface-0)] px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -360,10 +360,10 @@ export default function DimensionalRiftPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-emerald-400/70">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
               Implementation
             </p>
-            <h2 className="mt-3 font-serif text-3xl text-white md:text-4xl">
+            <h2 className="mt-3 font-serif text-3xl text-[var(--text-primary)] md:text-4xl">
               Phase State Machine
             </h2>
           </motion.div>
@@ -372,15 +372,15 @@ export default function DimensionalRiftPage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="overflow-hidden rounded-xl border border-white/10 bg-[#0c0c12]"
+            className="overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)]"
           >
-            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+            <div className="flex items-center gap-2 border-b border-[var(--border-subtle)] px-4 py-3">
               <div className="h-3 w-3 rounded-full bg-red-500/60" />
               <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
               <div className="h-3 w-3 rounded-full bg-green-500/60" />
-              <span className="ml-2 text-xs text-white/40">phase-orchestration.ts</span>
+              <span className="ml-2 text-xs text-[var(--text-tertiary)]">phase-orchestration.ts</span>
             </div>
-            <pre className="overflow-x-auto p-5 text-sm text-white/80">
+            <pre className="overflow-x-auto p-5 text-sm text-[var(--text-secondary)]">
               <code>{`const phaseDurations = {
   fracture: 1.2,   // 3D shards crack apart
   void: 0.8,       // Gravitational pull to center

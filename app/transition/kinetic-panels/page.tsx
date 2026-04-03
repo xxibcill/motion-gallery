@@ -76,7 +76,7 @@ export default function KineticPanelsPage() {
       description="A forceful editorial transition built from slab-like panels that enter on separate axes, overshoot their marks, and settle into a sharp reading rhythm."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The motion pattern is intentionally hard-edged. Each panel arrives
             with its own direction, then locks into a crisp composition instead
             of drifting.
@@ -85,7 +85,7 @@ export default function KineticPanelsPage() {
             {activeScene.stats.map((stat) => (
               <div
                 key={stat}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3 text-center text-xs uppercase tracking-[0.24em] text-white/50"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-3 text-center text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {stat}
               </div>
@@ -133,7 +133,7 @@ export default function KineticPanelsPage() {
             exit="exit"
           >
             <motion.div
-              className={`relative row-span-2 overflow-hidden rounded-[2rem] border border-black/10 p-6 md:p-8 ${activeScene.palette.slab}`}
+              className={`relative row-span-2 overflow-hidden rounded-lg border border-[var(--border-subtle)] p-6 md:p-8 ${activeScene.palette.slab}`}
               initial={{
                 x: getDirectionalOffset(prefersReducedMotion, -240),
                 y: getDirectionalOffset(prefersReducedMotion, 34),
@@ -183,7 +183,7 @@ export default function KineticPanelsPage() {
             </motion.div>
 
             <motion.div
-              className={`rounded-[1.75rem] border border-white/10 p-5 text-white shadow-[0_24px_80px_rgba(0,0,0,0.22)] ${activeScene.palette.card}`}
+              className={`rounded-lg border border-[var(--border-subtle)] p-5 text-[var(--text-primary)] ${activeScene.palette.card}`}
               initial={{
                 y: getDirectionalOffset(prefersReducedMotion, -160),
                 x: getDirectionalOffset(prefersReducedMotion, 70),
@@ -202,7 +202,7 @@ export default function KineticPanelsPage() {
                 ease: transitionLabEasings.curtain,
               }}
             >
-              <p className="text-xs uppercase tracking-[0.3em] text-white/42">
+              <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
                 Motion brief
               </p>
               <div className="mt-4 space-y-4">
@@ -210,13 +210,13 @@ export default function KineticPanelsPage() {
                   {activeScene.stats.map((stat) => (
                     <div
                       key={stat}
-                      className="rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-sm text-white/72"
+                      className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-3 text-sm text-[var(--text-secondary)]"
                     >
                       {stat}
                     </div>
                   ))}
                 </div>
-                <p className="text-sm leading-6 text-white/68">
+                <p className="text-sm leading-6 text-[var(--text-secondary)]">
                   Panels share a grid, but not an origin. That mismatch is what
                   gives the transition its poster-wall aggression.
                 </p>
@@ -224,7 +224,7 @@ export default function KineticPanelsPage() {
             </motion.div>
 
             <motion.div
-              className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/35 p-5 text-white"
+              className="relative overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-[var(--text-primary)]"
               initial={{
                 x: getDirectionalOffset(prefersReducedMotion, 210),
                 y: getDirectionalOffset(prefersReducedMotion, 48),
@@ -246,10 +246,10 @@ export default function KineticPanelsPage() {
               <div
                 className={`absolute inset-y-0 right-0 w-3 ${activeScene.palette.rail}`}
               />
-              <p className="text-xs uppercase tracking-[0.28em] text-white/38">
+              <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                 Reading order
               </p>
-              <ol className="mt-4 space-y-3 text-sm leading-6 text-white/68">
+              <ol className="mt-4 space-y-3 text-sm leading-6 text-[var(--text-secondary)]">
                 <li>1. Hero slab lands and establishes the headline.</li>
                 <li>2. Upper brief drops in with extra velocity.</li>
                 <li>3. Closing note sweeps laterally to complete the frame.</li>

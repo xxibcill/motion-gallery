@@ -220,7 +220,7 @@ function ChatDemo() {
 
 export default function ChatPage() {
   return (
-    <main className="w-full bg-zinc-900">
+    <main className="w-full bg-[var(--surface-0)]">
       {/* Blank spacer section - 120vh for testing scroll trigger */}
       <Section className="h-[120vh] items-center justify-center">
         <div className="text-center">
@@ -229,8 +229,8 @@ export default function ChatPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springPresets.gentle }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Scroll Down</h2>
-            <p className="text-zinc-400 text-lg">
+            <h2 className="text-4xl md:text-5xl font-serif text-[var(--text-primary)] mb-4">Scroll Down</h2>
+            <p className="text-[var(--text-secondary)] text-lg">
               Chat animation triggers when this section enters the viewport
             </p>
           </motion.div>
@@ -257,7 +257,7 @@ export default function ChatPage() {
       </Section>
 
       {/* Chat Section - centered */}
-      <Section className="min-h-screen items-center justify-center bg-zinc-900" id="chat-demo">
+      <Section className="min-h-screen items-center justify-center bg-[var(--surface-0)]" id="chat-demo">
         <ChatDemo />
       </Section>
     </main>

@@ -65,7 +65,7 @@ interface TransitionStageProps {
 export function TransitionStage({
   children,
   className = "",
-  backgroundClassName = "bg-zinc-950/90",
+  backgroundClassName = "bg-[var(--surface-1)]",
   chrome,
   overlays,
   noiseOpacity,
@@ -75,7 +75,7 @@ export function TransitionStage({
 
   return (
     <motion.div
-      className={`relative isolate overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_40px_120px_rgba(0,0,0,0.45)] ${className}`}
+      className={`relative isolate overflow-hidden rounded-lg border border-[var(--border-subtle)] ${className}`}
       initial={entrance.initial}
       animate={entrance.animate}
       transition={entrance.transition}

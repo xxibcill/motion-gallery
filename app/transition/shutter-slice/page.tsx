@@ -83,7 +83,7 @@ export default function ShutterSlicePage() {
       description="A segmented wipe that breaks the stage into independent shutters, varies the distance per strip, and proves the effect works in both directions."
       aside={
         <div className="space-y-4">
-          <p className="text-sm leading-6 text-white/68">
+          <p className="text-sm leading-6 text-[var(--text-secondary)]">
             The demo keeps the geometry procedural. Slice widths come from the
             strip index, so the effect stays maintainable instead of relying on
             brittle one-off positions.
@@ -92,7 +92,7 @@ export default function ShutterSlicePage() {
             {activeScene.stats.map((stat) => (
               <div
                 key={stat}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3 text-center text-xs uppercase tracking-[0.24em] text-white/50"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] px-3 py-3 text-center text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
               >
                 {stat}
               </div>
@@ -170,7 +170,7 @@ export default function ShutterSlicePage() {
 
             <div className="relative grid min-h-[33rem] gap-6 p-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-end lg:p-8">
               <motion.div
-                className="rounded-[2rem] border border-white/10 bg-black/30 p-6 backdrop-blur-sm md:p-8"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 md:p-8"
                 initial={{
                   y: prefersReducedMotion ? 0 : 20,
                   opacity: 0,
@@ -184,20 +184,20 @@ export default function ShutterSlicePage() {
                   ease: transitionLabEasings.emphasis,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.32em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
                   {activeScene.eyebrow}
                 </p>
-                <h2 className="mt-5 max-w-2xl font-serif text-4xl leading-[0.95] text-white md:text-6xl">
+                <h2 className="mt-5 max-w-2xl font-serif text-4xl leading-[0.95] text-[var(--text-primary)] md:text-6xl">
                   {activeScene.title}
                 </h2>
-                <p className="mt-4 max-w-xl text-base leading-7 text-white/72 md:text-lg">
+                <p className="mt-4 max-w-xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                   {activeScene.body}
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   {activeScene.stats.map((stat) => (
                     <span
                       key={stat}
-                      className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/54"
+                      className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
                     >
                       {stat}
                     </span>
@@ -206,7 +206,7 @@ export default function ShutterSlicePage() {
               </motion.div>
 
               <motion.div
-                className="rounded-[1.75rem] border border-white/10 bg-black/35 p-5 text-white"
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 text-[var(--text-primary)]"
                 initial={{
                   x: prefersReducedMotion ? 0 : 42,
                   opacity: 0,
@@ -221,14 +221,14 @@ export default function ShutterSlicePage() {
                 }}
               >
                 <div className="flex items-center justify-between gap-4">
-                  <p className="text-xs uppercase tracking-[0.28em] text-white/38">
+                  <p className="text-xs uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
                     Slice logic
                   </p>
                   <span
                     className={`h-2.5 w-16 rounded-full ${activeScene.palette.line}`}
                   />
                 </div>
-                <div className="mt-5 space-y-4 text-sm leading-6 text-white/68">
+                <div className="mt-5 space-y-4 text-sm leading-6 text-[var(--text-secondary)]">
                   <p>Alternating strips shift left and right.</p>
                   <p>Later slices travel farther, so the wipe feels layered.</p>
                   <p>The same layout works for both forward and reverse reads.</p>

@@ -142,13 +142,13 @@ export default function FearGreedGaugePage() {
         <div className="flex items-center justify-between gap-4">
           <Link
             href="/gallery"
-            className="rounded-full border border-cyan-200/25 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition-colors hover:bg-cyan-300/18"
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
           >
             Open Gallery
           </Link>
           <Link
             href="/fear-greed-index"
-            className="rounded-full border border-white/12 bg-white/6 px-4 py-2 text-sm text-zinc-200 transition-colors hover:bg-white/12"
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)]"
           >
             Fear &amp; Greed Story
           </Link>
@@ -159,17 +159,17 @@ export default function FearGreedGaugePage() {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 shadow-[var(--mi-shadow-soft)] backdrop-blur-sm"
+            className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-8"
           >
             <p className="text-xs uppercase tracking-[0.3em] text-cyan-200/75">Gauge Animation Lab</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 text-4xl font-serif tracking-tight text-[var(--text-primary)] sm:text-5xl">
               Choose How The Gauge Moves
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg">
               This route reuses the production gauge component and lets you swap between animation
               behaviors depending on how energetic or restrained the interaction should feel.
             </p>
-            <div className="mt-7 rounded-2xl border border-cyan-200/10 bg-cyan-300/8 p-4">
+            <div className="mt-7 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4">
               <p className="text-xs uppercase tracking-[0.24em] text-cyan-100/75">Active Mode</p>
               <p className="mt-2 text-lg font-medium text-cyan-50">{activeMode.label}</p>
               <p className="mt-2 text-sm leading-6 text-zinc-300">{activeMode.caption}</p>
@@ -180,7 +180,7 @@ export default function FearGreedGaugePage() {
             initial={prefersReducedMotion ? false : { opacity: 0, x: 16 }}
             animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-3 rounded-[2rem] border border-white/10 bg-slate-950/80 p-6 shadow-[var(--mi-shadow-soft)]"
+            className="flex flex-col gap-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6"
           >
             <OptionPills
               label="Animation Mode"
@@ -234,7 +234,7 @@ export default function FearGreedGaugePage() {
             <button
               type="button"
               onClick={() => setReplaySeed((value) => value + 1)}
-              className="rounded-2xl border border-cyan-200/16 bg-cyan-300/10 px-4 py-3 text-left text-sm font-medium text-cyan-100 transition-colors hover:bg-cyan-300/16 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/75 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] px-4 py-3 text-left text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
             >
               Replay animation
             </button>
@@ -246,9 +246,9 @@ export default function FearGreedGaugePage() {
           </motion.aside>
         </section>
 
-        <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] shadow-[var(--mi-shadow-strong)]">
-          <div className="border-b border-white/10 px-6 py-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">Live Example</p>
+        <section className="overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)]">
+          <div className="border-b border-[var(--border-subtle)] px-6 py-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">Live Example</p>
           </div>
           <motion.div
             key={`${mode}-${replaySeed}-${targetValue.toFixed(1)}`}
@@ -257,7 +257,7 @@ export default function FearGreedGaugePage() {
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className={`p-6 sm:p-8 ${activeMode.stageClass}`}
           >
-            <div className="mx-auto w-full max-w-[760px] rounded-[1.8rem] border border-white/12 bg-black/35 p-6 sm:p-8">
+            <div className="mx-auto w-full max-w-[760px] rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6 sm:p-8">
               <Gauge value={animatedValue} lastUpdated={lastUpdated} />
             </div>
           </motion.div>

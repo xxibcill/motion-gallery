@@ -52,7 +52,7 @@ export default function TabUnderlinePage() {
         />
       }
     >
-      <div className="mx-auto flex min-h-[340px] w-full max-w-3xl items-center justify-center rounded-[1.8rem] border border-dashed border-white/10 bg-[linear-gradient(180deg,rgba(244,114,182,0.08),rgba(15,23,42,0.55))] px-4 py-10 sm:px-6">
+      <div className="mx-auto flex min-h-[340px] w-full max-w-3xl items-center justify-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-10 sm:px-6">
         <TabUnderlineFollower tabs={tabs} underlineStyle={underlineStyle} className="w-full" />
       </div>
     </MicroInteractionScene>

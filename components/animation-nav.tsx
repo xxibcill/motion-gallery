@@ -12,31 +12,31 @@ import {
 import { isAnimationActive } from "@/lib/route-matching";
 
 const colorClasses: Record<string, string> = {
-  zinc: "text-zinc-400 hover:text-zinc-300",
-  slate: "text-slate-400 hover:text-slate-300",
-  sky: "text-sky-400 hover:text-sky-300",
-  orange: "text-orange-400 hover:text-orange-300",
-  indigo: "text-indigo-400 hover:text-indigo-300",
-  violet: "text-violet-400 hover:text-violet-300",
-  fuchsia: "text-fuchsia-400 hover:text-fuchsia-300",
-  emerald: "text-emerald-400 hover:text-emerald-300",
-  rose: "text-rose-400 hover:text-rose-300",
-  amber: "text-amber-400 hover:text-amber-300",
-  cyan: "text-cyan-400 hover:text-cyan-300",
+  zinc: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  slate: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  sky: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  orange: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  indigo: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  violet: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  fuchsia: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  emerald: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  rose: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  amber: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+  cyan: "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
 };
 
 const activeColorClasses: Record<string, string> = {
-  zinc: "text-zinc-200",
-  slate: "text-slate-200",
-  sky: "text-sky-200",
-  orange: "text-orange-200",
-  indigo: "text-indigo-200",
-  violet: "text-violet-200",
-  fuchsia: "text-fuchsia-200",
-  emerald: "text-emerald-200",
-  rose: "text-rose-200",
-  amber: "text-amber-200",
-  cyan: "text-cyan-200",
+  zinc: "text-[var(--text-primary)]",
+  slate: "text-[var(--text-primary)]",
+  sky: "text-[var(--text-primary)]",
+  orange: "text-[var(--text-primary)]",
+  indigo: "text-[var(--text-primary)]",
+  violet: "text-[var(--text-primary)]",
+  fuchsia: "text-[var(--text-primary)]",
+  emerald: "text-[var(--text-primary)]",
+  rose: "text-[var(--text-primary)]",
+  amber: "text-[var(--text-primary)]",
+  cyan: "text-[var(--text-primary)]",
 };
 
 const categoryIcons: Record<AnimationCategory, string> = {
@@ -61,7 +61,7 @@ function NavSection({ title, icon, items, pathname, onItemClick }: NavSectionPro
 
   return (
     <div className="mb-3">
-      <div className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+      <div className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
         <span className="opacity-60">{icon}</span>
         <span>{title}</span>
       </div>
@@ -76,7 +76,7 @@ function NavSection({ title, icon, items, pathname, onItemClick }: NavSectionPro
               key={animation.id}
               href={animation.path}
               aria-current={isActive ? "page" : undefined}
-              className={`${isActive ? activeClass : colorClass} flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all duration-200 hover:bg-white/5 ${isActive ? "bg-white/5" : ""}`}
+              className={`${isActive ? activeClass : colorClass} flex items-center gap-2 px-3 py-1.5 rounded text-sm transition-all duration-200 hover:bg-[var(--surface-2)] ${isActive ? "bg-[var(--surface-2)]" : ""}`}
               onClick={onItemClick}
             >
               <span className="text-[10px] opacity-50 w-4">
@@ -137,7 +137,7 @@ export function AnimationNav() {
       {/* Menu Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-5 left-5 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+        className="fixed top-5 left-5 z-50 w-10 h-10 flex items-center justify-center rounded-md bg-[var(--surface-1)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-2)] transition-colors"
         aria-label="Toggle navigation"
         aria-expanded={isOpen}
         aria-controls="animation-nav-panel"
@@ -168,7 +168,7 @@ export function AnimationNav() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -179,24 +179,24 @@ export function AnimationNav() {
             {/* Navigation Panel */}
             <motion.nav
               id="animation-nav-panel"
-              className="fixed top-20 left-5 z-50 w-72 max-h-[calc(100vh-6rem)] overflow-y-auto bg-zinc-900/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50"
+              className="fixed top-20 left-5 z-50 w-72 max-h-[calc(100vh-6rem)] overflow-y-auto bg-[var(--surface-1)] rounded-lg border border-[var(--border-subtle)] shadow-lg shadow-black/40"
               initial={{ opacity: 0, x: -20, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -20, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {/* Search */}
-              <div className="p-3 border-b border-white/5">
+              <div className="p-3 border-b border-[var(--border-subtle)]">
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="Search animations..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 pl-9 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20"
+                    className="w-full bg-[var(--surface-2)] border border-[var(--border-subtle)] rounded-md px-3 py-2 pl-9 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-1 focus:ring-[var(--accent-muted)] focus:border-[var(--accent)]"
                   />
                   <svg
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -214,8 +214,8 @@ export function AnimationNav() {
               <div className="p-2">
                 {/* Core Gallery Section */}
                 <div className="mb-4">
-                  <div className="flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-zinc-300 border-b border-white/5 mb-2">
-                    <span className="text-cyan-400">◆</span>
+                  <div className="flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] border-b border-[var(--border-subtle)] mb-2">
+                    <span className="text-[var(--accent)]">◆</span>
                     <span>Core Gallery</span>
                   </div>
 
@@ -258,9 +258,9 @@ export function AnimationNav() {
 
                 {/* Transition Lab Section */}
                 {transitionLabAnimations.length > 0 && (
-                  <div className="border-t border-white/5 pt-3">
-                    <div className="flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-zinc-300 border-b border-white/5 mb-2">
-                      <span className="text-violet-400">◈</span>
+                  <div className="border-t border-[var(--border-subtle)] pt-3">
+                    <div className="flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] border-b border-[var(--border-subtle)] mb-2">
+                      <span className="text-[var(--accent)]">◈</span>
                       <span>Transition Lab</span>
                     </div>
                     <div className="flex flex-col gap-0.5">
@@ -275,7 +275,7 @@ export function AnimationNav() {
                             key={animation.id}
                             href={animation.path}
                             aria-current={isActive ? "page" : undefined}
-                            className={`${isActive ? activeClass : colorClass} flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all duration-200 hover:bg-white/5 ${isActive ? "bg-white/5" : ""}`}
+                            className={`${isActive ? activeClass : colorClass} flex items-center gap-2 px-3 py-1.5 rounded text-sm transition-all duration-200 hover:bg-[var(--surface-2)] ${isActive ? "bg-[var(--surface-2)]" : ""}`}
                             onClick={() => setIsOpen(false)}
                           >
                             <span className="text-[10px] opacity-50 w-4">
