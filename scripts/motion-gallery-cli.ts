@@ -13,10 +13,10 @@
 import { spawnSync } from "child_process";
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
+import { getPilotDistributableItems } from "../lib/installable-catalog";
 
 const NAMESPACE = "@motion-gallery";
 const REGISTRY_INDEX_PATH = join(process.cwd(), "public", "r", "index.json");
-const REGISTRY_SOURCE_PATH = join(process.cwd(), "registry.json");
 
 interface RegistryItem {
   name: string;
@@ -54,22 +54,27 @@ Notes:
 }
 
 function readRegistryIndex(): RegistryIndex {
-  const preferredPath = existsSync(REGISTRY_INDEX_PATH)
-    ? REGISTRY_INDEX_PATH
-    : REGISTRY_SOURCE_PATH;
+  if (existsSync(REGISTRY_INDEX_PATH)) {
+    const parsed = JSON.parse(readFileSync(REGISTRY_INDEX_PATH, "utf-8")) as RegistryIndex;
+    if (!Array.isArray(parsed.items)) {
+      throw new Error(`Registry file at ${REGISTRY_INDEX_PATH} does not contain an items array.`);
+    }
+    return parsed;
+  }
 
-  if (!existsSync(preferredPath)) {
+  const items = getPilotDistributableItems().map((item) => ({
+    name: item.name,
+    title: item.title,
+    description: item.description,
+  }));
+
+  if (items.length === 0) {
     throw new Error(
-      `Could not find registry metadata at ${REGISTRY_INDEX_PATH} or ${REGISTRY_SOURCE_PATH}.`
+      `No pilot items found in installable catalog and no built registry index at ${REGISTRY_INDEX_PATH}.`
     );
   }
 
-  const parsed = JSON.parse(readFileSync(preferredPath, "utf-8")) as RegistryIndex;
-  if (!Array.isArray(parsed.items)) {
-    throw new Error(`Registry file at ${preferredPath} does not contain an items array.`);
-  }
-
-  return parsed;
+  return { items };
 }
 
 function parseAddArgs(args: string[]): ParsedAddArgs {

@@ -57,6 +57,7 @@ export interface DistributableItem {
   npmDependencies: NpmDependency[];
   registryDependencies?: RegistryDependency[];
   status?: "ready" | "planned";
+  pilot?: boolean;
 }
 
 const distributableItems: DistributableItem[] = [];
@@ -84,6 +85,28 @@ export function getDistributableItemsByCategory(
   return distributableItems.filter((item) => item.category === category);
 }
 
+export const PILOT_REGISTRY_ITEM_NAMES = [
+  "slide-toggle-switch",
+  "tab-underline-follower",
+  "ripple-press-button",
+  "copy-confirmation-chip",
+  "like-burst-button",
+] as const;
+
+export type PilotRegistryItemName = (typeof PILOT_REGISTRY_ITEM_NAMES)[number];
+
+export function getPilotDistributableItems(): DistributableItem[] {
+  const pilotNameSet = new Set<string>(PILOT_REGISTRY_ITEM_NAMES);
+
+  return distributableItems
+    .filter((item) => item.status === "ready" && (item.pilot || pilotNameSet.has(item.name)))
+    .sort(
+      (a, b) =>
+        PILOT_REGISTRY_ITEM_NAMES.indexOf(a.name as PilotRegistryItemName) -
+        PILOT_REGISTRY_ITEM_NAMES.indexOf(b.name as PilotRegistryItemName)
+    );
+}
+
 // Pilot entries - micro-interaction components identified as installable
 
 registerDistributableItem({
@@ -107,8 +130,9 @@ registerDistributableItem({
   category: "micro-interactions",
   library: ["framer-motion"],
   keywords: ["ripple", "press", "button", "tap", "feedback", "micro interaction"],
-  sourceFiles: ["components/micro-interactions/RipplePressButton.tsx"],
+  sourceFiles: ["registry/components/micro-interactions/RipplePressButton.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
   status: "ready",
 });
 
@@ -159,8 +183,9 @@ registerDistributableItem({
   category: "micro-interactions",
   library: ["framer-motion"],
   keywords: ["like", "favorite", "heart", "burst", "save", "micro interaction"],
-  sourceFiles: ["components/micro-interactions/LikeBurstButton.tsx"],
+  sourceFiles: ["registry/components/micro-interactions/LikeBurstButton.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
   status: "ready",
 });
 
@@ -172,8 +197,9 @@ registerDistributableItem({
   category: "micro-interactions",
   library: ["framer-motion"],
   keywords: ["copy", "clipboard", "confirmation", "chip", "success", "micro interaction"],
-  sourceFiles: ["components/micro-interactions/CopyChipButton.tsx"],
+  sourceFiles: ["registry/components/micro-interactions/CopyChipButton.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
   status: "ready",
 });
 
@@ -276,8 +302,9 @@ registerDistributableItem({
   category: "micro-interactions",
   library: ["framer-motion"],
   keywords: ["switch", "toggle", "thumb", "track", "state", "micro interaction"],
-  sourceFiles: ["components/micro-interactions/SlideToggleSwitch.tsx"],
+  sourceFiles: ["registry/components/micro-interactions/SlideToggleSwitch.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
   status: "ready",
 });
 
@@ -315,8 +342,9 @@ registerDistributableItem({
   category: "micro-interactions",
   library: ["framer-motion"],
   keywords: ["tabs", "underline", "follower", "shared element", "navigation", "micro interaction"],
-  sourceFiles: ["components/micro-interactions/TabUnderlineFollower.tsx"],
+  sourceFiles: ["registry/components/micro-interactions/TabUnderlineFollower.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
   status: "ready",
 });
 

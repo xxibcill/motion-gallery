@@ -1,11 +1,20 @@
 {
   "name": "ripple-press-button",
+  "type": "registry:block",
   "title": "Ripple Press Button",
   "description": "Contained radial ripple feedback with keyboard-centered activation and a reduced-motion flash fallback",
-  "files": [
-    "components/micro-interactions/RipplePressButton.tsx"
-  ],
-  "npmDependencies": [
+  "dependencies": [
     "motion@^12.0.0"
+  ],
+  "categories": [
+    "micro-interactions"
+  ],
+  "files": [
+    {
+      "path": "registry/components/micro-interactions/RipplePressButton.tsx",
+      "type": "registry:component",
+      "target": "components/micro-interactions/RipplePressButton.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport {\n  AnimatePresence,\n  motion,\n  useReducedMotion,\n  type HTMLMotionProps,\n} from \"motion/react\";\n\ninterface Ripple {\n  id: number;\n  x: number;\n  y: number;\n  size: number;\n}\n\nexport interface RipplePressButtonProps\n  extends Omit<HTMLMotionProps<\"button\">, \"children\"> {\n  label?: string;\n  rippleSize?: number;\n  duration?: number;\n}\n\nexport function RipplePressButton({\n  label = \"Ping Action\",\n  rippleSize = 180,\n  duration = 220,\n  disabled = false,\n  className = \"\",\n  ...props\n}: RipplePressButtonProps) {\n  const prefersReducedMotion = useReducedMotion() ?? false;\n  const [ripples, setRipples] = useState<Ripple[]>([]);\n  const [flashKey, setFlashKey] = useState(0);\n  const nextId = useRef(0);\n\n  useEffect(() => {\n    return () => {\n      setRipples([]);\n    };\n  }, []);\n\n  const spawnRipple = (x: number, y: number) => {\n    if (disabled) {\n      return;\n    }\n\n    if (prefersReducedMotion) {\n      setFlashKey((current) => current + 1);\n      return;\n    }\n\n    const id = nextId.current++;\n    setRipples((current) => [...current, { id, x, y, size: rippleSize }]);\n\n    window.setTimeout(() => {\n      setRipples((current) => current.filter((ripple) => ripple.id !== id));\n    }, duration + 40);\n  };\n\n  const handlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {\n    const rect = event.currentTarget.getBoundingClientRect();\n    spawnRipple(event.clientX - rect.left, event.clientY - rect.top);\n  };\n\n  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {\n    if (event.repeat || (event.key !== \"Enter\" && event.key !== \" \")) {\n      return;\n    }\n\n    const rect = event.currentTarget.getBoundingClientRect();\n    spawnRipple(rect.width / 2, rect.height / 2);\n  };\n\n  return (\n    <motion.button\n      type=\"button\"\n      disabled={disabled}\n      onPointerDown={handlePointerDown}\n      onKeyDown={handleKeyDown}\n      className={`relative inline-flex min-h-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-slate-950 px-6 py-4 text-sm font-semibold tracking-[0.08em] text-zinc-100 shadow-[0_20px_40px_-28px_rgba(15,23,42,0.9)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-40 ${className}`}\n      whileHover={disabled ? undefined : { scale: 1.01 }}\n      whileTap={disabled ? undefined : { scale: 0.97 }}\n      transition={{ type: \"spring\", stiffness: 360, damping: 26 }}\n      {...props}\n    >\n      <span className=\"absolute inset-0 bg-[linear-gradient(135deg,rgba(56,189,248,0.16),transparent_40%,rgba(236,72,153,0.18))]\" />\n\n      <AnimatePresence>\n        {ripples.map((ripple) => (\n          <motion.span\n            key={ripple.id}\n            className=\"pointer-events-none absolute rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85),rgba(34,211,238,0.45),transparent_72%)]\"\n            style={{\n              width: ripple.size,\n              height: ripple.size,\n              left: ripple.x - ripple.size / 2,\n              top: ripple.y - ripple.size / 2,\n            }}\n            initial={{ scale: 0.1, opacity: 0.55 }}\n            animate={{ scale: 1, opacity: 0 }}\n            exit={{ opacity: 0 }}\n            transition={{ duration: duration / 1000, ease: [0.16, 1, 0.3, 1] }}\n          />\n        ))}\n      </AnimatePresence>\n\n      <AnimatePresence mode=\"wait\">\n        {prefersReducedMotion ? (\n          <motion.span\n            key={flashKey}\n            className=\"pointer-events-none absolute inset-0 bg-cyan-200/10\"\n            initial={{ opacity: 0 }}\n            animate={{ opacity: [0, 0.5, 0] }}\n            exit={{ opacity: 0 }}\n            transition={{ duration: 0.18, ease: \"easeOut\" }}\n          />\n        ) : null}\n      </AnimatePresence>\n\n      <span className=\"relative z-10 flex items-center gap-3\">\n        <span className=\"h-2 w-2 rounded-full bg-cyan-200/80\" />\n        <span>{label}</span>\n      </span>\n    </motion.button>\n  );\n}\n"
+    }
   ]
 }

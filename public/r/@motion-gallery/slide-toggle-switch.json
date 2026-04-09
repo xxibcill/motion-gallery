@@ -1,11 +1,20 @@
 {
   "name": "slide-toggle-switch",
+  "type": "registry:block",
   "title": "Slide Toggle Switch",
   "description": "Weighted switch travel with a track bloom that keeps state changes tactile and legible",
-  "files": [
-    "components/micro-interactions/SlideToggleSwitch.tsx"
-  ],
-  "npmDependencies": [
+  "dependencies": [
     "motion@^12.0.0"
+  ],
+  "categories": [
+    "micro-interactions"
+  ],
+  "files": [
+    {
+      "path": "registry/components/micro-interactions/SlideToggleSwitch.tsx",
+      "type": "registry:component",
+      "target": "components/micro-interactions/SlideToggleSwitch.tsx",
+      "content": "\"use client\";\n\nimport type { ButtonHTMLAttributes } from \"react\";\nimport { useState } from \"react\";\nimport { motion, useReducedMotion } from \"motion/react\";\n\nexport interface SlideToggleSwitchProps\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"children\" | \"defaultValue\"> {\n  defaultChecked?: boolean;\n  size?: number;\n  damping?: number;\n}\n\nexport function SlideToggleSwitch({\n  defaultChecked = false,\n  size = 1,\n  damping = 24,\n  disabled = false,\n  className = \"\",\n  ...props\n}: SlideToggleSwitchProps) {\n  const prefersReducedMotion = useReducedMotion() ?? false;\n  const [checked, setChecked] = useState(defaultChecked);\n\n  const width = 72 * size;\n  const height = 40 * size;\n  const thumb = 30 * size;\n  const x = width - thumb - 5 * size;\n\n  return (\n    <button\n      type=\"button\"\n      role=\"switch\"\n      aria-checked={checked}\n      aria-label=\"Toggle setting\"\n      disabled={disabled}\n      onClick={() => setChecked((current) => !current)}\n      className={`relative inline-flex items-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-45 ${\n        checked\n          ? \"border-cyan-200/30 bg-cyan-300/18\"\n          : \"border-white/10 bg-white/[0.06]\"\n      } ${className}`}\n      style={{ width, height }}\n      {...props}\n    >\n      <span\n        className={`absolute inset-[1px] rounded-full ${\n          checked\n            ? \"bg-[linear-gradient(90deg,rgba(34,211,238,0.22),rgba(125,211,252,0.38))]\"\n            : \"bg-[linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))]\"\n        }`}\n      />\n      <motion.span\n        className=\"absolute inset-y-1 left-1 rounded-full bg-cyan-200/15\"\n        animate={{\n          width: checked ? width - 8 * size : thumb + 10 * size,\n          opacity: checked ? 1 : 0.45,\n        }}\n        transition={\n          prefersReducedMotion\n            ? { duration: 0 }\n            : { duration: 0.22, ease: [0.16, 1, 0.3, 1] }\n        }\n      />\n      <motion.span\n        className=\"absolute left-[4px] top-[4px] flex items-center justify-center rounded-full bg-white text-slate-950 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.85)]\"\n        style={{ width: thumb, height: thumb }}\n        animate={{ x: checked ? x : 0 }}\n        transition={\n          prefersReducedMotion\n            ? { duration: 0 }\n            : { type: \"spring\", stiffness: 340, damping }\n        }\n      >\n        <motion.span\n          animate={{ opacity: checked ? 1 : 0, scale: checked ? 1 : 0.7 }}\n          transition={{ duration: prefersReducedMotion ? 0 : 0.16 }}\n        >\n          ✓\n        </motion.span>\n        <motion.span\n          className=\"absolute\"\n          animate={{ opacity: checked ? 0 : 1, scale: checked ? 0.7 : 1 }}\n          transition={{ duration: prefersReducedMotion ? 0 : 0.16 }}\n        >\n          •\n        </motion.span>\n      </motion.span>\n    </button>\n  );\n}\n"
+    }
   ]
 }

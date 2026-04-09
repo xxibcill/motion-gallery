@@ -11,10 +11,11 @@ pnpm verify:registry
 This runs the smoke test which:
 1. Validates registry JSON files exist and are valid
 2. Validates namespaced registry aliases exist under `public/r/@motion-gallery/`
-3. Verifies all referenced component files exist on disk
-4. Simulates installation by copying files to a temporary location
-5. Checks component syntax is valid
-6. Cleans up temporary files after completion
+3. Checks item-level schema-critical fields (`type`, `files[].path`, `files[].type`)
+4. Creates a fresh temporary fixture project via `shadcn create`
+5. Runs a real `shadcn add` installation from local generated item JSON
+6. Verifies installed files and npm dependencies in the fixture
+7. Cleans up temporary files after completion
 
 ## Expected Output
 
@@ -23,18 +24,11 @@ This runs the smoke test which:
 
 ✓ index.json found (5 items)
 
-📦 Running installation smoke tests...
+📦 Running real install smoke test for: slide-toggle-switch
 
-  Checking: slide-toggle-switch
-    ✓ 1 file(s) copied, 1 deps
-  ...
-
-✓ root registry.json found
-
-🔧 Verifying installed component syntax...
-
-  ✓ slide-toggle-switch/SlideToggleSwitch.tsx - syntax valid
-  ...
+✓ fresh fixture project created
+✓ shadcn add executed against local registry item JSON
+✓ expected files installed and dependencies resolved
 
 ---
 ✅ All checks passed!
