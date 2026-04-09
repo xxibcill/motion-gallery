@@ -1,0 +1,12 @@
+{
+  "name": "motion-gallery-verification-fixture",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "verify": "tsx verify.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tsx": "^4.7.0"
+  }
+}
