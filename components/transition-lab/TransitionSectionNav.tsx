@@ -41,7 +41,7 @@ export function TransitionSectionNav({ items }: TransitionSectionNavProps) {
   const pathname = usePathname();
 
   return (
-    <div className="overflow-x-auto pb-1">
+    <div className="overflow-x-auto pb-1" tabIndex={0} role="region" aria-label="Transition lab navigation">
       <nav aria-label="Transition lab routes" className="flex min-w-max gap-2">
         {items.map((item) => {
           const isActive = isAnimationActive(pathname, item);

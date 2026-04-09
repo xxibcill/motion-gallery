@@ -205,7 +205,7 @@ export function ShowcaseController<
           >
             {replayLabel}
           </button>
-          <p className="text-sm leading-6 text-white/56">{replayHint}</p>
+          <p className="text-sm leading-6 text-white/72">{replayHint}</p>
         </div>
       </div>
     </section>

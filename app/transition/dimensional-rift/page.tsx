@@ -234,9 +234,9 @@ export default function DimensionalRiftPage() {
                   </p>
                   <motion.button
                     onClick={replay}
-                    className="mt-6 rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--surface-3)]"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="mt-6 rounded-md border border-[var(--border-subtle)] bg-[var(--surface-2)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--surface-3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09101d]"
+                    whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                    whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                   >
                     Initialize Rift Sequence
                   </motion.button>

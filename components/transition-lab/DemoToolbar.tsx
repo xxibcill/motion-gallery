@@ -113,7 +113,7 @@ export function DemoToolbar<T extends string>({
         </div>
       </div>
 
-      <div className="flex flex-col items-start gap-2 text-sm text-white/58 lg:items-end">
+      <div className="flex flex-col items-start gap-2 text-sm text-white/72 lg:items-end">
         <button
           type="button"
           onClick={onAction}
@@ -121,7 +121,7 @@ export function DemoToolbar<T extends string>({
         >
           {actionLabel}
         </button>
-        <p>{actionHint}</p>
+        <p className="text-white/56">{actionHint}</p>
       </div>
     </div>
   );
