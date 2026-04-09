@@ -1,5 +1,9 @@
 # Task 02: Add A Distributable Item Catalog
 
+## Status
+
+Done: Created `lib/installable-catalog.ts` with typed `DistributableItem` catalog, 21 pilot micro-interaction entries with `motion` npm dependencies, and helper functions for catalog access.
+
 ## Objective
 
 Introduce a dedicated source of truth for installable animation items instead of overloading the gallery route registry.
