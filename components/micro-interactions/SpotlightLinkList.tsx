@@ -50,6 +50,8 @@ export function SpotlightLinkList({
   return (
     <div
       ref={containerRef}
+      role="listbox"
+      aria-label="Link list"
       className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.94),rgba(2,6,23,0.98))] p-3"
       onPointerMove={(event) => {
         if (prefersReducedMotion || !containerRef.current) {
@@ -92,6 +94,8 @@ export function SpotlightLinkList({
                 rowRefs.current[index] = node;
               }}
               type="button"
+              role="option"
+              aria-selected={isActive}
               onPointerEnter={() => setActiveIndex(index)}
               onFocus={() => setActiveIndex(index)}
               onClick={() => setActiveIndex(index)}

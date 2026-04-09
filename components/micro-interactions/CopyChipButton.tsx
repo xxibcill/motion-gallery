@@ -60,6 +60,7 @@ export function CopyChipButton({
   return (
     <motion.button
       type="button"
+      aria-label={copied ? copiedLabel : idleLabel}
       disabled={disabled}
       onClick={handleCopy}
       className={`relative inline-flex min-h-12 items-center gap-3 overflow-hidden rounded-full border px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-45 ${

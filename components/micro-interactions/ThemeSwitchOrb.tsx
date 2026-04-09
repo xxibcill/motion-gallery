@@ -52,6 +52,7 @@ export function ThemeSwitchOrb({
       type="button"
       role="switch"
       aria-checked={checked}
+      aria-label="Toggle theme"
       onClick={() => onChange(!checked)}
       className="group flex items-center gap-4 rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
     >

@@ -57,7 +57,7 @@ export function MorphPlayPauseToggle({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.16 }}
+            transition={{ duration: 0 }}
           >
             {playing ? (
               <span className="flex gap-2">

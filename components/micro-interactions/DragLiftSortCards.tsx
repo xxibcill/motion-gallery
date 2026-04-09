@@ -69,6 +69,7 @@ export function DragLiftSortCards({
           >
             <motion.article
               layout
+              aria-label={`${item.title}: ${item.detail}. Position ${index + 1} of ${items.length}. Drag to reorder.`}
               className="rounded-[1.55rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.94),rgba(2,6,23,0.98))] p-4 shadow-[0_24px_48px_-34px_rgba(2,6,23,0.94)]"
             >
               <div className="flex items-start justify-between gap-4">
@@ -87,6 +88,7 @@ export function DragLiftSortCards({
               <div className="mt-4 flex items-center gap-2">
                 <button
                   type="button"
+                  aria-label={`Move ${item.title} ${axis === "y" ? "up" : "left"}`}
                   onClick={() => {
                     if (index === 0) return;
                     setItems((current) => {
@@ -101,6 +103,7 @@ export function DragLiftSortCards({
                 </button>
                 <button
                   type="button"
+                  aria-label={`Move ${item.title} ${axis === "y" ? "down" : "right"}`}
                   onClick={() => {
                     if (index === items.length - 1) return;
                     setItems((current) => {

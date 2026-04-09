@@ -32,6 +32,7 @@ export function SlideToggleSwitch({
       type="button"
       role="switch"
       aria-checked={checked}
+      aria-label="Toggle setting"
       disabled={disabled}
       onClick={() => setChecked((current) => !current)}
       className={`relative inline-flex items-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/80 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-45 ${
