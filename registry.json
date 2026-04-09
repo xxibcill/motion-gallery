@@ -1,0 +1,7 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "name": "motion-gallery",
+  "description": "Animation component registry for motion-gallery",
+  "version": "0.1.0",
+  "items": []
+}
