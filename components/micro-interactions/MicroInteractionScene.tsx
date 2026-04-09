@@ -24,6 +24,10 @@ interface MicroInteractionSceneProps {
   controls?: ReactNode;
   notes?: string[];
   children: ReactNode;
+  /** Optional eyebrow label shown above the title. Defaults to "Phase 1 Demo" for backward compatibility. */
+  eyebrow?: string;
+  /** Optional label for the live example section. Defaults to "Live Example" for backward compatibility. */
+  exampleLabel?: string;
 }
 
 export function MicroInteractionScene({
@@ -33,6 +37,8 @@ export function MicroInteractionScene({
   controls,
   notes = [],
   children,
+  eyebrow = "Phase 1 Demo",
+  exampleLabel = "Live Example",
 }: MicroInteractionSceneProps) {
   return (
     <main className="min-h-screen bg-[var(--surface-0)]">
@@ -60,7 +66,7 @@ export function MicroInteractionScene({
             className="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)] p-8"
           >
             <p className="mb-4 text-xs uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
-              Phase 1 Demo
+              {eyebrow}
             </p>
             <h1 className="max-w-3xl text-4xl font-serif tracking-tight text-[var(--text-primary)] sm:text-5xl">
               {title}
@@ -114,7 +120,7 @@ export function MicroInteractionScene({
           className="overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-1)]"
         >
           <div className="border-b border-[var(--border-subtle)] px-6 py-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">Live Example</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-tertiary)]">{exampleLabel}</p>
           </div>
           <div className="min-h-[420px] px-6 py-8 sm:px-8">{children}</div>
         </motion.section>
