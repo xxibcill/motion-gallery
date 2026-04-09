@@ -13,7 +13,8 @@
     "test:e2e:debug": "playwright test --debug",
     "check:routes": "tsx scripts/check-routes.ts",
     "build:registry": "tsx scripts/build-registry.ts",
-    "verify:registry": "tsx verification/fixture/verify.ts"
+    "verify:registry": "tsx verification/fixture/verify.ts",
+    "motion-gallery": "tsx scripts/motion-gallery-cli.ts"
   },
   "dependencies": {
     "gsap": "^3.14.2",

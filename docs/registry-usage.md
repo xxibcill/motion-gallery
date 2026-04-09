@@ -56,6 +56,20 @@ npx shadcn@latest add @motion-gallery/copy-confirmation-chip
 npx shadcn@latest add @motion-gallery/like-burst-button
 ```
 
+## Optional Thin Wrapper CLI
+
+This repository also provides a small convenience wrapper that delegates to `shadcn add`.
+
+```bash
+pnpm motion-gallery list
+pnpm motion-gallery add slide-toggle-switch
+pnpm motion-gallery add @motion-gallery/tab-underline-follower --dry-run
+```
+
+- `list` shows pilot items available in the registry.
+- `add` resolves bare item names to `@motion-gallery/<name>` and then runs `shadcn add`.
+- The wrapper does not replace the registry model; it only forwards to the existing install flow.
+
 ## Direct URL Install (No Namespace Config)
 
 If you do not want `components.json` namespace config, you can still install via direct URL:

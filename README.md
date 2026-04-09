@@ -99,6 +99,7 @@ The registry also serves as a distributable catalog for installing animation com
 - **Local file copy** — copy source files directly for development
 - **Dependency handling** — all pilot items require `motion@^12.0.0`
 - **Namespaced URL pattern** — `https://host/r/@motion-gallery/{name}.json`
+- **Thin wrapper CLI** — optional `pnpm motion-gallery add <item>` convenience command that delegates to `shadcn`
 
 ```ts
 registerAnimation({
@@ -155,6 +156,7 @@ pnpm lint             # Run ESLint
 pnpm test:e2e         # Run Playwright e2e tests
 pnpm test:e2e:ui      # Run Playwright with UI mode
 pnpm test:e2e:debug   # Run Playwright in debug mode
+pnpm motion-gallery list  # List pilot registry items for the wrapper CLI
 ```
 
 ## Tech Stack
