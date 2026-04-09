@@ -90,6 +90,15 @@ tests/e2e/              # Playwright end-to-end tests
 
 Every demo page must be registered in `lib/animation-registry.ts` via `registerAnimation()`. This single source of truth powers navigation, search, and filtering across the gallery.
 
+### Installing Components from the Registry
+
+The registry also serves as a distributable catalog for installing animation components into other projects. See [docs/registry-usage.md](./docs/registry-usage.md) for full installation instructions including:
+
+- **Direct URL install** — point tooling at the registry item JSON (e.g. `https://host/r/slide-toggle-switch.json`)
+- **Local file copy** — copy source files directly for development
+- **Dependency handling** — all pilot items require `motion@^12.0.0`
+- **`components.json` namespace** — not required for direct URL or local-file installation
+
 ```ts
 registerAnimation({
   id: "my-demo",
