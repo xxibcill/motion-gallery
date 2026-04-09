@@ -95,9 +95,10 @@ Every demo page must be registered in `lib/animation-registry.ts` via `registerA
 The registry also serves as a distributable catalog for installing animation components into other projects. See [docs/registry-usage.md](./docs/registry-usage.md) for full installation instructions including:
 
 - **Direct URL install** — point tooling at the registry item JSON (e.g. `https://host/r/slide-toggle-switch.json`)
+- **Namespaced install** — configure `@motion-gallery` in `components.json` and install by name (e.g. `@motion-gallery/slide-toggle-switch`)
 - **Local file copy** — copy source files directly for development
 - **Dependency handling** — all pilot items require `motion@^12.0.0`
-- **`components.json` namespace** — not required for direct URL or local-file installation
+- **Namespaced URL pattern** — `https://host/r/@motion-gallery/{name}.json`
 
 ```ts
 registerAnimation({

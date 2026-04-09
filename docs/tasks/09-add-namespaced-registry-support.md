@@ -1,5 +1,24 @@
 # Task 09: Add Namespaced Registry Support
 
+## Status
+
+**Done** - Implementation complete.
+
+### Summary
+- Chosen namespace: `@motion-gallery`.
+- Added namespaced registry output aliases in the build script:
+  - `public/r/@motion-gallery/<item>.json`
+  - `public/r/@motion-gallery/index.json`
+- Kept existing direct URL output unchanged:
+  - `public/r/<item>.json`
+  - `public/r/index.json`
+- Updated consumer docs with concrete `components.json` registry setup and namespaced install commands for all pilot items.
+- Clarified producer responsibilities versus consumer setup in `docs/registry-usage.md`.
+
+### Verification
+- `pnpm build:registry` regenerates direct and namespaced output successfully.
+- `pnpm verify:registry` confirms both direct and namespaced registry files exist and pilot items remain installable.
+
 ## Objective
 
 Make the pilot registry consumable through a configured namespace such as `@motion-gallery/...` instead of URL-only installs.

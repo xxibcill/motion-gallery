@@ -1,0 +1,11 @@
+{
+  "name": "slide-toggle-switch",
+  "title": "Slide Toggle Switch",
+  "description": "Weighted switch travel with a track bloom that keeps state changes tactile and legible",
+  "files": [
+    "components/micro-interactions/SlideToggleSwitch.tsx"
+  ],
+  "npmDependencies": [
+    "motion@^12.0.0"
+  ]
+}

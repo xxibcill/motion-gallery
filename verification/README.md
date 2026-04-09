@@ -10,10 +10,11 @@ pnpm verify:registry
 
 This runs the smoke test which:
 1. Validates registry JSON files exist and are valid
-2. Verifies all referenced component files exist on disk
-3. Simulates installation by copying files to a temporary location
-4. Checks component syntax is valid
-5. Cleans up temporary files after completion
+2. Validates namespaced registry aliases exist under `public/r/@motion-gallery/`
+3. Verifies all referenced component files exist on disk
+4. Simulates installation by copying files to a temporary location
+5. Checks component syntax is valid
+6. Cleans up temporary files after completion
 
 ## Expected Output
 

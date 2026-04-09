@@ -17,6 +17,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REGISTRY_ROOT = join(__dirname, "..", "..");
 const PUBLIC_R_DIR = join(REGISTRY_ROOT, "public", "r");
+const NAMESPACED_PUBLIC_R_DIR = join(PUBLIC_R_DIR, "@motion-gallery");
 const VERIFICATION_OUT_DIR = join(__dirname, "installed");
 
 interface RegistryItem {
@@ -56,9 +57,15 @@ async function verify(): Promise<VerificationResult> {
 
   // 1. Verify index.json exists and is valid
   const indexPath = join(PUBLIC_R_DIR, "index.json");
+  const namespacedIndexPath = join(NAMESPACED_PUBLIC_R_DIR, "index.json");
   if (!existsSync(indexPath)) {
     result.passed = false;
     result.errors.push(`Missing: ${indexPath}`);
+    return result;
+  }
+  if (!existsSync(namespacedIndexPath)) {
+    result.passed = false;
+    result.errors.push(`Missing namespaced index: ${namespacedIndexPath}`);
     return result;
   }
 
@@ -80,9 +87,20 @@ async function verify(): Promise<VerificationResult> {
 
     // Check item JSON exists
     const itemPath = join(PUBLIC_R_DIR, `${item.name}.json`);
+    const namespacedItemPath = join(
+      NAMESPACED_PUBLIC_R_DIR,
+      `${item.name}.json`
+    );
     if (!existsSync(itemPath)) {
       result.passed = false;
       result.errors.push(`Missing item file: ${item.name}.json`);
+      continue;
+    }
+    if (!existsSync(namespacedItemPath)) {
+      result.passed = false;
+      result.errors.push(
+        `Missing namespaced item file: @motion-gallery/${item.name}.json`
+      );
       continue;
     }
 

@@ -1,0 +1,11 @@
+{
+  "name": "ripple-press-button",
+  "title": "Ripple Press Button",
+  "description": "Contained radial ripple feedback with keyboard-centered activation and a reduced-motion flash fallback",
+  "files": [
+    "components/micro-interactions/RipplePressButton.tsx"
+  ],
+  "npmDependencies": [
+    "motion@^12.0.0"
+  ]
+}

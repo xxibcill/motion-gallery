@@ -1,0 +1,11 @@
+{
+  "name": "like-burst-button",
+  "title": "Like Burst Button",
+  "description": "Favorite toggle with heart fill, compact celebratory particles, and a reduced-motion glow fallback",
+  "files": [
+    "components/micro-interactions/LikeBurstButton.tsx"
+  ],
+  "npmDependencies": [
+    "motion@^12.0.0"
+  ]
+}
