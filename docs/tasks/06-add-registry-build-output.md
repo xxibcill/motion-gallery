@@ -1,5 +1,20 @@
 # Task 06: Add Registry Build Output
 
+## Status
+
+**Done** - Implementation complete.
+
+### Summary
+- Added `scripts/build-registry.ts` - TypeScript build script that reads `registry.json` and outputs individual JSON files to `public/r/`
+- Added `build:registry` script to `package.json` (runs via `tsx scripts/build-registry.ts`)
+- Generated 5 pilot item JSON files under `public/r/` plus an `index.json` for the full registry
+- Output paths follow shadcn CLI convention: `public/r/{name}.json`
+
+### Verification
+- `pnpm build:registry` runs successfully and generates all files
+- All 5 pilot items have corresponding JSON files in `public/r/`
+- Output is deterministic (idempotent on re-run)
+
 ## Objective
 
 Wire the repo so registry source definitions can be turned into generated JSON files consumable by the `shadcn` CLI.

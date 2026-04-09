@@ -1,0 +1,11 @@
+{
+  "name": "copy-confirmation-chip",
+  "title": "Copy Confirmation Chip",
+  "description": "Compact copy confirmation with an optimistic state flip, checkmark draw, and timed reset",
+  "files": [
+    "components/micro-interactions/CopyChipButton.tsx"
+  ],
+  "npmDependencies": [
+    "motion@^12.0.0"
+  ]
+}

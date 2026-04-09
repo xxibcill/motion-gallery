@@ -1,0 +1,11 @@
+{
+  "name": "tab-underline-follower",
+  "title": "Tab Underline Follower",
+  "description": "Underline or pill highlights travel between tabs with separate content transitions",
+  "files": [
+    "components/micro-interactions/TabUnderlineFollower.tsx"
+  ],
+  "npmDependencies": [
+    "motion@^12.0.0"
+  ]
+}
