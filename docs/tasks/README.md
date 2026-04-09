@@ -1,35 +1,36 @@
-# Necessary 20% Task Pack
+# Shadcn-Compatible CLI Task Pack
 
-This folder breaks the low-leverage but necessary project work into small tasks for smaller coding agents.
+This folder breaks the animation distribution work into small tasks for smaller coding agents.
 
-The goal is to reduce maintenance risk across the gallery without spending time on broad redesigns or speculative refactors.
+The goal is to make selected motion components installable into other projects through the existing `shadcn` CLI flow first, then optionally add a thin project-specific wrapper CLI after the registry model is stable.
 
 ## Execution Order
 
-1. [01-rewrite-readme.md](./01-rewrite-readme.md)
-2. [02-add-route-inventory-helper.md](./02-add-route-inventory-helper.md)
-3. [03-add-core-route-smoke-tests.md](./03-add-core-route-smoke-tests.md)
-4. [04-add-transition-route-smoke-tests.md](./04-add-transition-route-smoke-tests.md)
-5. [05-add-route-registry-consistency-check.md](./05-add-route-registry-consistency-check.md)
-6. [06-audit-micro-interactions-accessibility.md](./06-audit-micro-interactions-accessibility.md)
-7. [07-audit-transition-accessibility.md](./07-audit-transition-accessibility.md)
-8. [08-standardize-demo-page-shell.md](./08-standardize-demo-page-shell.md)
-9. [09-performance-guardrails-pass.md](./09-performance-guardrails-pass.md)
+1. [01-audit-component-portability.md](./01-audit-component-portability.md)
+2. [02-add-distributable-item-catalog.md](./02-add-distributable-item-catalog.md)
+3. [03-scaffold-registry-source-tree.md](./03-scaffold-registry-source-tree.md)
+4. [04-extract-shared-installable-primitives.md](./04-extract-shared-installable-primitives.md)
+5. [05-create-first-registry-items.md](./05-create-first-registry-items.md)
+6. [06-add-registry-build-output.md](./06-add-registry-build-output.md)
+7. [07-document-consumer-install-flow.md](./07-document-consumer-install-flow.md)
+8. [08-add-local-registry-verification.md](./08-add-local-registry-verification.md)
+9. [09-add-namespaced-registry-support.md](./09-add-namespaced-registry-support.md)
+10. [10-add-thin-wrapper-cli.md](./10-add-thin-wrapper-cli.md)
 
 ## Working Rules
 
 - Keep each task narrow. Do not absorb neighboring work unless the task explicitly requires it.
-- Prefer additive changes over rewrites.
+- Prefer shipping a small set of installable components over designing for the whole gallery at once.
 - Preserve existing user changes in the worktree.
-- Follow the local Next.js guidance in `AGENTS.md` when touching app code.
+- Follow the local Next.js guidance in `AGENTS.md` when touching app code or build configuration.
+- Prefer `shadcn` registry compatibility over bespoke installer logic.
 - Run the smallest relevant verification for the task you complete.
 
 ## Overall Definition Of Done
 
-- The README reflects the real structure of this repo.
-- The gallery has route smoke coverage driven by a shared inventory source.
-- Registry drift is caught automatically.
-- Reduced-motion and accessibility gaps are documented and fixed on the highest-risk demos first.
-- Demo pages follow a more consistent shell where practical.
-- The heaviest demos have basic performance guardrails.
-
+- The repo has a dedicated registry source for installable animation components.
+- At least a small pilot set of components can be installed into another project with `pnpm dlx shadcn@latest add`.
+- Registry items declare their npm dependencies, including `motion` when needed.
+- Shared helper code required by installable items is shipped as registry files instead of leaking gallery-only imports.
+- The repo documents both direct URL installation and namespaced registry installation.
+- Any project-specific wrapper CLI stays thin and delegates to the registry model rather than replacing it.
