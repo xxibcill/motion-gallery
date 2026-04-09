@@ -10,7 +10,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { getSceneEntrance } from "@/lib/transition-lab";
 
 /**
@@ -60,8 +60,7 @@ export function SceneFrame({
   children,
   className = "",
 }: SceneFrameProps) {
-  const prefersReducedMotion = useReducedMotion() ?? false;
-  const entrance = getSceneEntrance(prefersReducedMotion);
+  const entrance = getSceneEntrance(false);
 
   return (
     <section className={`space-y-8 ${className}`}>

@@ -42,7 +42,7 @@ export function NoiseOverlay({
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-0 mix-blend-soft-light ${className}`}
+      className={`pointer-events-none absolute inset-0 ${className}`}
       style={{
         opacity,
         backgroundImage: `

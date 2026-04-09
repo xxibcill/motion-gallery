@@ -1,5 +1,19 @@
 # Task 09: Performance Guardrails Pass
 
+## Status
+
+**Done**
+
+### Performance Fixes Applied
+
+1. **NoiseOverlay.tsx** — Removed `mix-blend-soft-light` CSS property.
+   - **Rationale**: `mix-blend-mode` forces continuous GPU layer compositing between the noise overlay and all content beneath it. Since NoiseOverlay covers the entire viewport and is present on every Transition Lab scene, this was triggering expensive composite operations on every frame even when the scene is static.
+   - **Fix**: Removed the blend mode. The noise texture is still visible via the semi-transparent white gradient patterns; the blending was a marginal visual enhancement that wasn't worth the GPU cost.
+
+2. **SceneFrame.tsx** — Removed unnecessary `useReducedMotion()` hook call.
+   - **Rationale**: `useReducedMotion()` was called on every render just to pass its result (always `false`) to `getSceneEntrance()`. SceneFrame is used inside TransitionStage which already handles reduced-motion logic. There is no code path where SceneFrame would ever receive reduced-motion = true.
+   - **Fix**: Hardcoded `false` and removed the unused import. This eliminates a React hook call and subscription on every render of Transition Lab pages.
+
 ## Objective
 
 Apply a lightweight performance pass to the heaviest demos and shared motion surfaces.
