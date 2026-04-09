@@ -1054,3 +1054,31 @@ registerAnimation({
   group: "transition-lab",
   status: "ready",
 });
+
+registerAnimation({
+  id: "micro-interactions",
+  path: "/micro-interactions",
+  title: "Micro Interactions",
+  description: "Compact feedback demos with reusable components and explicit reduced-motion fallbacks",
+  category: "hover-interactions",
+  difficulty: "beginner",
+  library: ["framer-motion"],
+  keywords: ["micro interaction", "compact", "feedback", "button", "toggle", "hover"],
+  color: "cyan",
+  group: "core",
+  status: "ready",
+});
+
+registerAnimation({
+  id: "center-peek-shrink-expand-grid",
+  path: "/center-peek-shrink-expand-grid",
+  title: "Center Peek Shrink Expand Grid",
+  description: "Grid cards that expand from center peek position with scroll-triggered spring animations",
+  category: "scroll-based",
+  difficulty: "intermediate",
+  library: ["framer-motion"],
+  keywords: ["peek", "expand", "grid", "scroll", "center", "reveal", "spring"],
+  color: "teal",
+  group: "core",
+  status: "ready",
+});
