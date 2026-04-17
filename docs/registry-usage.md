@@ -19,8 +19,9 @@ The build output includes both paths so namespaced installs and direct URL insta
 | `ripple-press-button` | Radial ripple feedback with reduced-motion support |
 | `copy-confirmation-chip` | Clipboard utility with state flip animation |
 | `like-burst-button` | Heart toggle with particle burst effect |
+| `center-peek-card` | Scroll-driven center-stage card reveal with sticky framing |
 
-All five require `motion@^12.0.0`.
+All six require `motion@^12.0.0`.
 
 ## Producer Responsibilities
 
@@ -56,6 +57,7 @@ npx shadcn@latest add @motion-gallery/tab-underline-follower
 npx shadcn@latest add @motion-gallery/ripple-press-button
 npx shadcn@latest add @motion-gallery/copy-confirmation-chip
 npx shadcn@latest add @motion-gallery/like-burst-button
+npx shadcn@latest add @motion-gallery/center-peek-card
 ```
 
 ## Optional Thin Wrapper CLI

@@ -22,7 +22,7 @@ This runs the smoke test which:
 ```
 🔍 Verifying motion-gallery registry installation
 
-✓ index.json found (5 items)
+✓ index.json found (6 items)
 
 📦 Running real install smoke test for: slide-toggle-switch
 

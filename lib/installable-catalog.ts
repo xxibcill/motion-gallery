@@ -91,6 +91,7 @@ export const PILOT_REGISTRY_ITEM_NAMES = [
   "ripple-press-button",
   "copy-confirmation-chip",
   "like-burst-button",
+  "center-peek-card",
 ] as const;
 
 export type PilotRegistryItemName = (typeof PILOT_REGISTRY_ITEM_NAMES)[number];
@@ -107,7 +108,7 @@ export function getPilotDistributableItems(): DistributableItem[] {
     );
 }
 
-// Pilot entries - micro-interaction components identified as installable
+// Installable component entries (pilot items are flagged with `pilot: true`)
 
 registerDistributableItem({
   name: "beam-focus-input",
@@ -343,6 +344,20 @@ registerDistributableItem({
   library: ["framer-motion"],
   keywords: ["tabs", "underline", "follower", "shared element", "navigation", "micro interaction"],
   sourceFiles: ["registry/components/micro-interactions/TabUnderlineFollower.tsx"],
+  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
+  status: "ready",
+});
+
+registerDistributableItem({
+  name: "center-peek-card",
+  title: "Center Peek Card",
+  description:
+    "Sticky scroll reveal that grows a compact peek into a framed center-stage card with reduced-motion support",
+  category: "scroll-animations",
+  library: ["framer-motion"],
+  keywords: ["center peek", "scroll", "sticky", "card", "reveal", "framed"],
+  sourceFiles: ["registry/components/scroll-animations/CenterPeekCard.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
   pilot: true,
   status: "ready",
