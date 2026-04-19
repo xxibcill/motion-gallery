@@ -92,6 +92,10 @@ export const PILOT_REGISTRY_ITEM_NAMES = [
   "copy-confirmation-chip",
   "like-burst-button",
   "center-peek-card",
+  "center-peek-shrink",
+  "chat-bar",
+  "category-marquee",
+  "floating-logos",
 ] as const;
 
 export type PilotRegistryItemName = (typeof PILOT_REGISTRY_ITEM_NAMES)[number];
@@ -358,6 +362,62 @@ registerDistributableItem({
   library: ["framer-motion"],
   keywords: ["center peek", "scroll", "sticky", "card", "reveal", "framed"],
   sourceFiles: ["registry/components/scroll-animations/CenterPeekCard.tsx"],
+  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
+  status: "ready",
+});
+
+registerDistributableItem({
+  name: "center-peek-shrink",
+  title: "Center Peek Shrink Card",
+  description:
+    "Two-phase scroll animation: card expands from peek to full viewport, then collapses to a compact header anchored at the top",
+  category: "scroll-animations",
+  library: ["framer-motion"],
+  keywords: ["center peek", "shrink", "scroll", "sticky", "header", "card", "reveal"],
+  sourceFiles: ["registry/components/scroll-animations/CenterPeekShrinkCard.tsx"],
+  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
+  status: "ready",
+});
+
+registerDistributableItem({
+  name: "chat-bar",
+  title: "Chat Bar",
+  description:
+    "Chat input bar with typing animation, blinking cursor, and send button",
+  category: "micro-interactions",
+  library: ["framer-motion"],
+  keywords: ["chat", "input", "typing", "message", "cursor", "micro interaction"],
+  sourceFiles: ["registry/components/chat/ChatBar.tsx"],
+  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
+  status: "ready",
+});
+
+registerDistributableItem({
+  name: "category-marquee",
+  title: "Category Marquee",
+  description:
+    "Infinite horizontal scrolling marquee with alternating directions and edge fade",
+  category: "micro-interactions",
+  library: ["framer-motion"],
+  keywords: ["marquee", "scroll", "category", "infinite", "banner"],
+  sourceFiles: ["registry/components/category-marquee/MarqueeRow.tsx"],
+  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
+  status: "ready",
+});
+
+registerDistributableItem({
+  name: "floating-logos",
+  title: "Floating Logos",
+  description:
+    "Ambient floating logo animation with spring physics and random drift",
+  category: "micro-interactions",
+  library: ["framer-motion"],
+  keywords: ["floating", "logos", "ambient", "animation", "drift"],
+  sourceFiles: ["registry/components/floating-logos/FloatingLogos.tsx"],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
   pilot: true,
   status: "ready",

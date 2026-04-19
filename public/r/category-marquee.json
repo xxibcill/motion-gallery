@@ -1,0 +1,20 @@
+{
+  "name": "category-marquee",
+  "type": "registry:block",
+  "title": "Category Marquee",
+  "description": "Infinite horizontal scrolling marquee with alternating directions and edge fade",
+  "dependencies": [
+    "motion@^12.0.0"
+  ],
+  "categories": [
+    "micro-interactions"
+  ],
+  "files": [
+    {
+      "path": "registry/components/category-marquee/MarqueeRow.tsx",
+      "type": "registry:component",
+      "target": "components/category-marquee/MarqueeRow.tsx",
+      "content": "'use client'\n\nimport type { LucideIcon } from 'lucide-react'\nimport { useReducedMotion } from 'motion/react'\n\nexport interface Category {\n  name: string\n  color: string\n  icon: LucideIcon\n}\n\nexport function MarqueeChip({ category }: { category: Category }) {\n  const Icon = category.icon\n  return (\n    <div className=\"flex items-center gap-2 bg-white rounded-full px-2 py-2.5 shrink-0\">\n      <div\n        className=\"w-12 h-12 rounded-full flex items-center justify-center shrink-0\"\n        style={{ backgroundColor: category.color }}\n      >\n        <Icon className=\"w-6 h-6 text-white\" strokeWidth={1.5} />\n      </div>\n      <span className=\"font-medium text-[#202327] text-lg whitespace-nowrap pr-2\">\n        {category.name}\n      </span>\n    </div>\n  )\n}\n\ninterface MarqueeRowProps {\n  categories: Category[]\n  direction: 'left' | 'right'\n  duration: number\n}\n\nexport function MarqueeRow({ categories, direction, duration }: MarqueeRowProps) {\n  const prefersReducedMotion = useReducedMotion() ?? false\n  const duplicated = [...categories, ...categories]\n\n  if (prefersReducedMotion) {\n    return (\n      <div className=\"flex gap-6 overflow-hidden\">\n        {categories.map((category, i) => (\n          <MarqueeChip key={i} category={category} />\n        ))}\n      </div>\n    )\n  }\n\n  const keyframes = direction === 'left'\n    ? '@keyframes marquee-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }'\n    : '@keyframes marquee-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }'\n\n  return (\n    <>\n      <style>{`\n        ${keyframes}\n      `}</style>\n      <div className=\"overflow-hidden\">\n        <div\n          className=\"flex gap-6\"\n          style={{\n            width: 'fit-content',\n            animation: `marquee-${direction} ${duration}s linear infinite`,\n          }}\n        >\n          {duplicated.map((category, i) => (\n            <MarqueeChip key={i} category={category} />\n          ))}\n        </div>\n      </div>\n    </>\n  )\n}\n"
+    }
+  ]
+}

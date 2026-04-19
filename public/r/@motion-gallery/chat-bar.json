@@ -1,0 +1,20 @@
+{
+  "name": "chat-bar",
+  "type": "registry:block",
+  "title": "Chat Bar",
+  "description": "Chat input bar with typing animation, blinking cursor, and send button",
+  "dependencies": [
+    "motion@^12.0.0"
+  ],
+  "categories": [
+    "micro-interactions"
+  ],
+  "files": [
+    {
+      "path": "registry/components/chat/ChatBar.tsx",
+      "type": "registry:component",
+      "target": "components/chat/ChatBar.tsx",
+      "content": "'use client'\n\nimport { motion } from \"motion/react\"\nimport type { SpringOptions } from \"motion/react\"\nimport { useState, useEffect, useRef } from \"react\"\nimport { Plus, Mic, ArrowUp } from \"lucide-react\"\n\nexport const CHAT_SPRING_PRESETS = {\n  gentle: { stiffness: 200, damping: 25, mass: 1 } as SpringOptions,\n  snappy: { stiffness: 300, damping: 30, mass: 0.8 } as SpringOptions,\n}\n\ntype ChatBarDemoState = \"idle\" | \"typing\" | \"holding\"\n\ninterface ChatBarProps {\n  placeholder?: string\n  onSend?: (message: string) => void\n  className?: string\n}\n\nexport function ChatBar({\n  placeholder = \"Ask anything...\",\n  onSend,\n  className = \"\",\n}: ChatBarProps) {\n  const [value, setValue] = useState(\"\")\n  const [cursorVisible, setCursorVisible] = useState(true)\n\n  useEffect(() => {\n    const interval = setInterval(() => {\n      setCursorVisible((prev) => !prev)\n    }, 530)\n    return () => clearInterval(interval)\n  }, [])\n\n  const handleSubmit = () => {\n    if (value.trim() && onSend) {\n      onSend(value)\n      setValue(\"\")\n    }\n  }\n\n  const handleKeyDown = (e: React.KeyboardEvent) => {\n    if (e.key === \"Enter\" && !e.shiftKey) {\n      e.preventDefault()\n      handleSubmit()\n    }\n  }\n\n  return (\n    <motion.div\n      initial={{ y: 20, opacity: 0 }}\n      animate={{ y: 0, opacity: 1 }}\n      transition={{ ...CHAT_SPRING_PRESETS.gentle }}\n      className={`bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 ${className}`}\n    >\n      <motion.button\n        whileHover={{ scale: 1.05 }}\n        whileTap={{ scale: 0.95 }}\n        className=\"w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-zinc-200 transition-colors\"\n      >\n        <Plus className=\"w-4 h-4\" />\n      </motion.button>\n\n      <div className=\"flex-1 relative\">\n        <input\n          type=\"text\"\n          value={value}\n          onChange={(e) => setValue(e.target.value)}\n          onKeyDown={handleKeyDown}\n          placeholder={placeholder}\n          className=\"w-full bg-transparent text-sm outline-none placeholder:text-zinc-400 text-zinc-800\"\n        />\n      </div>\n\n      <div className=\"flex items-center gap-2\">\n        <motion.button\n          whileHover={{ scale: 1.05 }}\n          whileTap={{ scale: 0.95 }}\n          className=\"w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-zinc-200 transition-colors\"\n        >\n          <Mic className=\"w-4 h-4\" />\n        </motion.button>\n\n        <motion.button\n          whileHover={{ scale: 1.05 }}\n          whileTap={{ scale: 0.95 }}\n          onClick={handleSubmit}\n          className=\"w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors\"\n        >\n          <ArrowUp className=\"w-4 h-4\" />\n        </motion.button>\n      </div>\n    </motion.div>\n  )\n}\n"
+    }
+  ]
+}
