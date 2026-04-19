@@ -30,6 +30,7 @@ The current verification flow proves:
 - direct URL installation works for a hosted item JSON
 - namespaced `@motion-gallery/<name>` installs work from a hosted registry in `components.json`
 - every pilot item compiles in a fresh consumer Next.js project after installation
+- the evergreen consumer at `verification/evergreen-consumer` can render every installed component from a separate Next.js app surface
 
 ## Producer Responsibilities
 
@@ -118,3 +119,15 @@ pnpm verify:registry
 ```
 
 This creates a fresh consumer app, serves the generated registry over HTTP, runs a direct URL smoke test, installs all pilot items through the hosted namespaced registry, and compiles the fixture after each install.
+
+For branch-level validation, also use the committed evergreen consumer app:
+
+```bash
+cd verification/evergreen-consumer
+pnpm install --frozen-lockfile
+pnpm lint
+pnpm build
+pnpm dev
+```
+
+The evergreen consumer is the durable cross-project test surface. It is intentionally a separate Next.js app with its own package manifest, lockfile, shadcn `components.json`, and installed registry component files. See [registry-validation-tasks.md](./registry-validation-tasks.md) for the full task checklist, including manual checks for every registry component.

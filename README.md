@@ -101,6 +101,7 @@ The registry also serves as a distributable catalog for installing animation com
 - **Namespaced URL pattern** — `https://host/r/@motion-gallery/{name}.json`
 - **Thin wrapper CLI** — optional repo-local `pnpm motion-gallery add <item>` convenience command that delegates to `shadcn`
 - **Verification** — `pnpm verify:registry` serves the built registry, tests direct and namespaced installs, and compiles a fresh consumer app
+- **Evergreen consumer** — `verification/evergreen-consumer` is the committed isolated Next.js app for branch-level registry validation; see [docs/registry-validation-tasks.md](./docs/registry-validation-tasks.md)
 
 ```ts
 registerAnimation({
