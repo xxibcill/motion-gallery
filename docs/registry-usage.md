@@ -2,6 +2,8 @@
 
 This document describes how to install pilot animation components from the motion-gallery registry.
 
+For other projects, the primary supported consumer flow is the `shadcn` CLI pointed at the hosted registry. The local `motion-gallery` wrapper in this repository is only a convenience layer over that same install flow.
+
 ## Namespace and URL Pattern
 
 - Namespace: `@motion-gallery`
@@ -22,6 +24,12 @@ The build output includes both paths so namespaced installs and direct URL insta
 | `center-peek-card` | Scroll-driven center-stage card reveal with sticky framing |
 
 All six require `motion@^12.0.0`.
+
+The current verification flow proves:
+
+- direct URL installation works for a hosted item JSON
+- namespaced `@motion-gallery/<name>` installs work from a hosted registry in `components.json`
+- every pilot item compiles in a fresh consumer Next.js project after installation
 
 ## Producer Responsibilities
 
@@ -72,7 +80,8 @@ pnpm motion-gallery add @motion-gallery/tab-underline-follower --dry-run
 
 - `list` shows pilot items available in the registry.
 - `add` resolves bare item names to `@motion-gallery/<name>` and then runs `shadcn add`.
-- The wrapper does not replace the registry model; it only forwards to the existing install flow.
+- The wrapper is repo-local convenience only; it does not replace hosted registry installs for other projects.
+- If you are consuming these items from another project, use `shadcn add` with either the hosted namespaced registry or a direct item URL.
 
 ## Direct URL Install (No Namespace Config)
 
@@ -99,3 +108,13 @@ pnpm build:registry
 ```
 
 This regenerates both direct and namespaced output paths under `public/r/`.
+
+## Verifying the Registry
+
+Run:
+
+```bash
+pnpm verify:registry
+```
+
+This creates a fresh consumer app, serves the generated registry over HTTP, runs a direct URL smoke test, installs all pilot items through the hosted namespaced registry, and compiles the fixture after each install.

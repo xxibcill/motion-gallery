@@ -1,6 +1,6 @@
 "use client";
 
-import type { HTMLAttributes, MotionValue, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { useMemo, useRef } from "react";
 import {
   motion,
@@ -10,7 +10,10 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { cn } from "@/lib/utils";
+
+function cn(...values: Array<string | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
 
 interface CenterPeekCardSpringConfig {
   stiffness: number;
@@ -108,7 +111,7 @@ export function CenterPeekCard({
     [0, resolvedSettleThreshold],
     [0, 1]
   );
-  const smoothSizeProgress = useSpring(sizeProgress as MotionValue<number>, resolvedSpring);
+  const smoothSizeProgress = useSpring(sizeProgress, resolvedSpring);
 
   const width = useMotionTemplate`calc(${resolvedPeek.width}px + (100vw - ${resolvedPadding * 2}px - ${resolvedPeek.width}px) * ${smoothSizeProgress})`;
   const height = useMotionTemplate`calc(${resolvedPeek.height}vh + (100vh - ${resolvedPadding * 2}px - ${resolvedPeek.height}vh) * ${smoothSizeProgress})`;
@@ -143,10 +146,10 @@ export function CenterPeekCard({
     [0.15, 0.42]
   );
 
-  const smoothY = useSpring(y as MotionValue<number>, resolvedSpring);
-  const smoothScale = useSpring(scale as MotionValue<number>, resolvedSpring);
-  const smoothOpacity = useSpring(opacity as MotionValue<number>, resolvedSpring);
-  const smoothGlowOpacity = useSpring(glowOpacity as MotionValue<number>, resolvedSpring);
+  const smoothY = useSpring(y, resolvedSpring);
+  const smoothScale = useSpring(scale, resolvedSpring);
+  const smoothOpacity = useSpring(opacity, resolvedSpring);
+  const smoothGlowOpacity = useSpring(glowOpacity, resolvedSpring);
 
   const sectionStyle = prefersReducedMotion
     ? style

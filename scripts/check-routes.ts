@@ -23,7 +23,7 @@ interface RegistryEntry {
  * Collects all animation entries from the registry by evaluating the TS file.
  */
 async function getRegistryEntries(): Promise<RegistryEntry[]> {
-  const registry = await import("../lib/animation-registry.ts");
+  const registry = await import("../lib/animation-registry");
   const animations = registry.getAllAnimations();
   return animations.map((a: { id: string; path: string; status?: string }) => ({
     id: a.id,

@@ -99,7 +99,8 @@ The registry also serves as a distributable catalog for installing animation com
 - **Local file copy** — copy source files directly for development
 - **Dependency handling** — all pilot items require `motion@^12.0.0`
 - **Namespaced URL pattern** — `https://host/r/@motion-gallery/{name}.json`
-- **Thin wrapper CLI** — optional `pnpm motion-gallery add <item>` convenience command that delegates to `shadcn`
+- **Thin wrapper CLI** — optional repo-local `pnpm motion-gallery add <item>` convenience command that delegates to `shadcn`
+- **Verification** — `pnpm verify:registry` serves the built registry, tests direct and namespaced installs, and compiles a fresh consumer app
 
 ```ts
 registerAnimation({
