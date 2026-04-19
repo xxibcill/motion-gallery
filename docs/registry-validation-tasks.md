@@ -120,7 +120,101 @@ pnpm dev --hostname 127.0.0.1 --port 3006
 curl -I http://127.0.0.1:3006
 ```
 
-## Task 7: Record Results
+## Task 7: Fresh Project Playwright Visual Check
+
+The evergreen consumer is durable, but branch validation should also prove the registry works in a brand-new app created with `create-next-app`.
+
+Create the fresh project outside the repo or under an ignored temp path:
+
+```bash
+cd /tmp
+pnpm create next-app@latest motion-gallery-registry-playwright --yes --use-pnpm
+cd motion-gallery-registry-playwright
+pnpm dlx shadcn@latest init --yes --defaults
+pnpm add -D @playwright/test
+pnpm exec playwright install chromium
+```
+
+Configure the fresh app's `components.json` with the local registry server from Task 2:
+
+```json
+{
+  "registries": {
+    "@motion-gallery": "http://127.0.0.1:4179/r/@motion-gallery/{name}.json"
+  }
+}
+```
+
+Install every registry item into the fresh project:
+
+```bash
+pnpm dlx shadcn@latest add \
+  @motion-gallery/slide-toggle-switch \
+  @motion-gallery/tab-underline-follower \
+  @motion-gallery/ripple-press-button \
+  @motion-gallery/copy-confirmation-chip \
+  @motion-gallery/like-burst-button \
+  @motion-gallery/center-peek-card \
+  --yes \
+  --overwrite
+```
+
+Create a Playwright fixture page in the fresh project that imports and renders every installed component from the fresh app's local `components/` directory. Use stable labels and containers with `data-testid` values:
+
+| Registry item | Suggested `data-testid` |
+|---|---|
+| `slide-toggle-switch` | `registry-slide-toggle-switch` |
+| `tab-underline-follower` | `registry-tab-underline-follower` |
+| `ripple-press-button` | `registry-ripple-press-button` |
+| `copy-confirmation-chip` | `registry-copy-confirmation-chip` |
+| `like-burst-button` | `registry-like-burst-button` |
+| `center-peek-card` | `registry-center-peek-card` |
+
+Add a Playwright test that:
+
+1. Starts the fresh Next.js app with `pnpm dev`.
+2. Visits the fixture page.
+3. Asserts every `data-testid` is visible.
+4. Takes one full-page screenshot.
+5. Takes one clipped screenshot per component container.
+6. Exercises the interactive components before or after baseline capture:
+   - click `SlideToggleSwitch`
+   - click each `TabUnderlineFollower` tab
+   - click and keyboard-activate `RipplePressButton`
+   - click `CopyChipButton`
+   - click `LikeBurstButton`
+   - scroll through `CenterPeekCard`
+
+Example screenshot assertions:
+
+```ts
+await expect(page.getByTestId("registry-slide-toggle-switch")).toBeVisible();
+await expect(page).toHaveScreenshot("fresh-registry-page.png", {
+  fullPage: true,
+});
+await expect(page.getByTestId("registry-slide-toggle-switch")).toHaveScreenshot(
+  "slide-toggle-switch.png"
+);
+```
+
+Also capture screenshots from the original gallery or committed evergreen consumer with the same viewport size and reduced-motion setting. Compare the fresh app screenshots against the original screenshots before approving the registry:
+
+```bash
+pnpm exec playwright test --update-snapshots
+pnpm exec playwright test
+```
+
+Pass criteria:
+
+- The fresh app compiles and runs without importing from the producer source tree.
+- Every installed component is visible in Playwright.
+- Full-page and per-component screenshots are captured.
+- Screenshots match the original gallery or evergreen consumer closely enough that spacing, colors, motion-ready states, and component structure are recognizably the same.
+- Any screenshot diff is reviewed and explained. Do not approve unexplained visual drift.
+
+Record the screenshot artifact paths in the validation report. If a component is intentionally different in the fresh app because of surrounding layout or theme, note that explicitly and include both screenshots.
+
+## Task 8: Record Results
 
 When reporting validation, include:
 
@@ -130,6 +224,11 @@ When reporting validation, include:
 - `pnpm lint` result
 - `pnpm build` result
 - dev URL and route smoke result
+- fresh `create-next-app` project path
+- Playwright command result
+- full-page screenshot path
+- per-component screenshot paths
+- screenshot comparison result against the original gallery or evergreen consumer
 - any manual checklist failures with the component name and observed behavior
 
 Do not mark the registry as validated if only `pnpm verify:registry` passed. That script is useful, but this evergreen consumer is the durable cross-project test surface.

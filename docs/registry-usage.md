@@ -16,14 +16,18 @@ The build output includes both paths so namespaced installs and direct URL insta
 
 | Item | Description |
 |---|---|
-| `slide-toggle-switch` | Weighted toggle with track bloom animation |
-| `tab-underline-follower` | Animated tab underline with layoutId |
-| `ripple-press-button` | Radial ripple feedback with reduced-motion support |
-| `copy-confirmation-chip` | Clipboard utility with state flip animation |
-| `like-burst-button` | Heart toggle with particle burst effect |
-| `center-peek-card` | Scroll-driven center-stage card reveal with sticky framing |
+| `slide-toggle-switch` | Weighted switch travel with a track bloom that keeps state changes tactile and legible |
+| `tab-underline-follower` | Underline or pill highlights travel between tabs with separate content transitions |
+| `ripple-press-button` | Contained radial ripple feedback with keyboard-centered activation and a reduced-motion flash fallback |
+| `copy-confirmation-chip` | Compact copy confirmation with an optimistic state flip, checkmark draw, and timed reset |
+| `like-burst-button` | Favorite toggle with heart fill, compact celebratory particles, and a reduced-motion glow fallback |
+| `center-peek-card` | Sticky scroll reveal that grows a compact peek into a framed center-stage card with reduced-motion support |
+| `center-peek-shrink` | Two-phase scroll animation: card expands from peek to full viewport, then collapses to a compact header anchored at the top |
+| `chat-bar` | Chat input bar with typing animation, blinking cursor, and send button |
+| `category-marquee` | Infinite horizontal scrolling marquee with alternating directions and edge fade |
+| `floating-logos` | Ambient floating logo animation with spring physics and random drift |
 
-All six require `motion@^12.0.0`.
+All items require `motion@^12.0.0`.
 
 The current verification flow proves:
 
@@ -67,22 +71,27 @@ npx shadcn@latest add @motion-gallery/ripple-press-button
 npx shadcn@latest add @motion-gallery/copy-confirmation-chip
 npx shadcn@latest add @motion-gallery/like-burst-button
 npx shadcn@latest add @motion-gallery/center-peek-card
+npx shadcn@latest add @motion-gallery/center-peek-shrink
+npx shadcn@latest add @motion-gallery/chat-bar
+npx shadcn@latest add @motion-gallery/category-marquee
+npx shadcn@latest add @motion-gallery/floating-logos
 ```
 
-## Optional Thin Wrapper CLI
-
-This repository also provides a small convenience wrapper that delegates to `shadcn add`.
+Or install multiple items at once:
 
 ```bash
-pnpm motion-gallery list
-pnpm motion-gallery add slide-toggle-switch
-pnpm motion-gallery add @motion-gallery/tab-underline-follower --dry-run
+npx shadcn@latest add \
+  @motion-gallery/slide-toggle-switch \
+  @motion-gallery/tab-underline-follower \
+  @motion-gallery/ripple-press-button \
+  @motion-gallery/copy-confirmation-chip \
+  @motion-gallery/like-burst-button \
+  @motion-gallery/center-peek-card \
+  @motion-gallery/center-peek-shrink \
+  @motion-gallery/chat-bar \
+  @motion-gallery/category-marquee \
+  @motion-gallery/floating-logos
 ```
-
-- `list` shows pilot items available in the registry.
-- `add` resolves bare item names to `@motion-gallery/<name>` and then runs `shadcn add`.
-- The wrapper is repo-local convenience only; it does not replace hosted registry installs for other projects.
-- If you are consuming these items from another project, use `shadcn add` with either the hosted namespaced registry or a direct item URL.
 
 ## Direct URL Install (No Namespace Config)
 

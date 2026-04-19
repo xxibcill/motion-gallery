@@ -18,7 +18,7 @@ const LOGO_COLORS = [
   "bg-gradient-to-br from-teal-500 to-teal-700",
 ]
 
-interface FloatingLogoProps {
+interface FloatingLogoData {
   color: string
   size: number
   initialX: number
@@ -39,7 +39,7 @@ function generateLogos(
   count: number,
   floatSpeed: number,
   floatDist: number
-): FloatingLogoProps[] {
+): FloatingLogoData[] {
   return Array.from({ length: count }, (_, i) => ({
     color: LOGO_COLORS[i % LOGO_COLORS.length],
     size: 40 + Math.random() * 40,
@@ -59,7 +59,7 @@ function FloatingLogo({
   floatDuration,
   floatDistance,
   delay,
-}: FloatingLogoProps) {
+}: FloatingLogoData) {
   return (
     <motion.div
       className={`absolute rounded-2xl ${color} shadow-lg`}
@@ -109,7 +109,7 @@ export function FloatingLogos({
   floatDistance = 20,
   className = "",
 }: FloatingLogosProps) {
-  const [logos, setLogos] = useState<FloatingLogoProps[]>([])
+  const [logos, setLogos] = useState<FloatingLogoData[]>([])
 
   useEffect(() => {
     setLogos(generateLogos(logoCount, floatSpeed, floatDistance))
@@ -118,7 +118,7 @@ export function FloatingLogos({
   if (logos.length === 0) return null
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden ${className}`} style={{ width: '100%', height: '100%' }}>
       <div className="absolute inset-0 z-0">
         {logos.map((logo, i) => (
           <FloatingLogo key={i} {...logo} />
