@@ -19,7 +19,8 @@ const LOGO_COLORS = [
 ]
 
 interface FloatingLogoData {
-  color: string
+  src?: string
+  color?: string
   size: number
   initialX: number
   initialY: number
@@ -33,6 +34,7 @@ interface FloatingLogosProps {
   floatSpeed?: number
   floatDistance?: number
   className?: string
+  logos?: FloatingLogoData[]
 }
 
 function generateLogos(
@@ -52,6 +54,7 @@ function generateLogos(
 }
 
 function FloatingLogo({
+  src,
   color,
   size,
   initialX,
@@ -62,7 +65,7 @@ function FloatingLogo({
 }: FloatingLogoData) {
   return (
     <motion.div
-      className={`absolute rounded-2xl ${color} shadow-lg`}
+      className={`absolute rounded-2xl ${src ? '' : color} shadow-lg overflow-hidden`}
       style={{
         width: size,
         height: size,
@@ -99,7 +102,9 @@ function FloatingLogo({
           delay,
         },
       }}
-    />
+    >
+      {src && <img src={src} alt="" className="w-full h-full object-cover" />}
+    </motion.div>
   )
 }
 
@@ -108,12 +113,13 @@ export function FloatingLogos({
   floatSpeed = 6,
   floatDistance = 20,
   className = "",
+  logos: customLogos,
 }: FloatingLogosProps) {
   const [logos, setLogos] = useState<FloatingLogoData[]>([])
 
   useEffect(() => {
-    setLogos(generateLogos(logoCount, floatSpeed, floatDistance))
-  }, [logoCount, floatSpeed, floatDistance])
+    setLogos(customLogos ?? generateLogos(logoCount, floatSpeed, floatDistance))
+  }, [logoCount, floatSpeed, floatDistance, customLogos])
 
   if (logos.length === 0) return null
 
