@@ -94,6 +94,7 @@ export const PILOT_REGISTRY_ITEM_NAMES = [
   "center-peek-card",
   "center-peek-shrink",
   "chat-bar",
+  "chat-page",
   "category-marquee",
   "floating-logos",
 ] as const;
@@ -418,6 +419,23 @@ registerDistributableItem({
   library: ["framer-motion"],
   keywords: ["floating", "logos", "ambient", "animation", "drift"],
   sourceFiles: ["registry/components/floating-logos/FloatingLogos.tsx"],
+  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  pilot: true,
+  status: "ready",
+});
+
+registerDistributableItem({
+  name: "chat-page",
+  title: "Chat Page",
+  description:
+    "Full chat interface with animated ChatBar, typing indicator, user/AI messages, and scroll-triggered demo sequence",
+  category: "micro-interactions",
+  library: ["framer-motion"],
+  keywords: ["chat", "message", "typing", "animation", "conversation", "demo"],
+  sourceFiles: [
+    "registry/components/chat/ChatComponents.tsx",
+    "registry/components/chat/ChatDemo.tsx",
+  ],
   npmDependencies: [{ package: "motion", version: "^12.0.0" }],
   pilot: true,
   status: "ready",

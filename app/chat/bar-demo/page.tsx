@@ -15,7 +15,6 @@ const demoTexts = [
 ]
 
 const typingSpeed = 50
-const deletingSpeed = 30
 const holdDuration = 2000
 
 const wait = (duration: number) =>
@@ -54,7 +53,6 @@ export default function ChatBarDemoPage() {
       for (let i = 0; i < demoTexts.length; i++) {
         if (!isActiveRun()) return
 
-        const text = demoTexts[i]
         setActiveIndex(i)
         setDemoState('typing')
 
