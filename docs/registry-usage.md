@@ -24,6 +24,7 @@ The build output includes both paths so namespaced installs and direct URL insta
 | `center-peek-card` | Sticky scroll reveal that grows a compact peek into a framed center-stage card with reduced-motion support |
 | `center-peek-shrink` | Two-phase scroll animation: card expands from peek to full viewport, then collapses to a compact header anchored at the top |
 | `chat-bar` | Chat input bar with typing animation, blinking cursor, and send button |
+| `chat-page` | Full chat interface with animated ChatBar, typing indicator, user/AI messages, and scroll-triggered demo sequence |
 | `category-marquee` | Infinite horizontal scrolling marquee with alternating directions and edge fade |
 | `floating-logos` | Ambient floating logo animation with spring physics and random drift |
 
@@ -73,6 +74,7 @@ npx shadcn@latest add @motion-gallery/like-burst-button
 npx shadcn@latest add @motion-gallery/center-peek-card
 npx shadcn@latest add @motion-gallery/center-peek-shrink
 npx shadcn@latest add @motion-gallery/chat-bar
+npx shadcn@latest add @motion-gallery/chat-page
 npx shadcn@latest add @motion-gallery/category-marquee
 npx shadcn@latest add @motion-gallery/floating-logos
 ```
@@ -89,6 +91,7 @@ npx shadcn@latest add \
   @motion-gallery/center-peek-card \
   @motion-gallery/center-peek-shrink \
   @motion-gallery/chat-bar \
+  @motion-gallery/chat-page \
   @motion-gallery/category-marquee \
   @motion-gallery/floating-logos
 ```
