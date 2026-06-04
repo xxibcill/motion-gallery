@@ -97,6 +97,7 @@ export const PILOT_REGISTRY_ITEM_NAMES = [
   "chat-page",
   "category-marquee",
   "floating-logos",
+  "count-up-number",
 ] as const;
 
 export type PilotRegistryItemName = (typeof PILOT_REGISTRY_ITEM_NAMES)[number];

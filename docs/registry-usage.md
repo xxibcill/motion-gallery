@@ -27,6 +27,7 @@ The build output includes both paths so namespaced installs and direct URL insta
 | `chat-page` | Full chat interface with animated ChatBar, typing indicator, user/AI messages, and scroll-triggered demo sequence |
 | `category-marquee` | Infinite horizontal scrolling marquee with alternating directions and edge fade |
 | `floating-logos` | Ambient floating logo animation with spring physics and random drift |
+| `count-up-number` | Animated stat readout with fast acceleration, formatting support, and an immediate reduced-motion fallback |
 
 All items require `motion@^12.0.0`.
 
@@ -76,6 +77,7 @@ npx shadcn@latest add @motion-gallery/center-peek-shrink
 npx shadcn@latest add @motion-gallery/chat-bar
 npx shadcn@latest add @motion-gallery/chat-page
 npx shadcn@latest add @motion-gallery/category-marquee
+npx shadcn@latest add @motion-gallery/count-up-number
 npx shadcn@latest add @motion-gallery/floating-logos
 ```
 
@@ -93,7 +95,8 @@ npx shadcn@latest add \
   @motion-gallery/chat-bar \
   @motion-gallery/chat-page \
   @motion-gallery/category-marquee \
-  @motion-gallery/floating-logos
+  @motion-gallery/floating-logos \
+  @motion-gallery/count-up-number
 ```
 
 ## Direct URL Install (No Namespace Config)
