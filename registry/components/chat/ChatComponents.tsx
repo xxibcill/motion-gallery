@@ -1,11 +1,21 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
+import type { SpringOptions } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { Plus, Mic, ArrowUp } from "lucide-react";
-import { springPresets } from "@/lib/animation-presets";
+
+// Self-contained spring presets
+export const CHAT_SPRING_PRESETS = {
+  gentle: { stiffness: 200, damping: 25, mass: 1 } as SpringOptions,
+  snappy: { stiffness: 300, damping: 30, mass: 0.8 } as SpringOptions,
+};
 
 type ChatBarDemoState = "idle" | "typing" | "holding" | "deleting";
+
+// ============================================
+// ChatBar
+// ============================================
 
 interface ChatBarProps {
   placeholder?: string;
@@ -18,7 +28,7 @@ interface ChatBarProps {
 }
 
 export function ChatBar({
-  placeholder = "Do a deep-dive research in crypto today",
+  placeholder = "Ask anything...",
   onSend,
   demoState = "idle",
   demoText = "",
@@ -31,14 +41,11 @@ export function ChatBar({
   const [demoDisplayText, setDemoDisplayText] = useState("");
   const onDemoCompleteRef = useRef(onDemoComplete);
   const demoRunIdRef = useRef(0);
-  const demoViewportRef = useRef<HTMLDivElement>(null);
 
-  // Keep ref updated
   useEffect(() => {
     onDemoCompleteRef.current = onDemoComplete;
   }, [onDemoComplete]);
 
-  // Blinking cursor animation
   useEffect(() => {
     const interval = setInterval(() => {
       setCursorVisible((prev) => !prev);
@@ -46,8 +53,6 @@ export function ChatBar({
     return () => clearInterval(interval);
   }, []);
 
-  // Demo typing is driven by explicit visual states so the parent can keep
-  // the fully-typed message visible before advancing the sequence.
   useEffect(() => {
     demoRunIdRef.current += 1;
     const currentRunId = demoRunIdRef.current;
@@ -152,24 +157,6 @@ export function ChatBar({
     };
   }, [demoState, demoText, demoTypingSpeed, value]);
 
-  useEffect(() => {
-    if (value !== "" || demoState === "idle") {
-      return;
-    }
-
-    const frameId = window.requestAnimationFrame(() => {
-      const viewport = demoViewportRef.current;
-
-      if (!viewport) {
-        return;
-      }
-
-      viewport.scrollLeft = viewport.scrollWidth;
-    });
-
-    return () => window.cancelAnimationFrame(frameId);
-  }, [demoDisplayText, demoState, value]);
-
   const handleSubmit = () => {
     if (value.trim() && onSend) {
       onSend(value);
@@ -190,10 +177,9 @@ export function ChatBar({
     <motion.div
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ ...springPresets.gentle }}
+      transition={{ ...CHAT_SPRING_PRESETS.gentle }}
       className={`bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 ${className}`}
     >
-      {/* Add Button */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -202,7 +188,6 @@ export function ChatBar({
         <Plus className="w-4 h-4" />
       </motion.button>
 
-      {/* Input Field */}
       <div className="flex-1 relative">
         <div className="relative flex items-center">
           <AnimatePresence mode="wait">
@@ -218,23 +203,17 @@ export function ChatBar({
             )}
           </AnimatePresence>
 
-          {/* Demo typing / hold state */}
           {isDemoVisible && (
             <div className="pointer-events-none absolute inset-0 flex items-center">
-              <div
-                ref={demoViewportRef}
-                className="w-full overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              >
-                <div className="inline-flex items-center pr-1">
-                  <span className="text-zinc-800 text-sm">{demoDisplayText}</span>
-                  {(demoState === "typing" || demoState === "deleting") && (
-                    <motion.span
-                      animate={{ opacity: cursorVisible ? 1 : 0 }}
-                      transition={{ duration: 0.1 }}
-                      className="w-0.5 h-4 bg-zinc-800 ml-0.5 flex-shrink-0"
-                    />
-                  )}
-                </div>
+              <div className="inline-flex items-center pr-1">
+                <span className="text-zinc-800 text-sm">{demoDisplayText}</span>
+                {(demoState === "typing" || demoState === "deleting") && (
+                  <motion.span
+                    animate={{ opacity: cursorVisible ? 1 : 0 }}
+                    transition={{ duration: 0.1 }}
+                    className="w-0.5 h-4 bg-zinc-800 ml-0.5 flex-shrink-0"
+                  />
+                )}
               </div>
             </div>
           )}
@@ -252,7 +231,6 @@ export function ChatBar({
         </div>
       </div>
 
-      {/* Right Actions */}
       <div className="flex items-center gap-2">
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -271,6 +249,189 @@ export function ChatBar({
           <ArrowUp className="w-4 h-4" />
         </motion.button>
       </div>
+    </motion.div>
+  );
+}
+
+// ============================================
+// TypingIndicator
+// ============================================
+
+interface TypingIndicatorProps {
+  className?: string;
+}
+
+export function TypingIndicator({ className = "" }: TypingIndicatorProps) {
+  const dotVariants = {
+    initial: { y: 0 },
+    animate: { y: -4 },
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ ...CHAT_SPRING_PRESETS.gentle }}
+      className={`flex items-center gap-1.5 ${className}`}
+    >
+      {[0, 1, 2].map((index) => (
+        <motion.div
+          key={index}
+          variants={dotVariants}
+          initial="initial"
+          animate="animate"
+          transition={{
+            duration: 0.4,
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: index * 0.15,
+            ease: "easeInOut",
+          }}
+          className="w-2 h-2 rounded-full bg-zinc-400"
+        />
+      ))}
+    </motion.div>
+  );
+}
+
+// ============================================
+// UserMessage
+// ============================================
+
+interface UserMessageProps {
+  message: string;
+  className?: string;
+}
+
+export function UserMessage({ message, className = "" }: UserMessageProps) {
+  return (
+    <motion.div
+      initial={{ x: 50, opacity: 0, scale: 0.9 }}
+      animate={{ x: 0, opacity: 1, scale: 1 }}
+      transition={{ ...CHAT_SPRING_PRESETS.snappy }}
+      className={`flex justify-end ${className}`}
+    >
+      <motion.div
+        className="bg-zinc-900 text-white px-4 py-2.5 rounded-2xl text-sm font-medium max-w-[80%]"
+        whileHover={{ scale: 1.02 }}
+      >
+        {message}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ============================================
+// AIMessage
+// ============================================
+
+interface AIMessageProps {
+  message: string;
+  subheader?: string;
+  isTyping?: boolean;
+  typingSpeed?: number;
+  onTypingComplete?: () => void;
+  className?: string;
+}
+
+export function AIMessage({
+  message,
+  subheader = "AI Assistant",
+  isTyping = false,
+  typingSpeed = 30,
+  onTypingComplete,
+  className = "",
+}: AIMessageProps) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    let frameId: ReturnType<typeof window.requestAnimationFrame> | undefined;
+
+    if (!isTyping) {
+      frameId = window.requestAnimationFrame(() => {
+        setDisplayedText(message);
+        setIsComplete(true);
+      });
+
+      return () => {
+        if (frameId) {
+          window.cancelAnimationFrame(frameId);
+        }
+      };
+    }
+
+    frameId = window.requestAnimationFrame(() => {
+      setDisplayedText("");
+      setIsComplete(false);
+    });
+
+    let currentIndex = 0;
+
+    const typeNextChar = () => {
+      if (currentIndex < message.length) {
+        setDisplayedText(message.slice(0, currentIndex + 1));
+        currentIndex++;
+        timeoutRef.current = setTimeout(typeNextChar, typingSpeed);
+      } else {
+        setIsComplete(true);
+        onTypingComplete?.();
+      }
+    };
+
+    timeoutRef.current = setTimeout(typeNextChar, typingSpeed);
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [message, isTyping, typingSpeed, onTypingComplete]);
+
+  return (
+    <motion.div
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ ...CHAT_SPRING_PRESETS.gentle }}
+      className={`flex flex-col gap-1 ${className}`}
+    >
+      <span className="text-xs text-zinc-500">{subheader}</span>
+      <div className="text-sm text-zinc-800 leading-relaxed">
+        {displayedText}
+        {isTyping && !isComplete && (
+          <motion.span
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.5, repeat: Infinity }}
+            className="inline-block w-0.5 h-4 bg-zinc-800 ml-0.5 align-middle"
+          />
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+// ============================================
+// ChatContainer
+// ============================================
+
+interface ChatContainerProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function ChatContainer({ children, className = "" }: ChatContainerProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={`flex flex-col gap-4 ${className}`}
+    >
+      {children}
     </motion.div>
   );
 }

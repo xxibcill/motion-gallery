@@ -97,10 +97,11 @@ The registry also serves as a distributable catalog for installing animation com
 - **Direct URL install** — point tooling at the registry item JSON (e.g. `https://host/r/slide-toggle-switch.json`)
 - **Namespaced install** — configure `@motion-gallery` in `components.json` and install by name (e.g. `@motion-gallery/slide-toggle-switch`)
 - **Local file copy** — copy source files directly for development
-- **Dependency handling** — all pilot items require `motion@^12.0.0`
+- **Dependency handling** — generated registry JSON declares required packages such as `motion` and `lucide-react`
 - **Namespaced URL pattern** — `https://host/r/@motion-gallery/{name}.json`
 - **Thin wrapper CLI** — optional repo-local `pnpm motion-gallery add <item>` convenience command that delegates to `shadcn`
 - **Verification** — `pnpm verify:registry` serves the built registry, tests direct and namespaced installs, and compiles a fresh consumer app
+- **Evergreen consumer** — `verification/evergreen-consumer` is the committed isolated Next.js app for branch-level registry validation; see [docs/registry-validation-tasks.md](./docs/registry-validation-tasks.md)
 
 ```ts
 registerAnimation({

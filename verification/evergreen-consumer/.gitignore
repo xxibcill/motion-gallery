@@ -12,8 +12,6 @@
 
 # testing
 /coverage
-/playwright-report/
-/test-results/
 
 # next.js
 /.next/
@@ -41,10 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.claude/settings.json
-
-# verification
-verification/evergreen-consumer/.git/
-verification/evergreen-consumer/.next/
-verification/evergreen-consumer/node_modules/
-verification/evergreen-consumer/next-env.d.ts
