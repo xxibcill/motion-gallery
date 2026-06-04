@@ -34,6 +34,17 @@ export default function ChatBarDemoPage() {
     pending.resolve()
   }
 
+  const stopCycling = () => {
+    runIdRef.current += 1
+    pendingCompletionRef.current = null
+    setIsCycling(false)
+  }
+
+  const setManualState = (nextState: DemoState) => {
+    stopCycling()
+    setDemoState(nextState)
+  }
+
   useEffect(() => {
     if (!isCycling) return
 
@@ -94,7 +105,7 @@ export default function ChatBarDemoPage() {
       {/* ChatBar */}
       <div className="w-full max-w-2xl">
         <ChatBar
-          demoState={isCycling ? demoState : 'idle'}
+          demoState={demoState}
           demoText={demoTexts[activeIndex]}
           demoTypingSpeed={typingSpeed}
           onDemoComplete={handleChatbarComplete}
@@ -106,30 +117,38 @@ export default function ChatBarDemoPage() {
       <div className="flex gap-4 flex-wrap justify-center">
         <DemoButton
           active={demoState === 'idle'}
-          onClick={() => setDemoState('idle')}
+          onClick={() => setManualState('idle')}
           label="Idle"
           description="Placeholder visible"
         />
         <DemoButton
           active={demoState === 'typing'}
-          onClick={() => setDemoState('typing')}
+          onClick={() => setManualState('typing')}
           label="Typing"
           description="Animated typing with cursor"
         />
         <DemoButton
           active={demoState === 'holding'}
-          onClick={() => setDemoState('holding')}
+          onClick={() => setManualState('holding')}
           label="Holding"
           description="Full text, no cursor"
         />
         <DemoButton
           active={demoState === 'deleting'}
-          onClick={() => setDemoState('deleting')}
+          onClick={() => setManualState('deleting')}
           label="Deleting"
           description="Animated backspace"
         />
         <motion.button
-          onClick={() => setIsCycling(!isCycling)}
+          onClick={() => {
+            if (isCycling) {
+              stopCycling()
+              setDemoState('idle')
+              return
+            }
+
+            setIsCycling(true)
+          }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className={`px-6 py-4 rounded-xl text-left transition-colors ${

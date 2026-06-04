@@ -53,14 +53,26 @@ export function AIMessage({
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
+    let frameId: ReturnType<typeof window.requestAnimationFrame> | undefined
+
     if (!isTyping) {
-      setDisplayedText(message)
-      setIsComplete(true)
-      return
+      frameId = window.requestAnimationFrame(() => {
+        setDisplayedText(message)
+        setIsComplete(true)
+      })
+
+      return () => {
+        if (frameId) {
+          window.cancelAnimationFrame(frameId)
+        }
+      }
     }
 
-    setDisplayedText("")
-    setIsComplete(false)
+    frameId = window.requestAnimationFrame(() => {
+      setDisplayedText("")
+      setIsComplete(false)
+    })
+
     let currentIndex = 0
 
     const typeNextChar = () => {
@@ -77,6 +89,9 @@ export function AIMessage({
     timeoutRef.current = setTimeout(typeNextChar, typingSpeed)
 
     return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
       }

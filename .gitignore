@@ -44,4 +44,7 @@ next-env.d.ts
 .claude/settings.json
 
 # verification
-verification/evergreen-consumer
+verification/evergreen-consumer/.git/
+verification/evergreen-consumer/.next/
+verification/evergreen-consumer/node_modules/
+verification/evergreen-consumer/next-env.d.ts

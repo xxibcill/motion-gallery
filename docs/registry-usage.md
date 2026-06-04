@@ -29,7 +29,7 @@ The build output includes both paths so namespaced installs and direct URL insta
 | `floating-logos` | Ambient floating logo animation with spring physics and random drift |
 | `count-up-number` | Animated stat readout with fast acceleration, formatting support, and an immediate reduced-motion fallback |
 
-All items require `motion@^12.0.0`.
+All items require `motion@^12.0.0`. Icon-based items such as `chat-bar`, `chat-page`, and `category-marquee` also declare `lucide-react`.
 
 The current verification flow proves:
 
@@ -112,7 +112,7 @@ npx shadcn@latest add https://example.com/r/slide-toggle-switch.json
 Install declared item dependencies before use:
 
 ```bash
-pnpm add motion@^12.0.0
+pnpm add motion@^12.0.0 lucide-react@^1.6.0
 ```
 
 ## Building the Registry

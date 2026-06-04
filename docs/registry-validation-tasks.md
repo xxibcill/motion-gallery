@@ -56,6 +56,12 @@ pnpm dlx shadcn@latest add \
   @motion-gallery/copy-confirmation-chip \
   @motion-gallery/like-burst-button \
   @motion-gallery/center-peek-card \
+  @motion-gallery/center-peek-shrink \
+  @motion-gallery/chat-bar \
+  @motion-gallery/chat-page \
+  @motion-gallery/category-marquee \
+  @motion-gallery/floating-logos \
+  @motion-gallery/count-up-number \
   --yes \
   --overwrite
 ```
@@ -70,8 +76,14 @@ Expected installed files:
 | `copy-confirmation-chip` | `components/micro-interactions/CopyChipButton.tsx` |
 | `like-burst-button` | `components/micro-interactions/LikeBurstButton.tsx` |
 | `center-peek-card` | `components/scroll-animations/CenterPeekCard.tsx` |
+| `center-peek-shrink` | `components/scroll-animations/CenterPeekShrinkCard.tsx` |
+| `chat-bar` | `components/chat/ChatBar.tsx` |
+| `chat-page` | `components/chat/ChatComponents.tsx`, `components/chat/ChatDemo.tsx` |
+| `category-marquee` | `components/category-marquee/MarqueeRow.tsx` |
+| `floating-logos` | `components/floating-logos/FloatingLogos.tsx` |
+| `count-up-number` | `components/micro-interactions/CountUpNumber.tsx` |
 
-Confirm `motion` is present in `verification/evergreen-consumer/package.json`.
+Confirm `motion` and any declared item-specific dependencies, including `lucide-react`, are present in `verification/evergreen-consumer/package.json`.
 
 ## Task 4: Compile And Lint The Consumer
 
@@ -102,6 +114,12 @@ Open `http://localhost:3000` and verify each installed component renders and res
 | `CopyChipButton` | Click the chip. | Label flips to copied state, icon changes, and resets after the timeout. |
 | `LikeBurstButton` | Click the button twice. | First click toggles to liked and emits burst animation; second click returns to idle state. |
 | `CenterPeekCard` | Scroll into the final section. | Peek expands into the full card without layout breakage; reduced-motion users still get readable content. |
+| `CenterPeekShrinkCard` | Scroll through the two-phase section. | The card expands from peek state, then collapses into the compact top-anchored state. |
+| `ChatBar` | Type text and press Enter, then test each demo state. | Submission clears the input, and typing/holding/deleting demo states visibly update. |
+| `ChatDemo` | Scroll into view and click Replay. | The chat sequence autostarts once and can be replayed without stale messages. |
+| `MarqueeRow` | Observe both directions and reduced-motion mode. | Rows scroll continuously, and reduced-motion mode renders a static row. |
+| `FloatingLogos` | Render with generated and custom logo data. | Logos appear in stable positions and animate without remount flicker. |
+| `CountUpNumber` | Render integer, decimal, prefix, and suffix variants. | Values count to the target and render immediately in reduced-motion mode. |
 
 ## Task 6: Smoke Test The Route
 
@@ -155,6 +173,12 @@ pnpm dlx shadcn@latest add \
   @motion-gallery/copy-confirmation-chip \
   @motion-gallery/like-burst-button \
   @motion-gallery/center-peek-card \
+  @motion-gallery/center-peek-shrink \
+  @motion-gallery/chat-bar \
+  @motion-gallery/chat-page \
+  @motion-gallery/category-marquee \
+  @motion-gallery/floating-logos \
+  @motion-gallery/count-up-number \
   --yes \
   --overwrite
 ```
@@ -169,6 +193,12 @@ Create a Playwright fixture page in the fresh project that imports and renders e
 | `copy-confirmation-chip` | `registry-copy-confirmation-chip` |
 | `like-burst-button` | `registry-like-burst-button` |
 | `center-peek-card` | `registry-center-peek-card` |
+| `center-peek-shrink` | `registry-center-peek-shrink` |
+| `chat-bar` | `registry-chat-bar` |
+| `chat-page` | `registry-chat-page` |
+| `category-marquee` | `registry-category-marquee` |
+| `floating-logos` | `registry-floating-logos` |
+| `count-up-number` | `registry-count-up-number` |
 
 Add a Playwright test that:
 
@@ -184,6 +214,10 @@ Add a Playwright test that:
    - click `CopyChipButton`
    - click `LikeBurstButton`
    - scroll through `CenterPeekCard`
+   - scroll through `CenterPeekShrinkCard`
+   - type and submit in `ChatBar`
+   - replay `ChatDemo`
+   - verify `MarqueeRow`, `FloatingLogos`, and `CountUpNumber` render in reduced-motion mode
 
 Example screenshot assertions:
 

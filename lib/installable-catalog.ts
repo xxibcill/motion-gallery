@@ -392,7 +392,10 @@ registerDistributableItem({
   library: ["framer-motion"],
   keywords: ["chat", "input", "typing", "message", "cursor", "micro interaction"],
   sourceFiles: ["registry/components/chat/ChatBar.tsx"],
-  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  npmDependencies: [
+    { package: "motion", version: "^12.0.0" },
+    { package: "lucide-react", version: "^1.6.0" },
+  ],
   pilot: true,
   status: "ready",
 });
@@ -406,7 +409,10 @@ registerDistributableItem({
   library: ["framer-motion"],
   keywords: ["marquee", "scroll", "category", "infinite", "banner"],
   sourceFiles: ["registry/components/category-marquee/MarqueeRow.tsx"],
-  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  npmDependencies: [
+    { package: "motion", version: "^12.0.0" },
+    { package: "lucide-react", version: "^1.6.0" },
+  ],
   pilot: true,
   status: "ready",
 });
@@ -437,7 +443,10 @@ registerDistributableItem({
     "registry/components/chat/ChatComponents.tsx",
     "registry/components/chat/ChatDemo.tsx",
   ],
-  npmDependencies: [{ package: "motion", version: "^12.0.0" }],
+  npmDependencies: [
+    { package: "motion", version: "^12.0.0" },
+    { package: "lucide-react", version: "^1.6.0" },
+  ],
   pilot: true,
   status: "ready",
 });

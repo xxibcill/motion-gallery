@@ -52,28 +52,40 @@ export function ChatBar({
     demoRunIdRef.current += 1;
     const currentRunId = demoRunIdRef.current;
 
+    const updateDemoTextOnFrame = (nextText: string) => {
+      const frameId = window.requestAnimationFrame(() => {
+        if (demoRunIdRef.current === currentRunId) {
+          setDemoDisplayText(nextText);
+        }
+      });
+
+      return () => window.cancelAnimationFrame(frameId);
+    };
+
     if (value !== "") {
       return;
     }
 
     if (demoState === "idle") {
-      setDemoDisplayText("");
-      return;
+      return updateDemoTextOnFrame("");
     }
 
     if (demoState === "holding") {
-      setDemoDisplayText(demoText);
-      return;
+      return updateDemoTextOnFrame(demoText);
     }
 
     if (demoState === "deleting") {
       if (!demoText) {
-        setDemoDisplayText("");
-        return;
+        return updateDemoTextOnFrame("");
       }
 
       let currentLength = demoText.length;
       let timeoutId: ReturnType<typeof setTimeout> | undefined;
+      const resetFrameId = window.requestAnimationFrame(() => {
+        if (demoRunIdRef.current === currentRunId) {
+          setDemoDisplayText(demoText);
+        }
+      });
 
       const deleteNextChar = () => {
         if (demoRunIdRef.current !== currentRunId) {
@@ -94,6 +106,7 @@ export function ChatBar({
       timeoutId = setTimeout(deleteNextChar, demoTypingSpeed);
 
       return () => {
+        window.cancelAnimationFrame(resetFrameId);
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
@@ -101,13 +114,16 @@ export function ChatBar({
     }
 
     if (!demoText) {
-      setDemoDisplayText("");
-      return;
+      return updateDemoTextOnFrame("");
     }
 
     let currentIndex = 0;
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    setDemoDisplayText("");
+    const resetFrameId = window.requestAnimationFrame(() => {
+      if (demoRunIdRef.current === currentRunId) {
+        setDemoDisplayText("");
+      }
+    });
 
     const typeNextChar = () => {
       if (demoRunIdRef.current !== currentRunId) {
@@ -129,6 +145,7 @@ export function ChatBar({
     timeoutId = setTimeout(typeNextChar, demoTypingSpeed);
 
     return () => {
+      window.cancelAnimationFrame(resetFrameId);
       if (timeoutId) {
         clearTimeout(timeoutId);
       }

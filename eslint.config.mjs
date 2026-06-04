@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The evergreen consumer is a separate Next.js app with its own lint command.
+    "verification/evergreen-consumer/**",
   ]),
 ]);
 
